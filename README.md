@@ -2,6 +2,8 @@
 
 *This repository is the part of ENPM808X: Software Development of Robotics ME Coursework.* 
 
+[![Build Status](https://travis-ci.org/Learner1729/naivik_robot.svg?branch=master)](https://travis-ci.org/Learner1729/naivik_robot)
+[![Coverage Status](https://coveralls.io/repos/github/Learner1729/naivik_robot/badge.svg?branch=master)](https://coveralls.io/github/Learner1729/naivik_robot?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Learner1729/naivik_robot/blob/master/LICENSE)
 ---
 
