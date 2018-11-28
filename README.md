@@ -1,4 +1,4 @@
-# Naivik: Autonomous Mobile Robot using simulated turtlebot platform
+# Naivik: An Autonomous Mobile Robot
 
 *This repository is the part of ENPM808X: Software Development of Robotics ME Coursework.* 
 
