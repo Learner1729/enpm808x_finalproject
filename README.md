@@ -2,7 +2,7 @@
 
 *This repository is the part of ENPM808X: Software Development of Robotics ME Coursework.* 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)]
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Learner1729/naivik_robot/blob/master/LICENSE)
 ---
 
 ## Table of Contents
