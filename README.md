@@ -1,4 +1,4 @@
-# Naivik: An Autonomous Mobile Robot
+# *Naivik: An Autonomous Mobile Robot*
 
 *This repository is the part of ENPM808X: Software Development of Robotics ME Coursework.* 
 
@@ -17,7 +17,7 @@
 - [Activity Diagram](#activity)
 - [Directory hierarchy](#structure)
 - [Prerequisites](#pre) 
-- [Standard install via command-line](#implementation)
+- [Implementation](#implementation)
 
 ## <a name="overview"></a> Overview 
 This repository is created as the part of my project on building an autonomous mobile robot using simulated turtlebot platform for ACME Robotics (ENPM808x Final Project). The software implements autonomous navigation and mapping capability using ROS nodes and services and the simulated turtlebot platform.
@@ -68,6 +68,8 @@ catkin_ws/
 ---rviz/
 ---world/
 ---UML/
+----initial/
+----final/
 ---results/
 ---launch/
 ---.gitignore
@@ -98,7 +100,7 @@ catkin_ws/
   ```bash
   $ sudo apt-get install ros-kinetic-turtlebot-gazebo ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-rviz-launchers
   ```
-  The developed package also depends on: *roscpp*, *geometry_msgs*, & *sensor_msgs*
+  The developed package also depends on: *roscpp*, *geometry_msgs*, *sensor_msgs* *move_base_msgs*, *message_generation*, *image_transport*, *map-server*, *AMCL*, *gmapping*, *OpenCV* & *cv_bridge*
 
 ### <a name="workspace"></a> Creating a package workspace
 
@@ -109,4 +111,17 @@ $ catkin_make
 ```
 Before any update run the command `$ source devel/setup.bash` 
 
-## <a name="implementation"></a> Standard install via command-line
+## <a name="implementation"></a> Implementation
+
+### Standard install via command-line
+
+```bash
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/src
+$ git clone --recursive https://github.com/Learner1729/naivik_robot.git
+$ cd ~/catkin_ws
+$ catkin_make
+$ source devel/setup.bash
+$ echo $ROS_PACKAGE_PATH
+```
+>Note: The last command checks whether the environment variable includes the directory you are in or not. If it doesn't include please follow the above steps properly. This is the most important step to check that everything is installed and linked properly. 
