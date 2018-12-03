@@ -195,10 +195,27 @@ target_link_libraries(${PROJECT_NAME}_node
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_naivik_robot.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
+catkin_add_gtest(${PROJECT_NAME}-test 
+  src/tests/main.cpp
+  src/tests/naivikTest.cpp
+  src/tests/cameraTest.cpp
+  src/tests/motionControllerTest.cpp
+  src/tests/obstacleDetectionTest.cpp
+  src/naivik.cpp
+  src/camera.cpp
+  src/motionController.cpp
+  src/obstacleDetection.cpp
+)
+if(TARGET ${PROJECT_NAME}-test)
+  target_link_libraries(${PROJECT_NAME}-test 
+    ${catkin_LIBRARIES}
+  )
+  add_dependencies(
+    ${PROJECT_NAME}-test
+    ${PROJECT_NAME}_node
+    ${catkin_EXPORTED_TARGETS}
+  )
+endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)

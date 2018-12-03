@@ -42,6 +42,6 @@
 /**
  * @brief Test that should pass
  */
-TEST(TestSuite, should_pass) {
+TEST(TestSuite, test1) {
   EXPECT_EQ(1, 1);
 }
