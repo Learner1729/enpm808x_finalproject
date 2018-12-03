@@ -65,9 +65,9 @@ catkin_ws/
 ---CMakeLists.txt
 ---include/
 ---src/
-----test/    -> Here is where unit testing will be implemented
+----tests/    -> Here is where unit testing will be implemented
 ---srv/
----test/     -> Here is where rostest will be implemented
+---tests/     -> Here is where rostest will be implemented
 ---rviz/
 ---world/
 ---UML/
