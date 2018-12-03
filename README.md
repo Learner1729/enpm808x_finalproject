@@ -9,8 +9,7 @@
 
 ## Table of Contents
 - [Overview](#overview)
-- [License](#license)
-- [Reference Materials](#references)
+- [Author](#author)
 - [SIP Process with Sprint Plannig](#sip_process)
 - [Presentation](#present)
 - [Class Diagram](#class)
@@ -18,17 +17,20 @@
 - [Directory hierarchy](#structure)
 - [Prerequisites](#pre) 
 - [Implementation](#implementation)
+- [Documentation](#doc)
+- [Reference Materials](#references)
+- [TODO](#futurework)
 
 ## <a name="overview"></a> Overview 
 This repository is created as the part of my project on building an autonomous mobile robot using simulated turtlebot platform for ACME Robotics (ENPM808x Final Project). The software implements autonomous navigation and mapping capability using ROS nodes and services and the simulated turtlebot platform.
 
 An autonomous mobile robot have a capability to move from its current position to the goal position autonomously with the help of mapping and localizing algorithms. Such a robot performs tasks with a high degree of autonomy, which is particularly describe in fields such as spaceflight, household maintenance (such as cleaning), waste water treatment, indoor navigation and delivery goods and services. Example of such robots ranges from autonomous helicopters to Roomba, the robot vacuum cleaner.
 
-## <a name="license"></a> License
-This project is under the [MIT License](./LICENSE)
+## <a name="author"></a> Author
 
-## <a name="references"></a> Reference Materials
-WorkUnderProgress
+*Name:* Ashish Patel
+*UID:* 115730625
+*Course:* ENPM808X: Software Development in Robotics
 
 ## <a name="sip_process"></a> SIP Process with Sprint Planning
 Sprint Planing is provided in the google doc file, click on the link to access it: [Sprint Planning](https://docs.google.com/document/d/1cnqYP7j8j8OXodav0haAKlPngPgLUw-r7h47pi6sqGg/edit?usp=sharing)
@@ -36,6 +38,7 @@ Sprint Planing is provided in the google doc file, click on the link to access i
 The SIP Process followed is detailed in a spreadsheet, click on the link to access it: [SIP](https://docs.google.com/spreadsheets/d/1nMbX9Id-yYUnSFjK3-XCJu1AtMnWx-2TkpUoiuIMqgM/edit?usp=sharing)
 
 ## <a name="present"></a> Presentation
+The project presentation is made using google presentation slides, click on the link to access it: [Presentation](https://docs.google.com/presentation/d/1P-7ZiaSU_TAKtFjx63iGmTSdBFGq3v5k5EBiq1V8JrM/edit?usp=sharing)
 
 ## <a name="class"></a> Class Diagram
 <p align="center">
@@ -125,3 +128,12 @@ $ source devel/setup.bash
 $ echo $ROS_PACKAGE_PATH
 ```
 >Note: The last command checks whether the environment variable includes the directory you are in or not. If it doesn't include please follow the above steps properly. This is the most important step to check that everything is installed and linked properly. 
+
+## <a name="doc"></a> Documentation
+WorkUnderProgress
+
+## <a name="references"></a> Reference Materials
+WorkUnderProgress
+
+## <a name="futurework"></a> TODO
+WorkUnderProgress
