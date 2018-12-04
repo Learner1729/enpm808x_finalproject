@@ -1,0 +1,19 @@
+<launch> 
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
+    <arg name="world_file" value="$(find naivik_robot)/world/customWorld"/>
+  </include>
+
+  <node
+    pkg="rviz"
+    name="rviz"
+    type="rviz"
+    args="-d $(find naivik_robot)/rviz/naivik_rviz_demo.rviz"
+  />
+
+  <node
+    pkg="naivik_robot"
+    name="naivik_robot_node"
+    type="naivik_robot_node"
+    output="screen"
+  />
+</launch>
