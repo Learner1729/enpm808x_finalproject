@@ -10,7 +10,7 @@
 ## Table of Contents
 - [Overview](#overview)
 - [Author](#author)
-- [SIP Process with Sprint Plannig](#sip_process)
+- [SIP Process with Sprint Planning](#sip_process)
 - [Presentation](#present)
 - [Class Diagram](#class)
 - [Activity Diagram](#activity)
@@ -28,9 +28,9 @@ An autonomous mobile robot have a capability to move from its current position t
 
 ## <a name="author"></a> Author
 
-*Name:* Ashish Patel
-*UID:* 115730625
-*Course:* ENPM808X: Software Development in Robotics
+*Name:* Ashish Patel </br>
+*UID:* 115730625 </br>
+*Course:* ENPM808X: Software Development in Robotics </br>
 
 ## <a name="sip_process"></a> SIP Process with Sprint Planning
 Sprint Planing is provided in the google doc file, click on the link to access it: [Sprint Planning](https://docs.google.com/document/d/1cnqYP7j8j8OXodav0haAKlPngPgLUw-r7h47pi6sqGg/edit?usp=sharing)
@@ -78,12 +78,12 @@ catkin_ws/
 ---.gitignore
 ---.travis.yml
 ```
->Note: "-" indicates levels
+>**Note:** "-" indicates levels
 
 ## <a name="pre"></a> Prerequisites 
 
 * [ROS Kinetic](https://wiki.ros.org/ROS/Installation) on Ubuntu 16.04. 
-  >Note: Follow the installation steps given on ROS Kinetic installation page.
+  >**Note:** Follow the installation steps given on ROS Kinetic installation page.
 
 	After installing the full version of ROS kinetic distro we need to setup ROS by following the below steps. This steps are needed to be performed only once: <br/>
   **1.** Setting up rosdep systemwide: `$ sudo rosdep init` <br/>
@@ -97,7 +97,7 @@ catkin_ws/
 * [Rviz](http://wiki.ros.org/rviz) is specifically used for visualization of real & simulated robotic systems.
 
 * [Turtlebot packages](http://wiki.ros.org/turtlebot_gazebo) 
-  >Note: Gazebo & Rviz will be already installed as part of the ROS distro, however Turtlebot_Gazebo is need to be installed separately.
+  >**Note:** Gazebo & Rviz will be already installed as part of the ROS distro, however Turtlebot_Gazebo is need to be installed separately.
 
 	To install turtlebot packages, open a terminal and run the following command: <br/>
   ```bash
@@ -119,7 +119,6 @@ Before any update run the command `$ source devel/setup.bash`
 ### Standard install via command-line
 
 ```bash
-$ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws/src
 $ git clone --recursive https://github.com/Learner1729/naivik_robot.git
 $ cd ~/catkin_ws
@@ -127,7 +126,50 @@ $ catkin_make
 $ source devel/setup.bash
 $ echo $ROS_PACKAGE_PATH
 ```
->Note: The last command checks whether the environment variable includes the directory you are in or not. If it doesn't include please follow the above steps properly. This is the most important step to check that everything is installed and linked properly. 
+>**Note:** The last command checks whether the environment variable includes the directory you are in or not. If it doesn't include please follow the above steps properly. This is the most important step to check that everything is installed and linked properly. 
+
+### Building for code coverage
+
+Follow the below steps to generate the code coverage report on your local computer </br>
+**1.** Install lcov using the command `$ sudo apt-get install -y lcov` </br>
+**2.** Open a new terminal and run the below command `$ cd ~/catkin_ws && catkin_make run_tests && catkin_tests_results` </br>
+**3.** Generate the code coverage report `$ lcov --directory . --capture --output-file coverage.info` </br>
+**4.** Filter out the system and test code data `$ lcov --remove coverage.info 'tests/*' '/usr/*' --output-file coverage.info`
+**5.** Generate an HTML report from a captured coverage information and store it in a *output* directory in a same directory `$ genhtml coverage.info --output-directory output`
+
+>**Note:** Once it is done you can go through the *output* folder and open *index.html* to check coverage percentile. It will display both Line coverage and Function coverage shown as in the results directory.
+
+### Run Naivik Robot using rosrun
+
+After following the above standard install commands, follow the below commands to run turtlebot_gazebo and default world
+
+```bash
+$ roslaunch turtlebot_gazebo turtlebot_world.launch
+```
+You will see a gazebo window open along with default turtlebot_world with obstacles as well as the turtlebot robot. Now, we will run the walker node. Open a new shell and follow the below commands.
+
+```bash
+$ cd ~/catkin_ws
+$ source devel/setup.bash
+$ rosrun naivik_robot naivik_robot_node
+```
+Now, the turtlebot should start moving forward. As the robot drives and when it encounters an obstacle, it will stop, turn in place to free itself and then continue driving.
+
+>**Note:** We can add obstacles when the simulation is going on, which can be useful to check whether our code is working properly or not.
+
+### Run Naivik Robot using launch file
+
+The ROS node and turtlebot_gazebo environment can be start using a single launch file as follows:
+
+```bash
+$ roslaunch naivik_robot WalkerAlgorithm.launch
+```
+>**Note:** No need to start roscore, roslaunch will automatically start if it detects that it is not already running.
+
+To launch Naivik Robot, custom gazebo world and rviz altogether use the below command.
+```bash
+$ roslaunch naivik_robot WalkerAlgorithm_CustomWorld.launch
+```
 
 ## <a name="doc"></a> Documentation
 WorkUnderProgress
