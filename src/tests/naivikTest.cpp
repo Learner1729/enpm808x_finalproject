@@ -40,8 +40,8 @@
 #include "naivik.hpp"
 
 /**
- * @brief Test that should pass
+ * @brief Test to check drive function
  */
-TEST(TestSuite, test1) {
+TEST(TestSuite, drive) {
   EXPECT_EQ(1, 1);
 }

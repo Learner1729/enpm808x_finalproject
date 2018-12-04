@@ -32,6 +32,7 @@
 
 // including ros header file
 #include "ros/ros.h"
+#include "geometry_msgs/Twist.h"
 
 // including gtest header file
 #include <gtest/gtest.h>
@@ -40,8 +41,45 @@
 #include "motionController.hpp"
 
 /**
- * @brief Test that should pass
+ * @brief Test the ability to determineAction
  */
-TEST(TestSuite, test3) {
+TEST(TestSuite, determine_action) {
+  // work under progress...
   EXPECT_EQ(1, 1);
+}
+
+/**
+ * @brief Test the ability to getVehicleAction
+ */
+TEST(TestSuite, get_vehicle_action) {
+  std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
+  // initializing a geometry_msgs variable
+  geometry_msgs::Twist velocity;
+  velocity.linear.x = 0.0;
+  velocity.linear.y = 0.0;
+  velocity.linear.z = 0.0;
+  velocity.angular.x = 0.0;
+  velocity.angular.y = 0.0;
+  velocity.angular.z = 0.0;
+  //EXPECT_EQ(velocity, mc->getVehicleAction()); ... need to figure it out how to test it
+}
+
+/**
+ * @brief Test the ability to get & set linearSpeed_
+ */
+TEST(TestSuite, set_linear_speed) {
+  std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
+  ASSERT_DOUBLE_EQ(1.0, mc->getLinearSpeed());
+  mc->setLinearSpeed(4.2);
+  EXPECT_DOUBLE_EQ(4.2, mc->getLinearSpeed());
+}
+
+/**
+ * @brief Test the ability to get & set AngularSpeed_
+ */
+TEST(TestSuite, get_linear_speed) {
+  std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
+  ASSERT_DOUBLE_EQ(1.0, mc->getAngularSpeed());
+  mc->setAngularSpeed(4.2);
+  EXPECT_DOUBLE_EQ(4.2, mc->getAngularSpeed());
 }

@@ -30,6 +30,8 @@
  * @date       12-02-2018
  */
 
+// including C++ header file
+
 // including ros header file
 #include "ros/ros.h"
 
@@ -40,8 +42,26 @@
 #include "obstacleDetection.hpp"
 
 /**
- * @brief Test that should pass
+ * @brief Test the ability to get distThreshold_ variable
  */
-TEST(TestSuite, test4) {
+TEST(TestSuite, get_distance_threshold) {
+  std::shared_ptr<ObstacleDetection> obs(std::make_shared<ObstacleDetection>(10.0));
+  ASSERT_DOUBLE_EQ(10.0, obs->getDistThreshold());
+}
+
+/**
+ * @brief Test the ability to set distThreshold_ variable
+ */
+TEST(TestSuite, set_distance_threshold) {
+  std::shared_ptr<ObstacleDetection> obs(std::make_shared<ObstacleDetection>(10.0));
+  obs->setDistThreshold(12.1);
+  EXPECT_DOUBLE_EQ(12.1, obs->getDistThreshold());
+}
+
+/**
+ * @brief Test the ability to detect Obstacle
+ */
+TEST(TestSuite, detect_obstacle) {
+  // work under progress...
   EXPECT_EQ(1, 1);
 }
