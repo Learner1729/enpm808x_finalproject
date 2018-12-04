@@ -44,22 +44,26 @@
  * @brief Default Naivik class contructor
  */
 Naivik::Naivik() {
-
 }
   
 /**
  * @brief Overloaded contructor
  * @param nh ROS node handle as reference
  */
-Naivik::Naivik(ros::NodeHandle nh) {
-
+Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
+  motionController_(std::make_shared<MotionController>(0.1,1.0)),
+  camera_(std::make_shared<Camera>()) {
+  
+  laserSubscriber_ = nh_.subscribe <sensor_msgs::LaserScan> 
+    ("/scan", 100, &MotionController::determineAction, motionController_.get());
+  velocityPublisher_ = nh_.advertise <geometry_msgs::Twist> 
+    ("/mobile_base/commands/velocity", 100);
 }
   
 /**
  * @brief Naivik class destructor
  */
 Naivik::~Naivik() {
-
 }
   
 /**
@@ -68,6 +72,8 @@ Naivik::~Naivik() {
  * @return none
  */
 void Naivik::drive() {
-
+  // Grab current naivik robot action
+  geometry_msgs::Twist naivikCommand = motionController_->getVehicleAction();
+  // Publish command
+  velocityPublisher_.publish(naivikCommand);
 }
-

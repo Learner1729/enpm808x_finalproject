@@ -33,6 +33,9 @@
 #ifndef INCLUDE_MOTIONCONTROLLER_HPP_
 #define INCLUDE_MOTIONCONTROLLER_HPP_
 
+// including C++ Header files
+#include <memory>
+
 // including ROS defined Header files
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
@@ -108,22 +111,22 @@ class MotionController {
   /**
    * @brief container for Obstacle detection object
    */
-  ObstacleDetection *obstacleDetection;
+  std::shared_ptr<ObstacleDetection> obstacleDetection_{nullptr};
   
   /**
    * @brief container for linearSpeed data
    */
-  double linearSpeed;
+  double linearSpeed_;
   
   /**
    * @brief container for angularSpeed data
    */
-  double angularSpeed;
+  double angularSpeed_;
 
   /**
    * @brief container for Twist message to be sent to the turtlebot
    */
-  geometry_msgs::Twist naivikAction;
+  geometry_msgs::Twist naivikAction_;
 };
 
 #endif  // INCLUDE_MOTIONCONTROLLER_HPP_

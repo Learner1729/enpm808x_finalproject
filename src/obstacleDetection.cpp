@@ -41,15 +41,14 @@
  * @brief ObstacleDetection class overloaded constructor
  * @param distThreshold of type double
  */
-ObstacleDetection::ObstacleDetection(double distThreshold) {
-
+ObstacleDetection::ObstacleDetection(double distThreshold): 
+  distThreshold_(distThreshold) {
 }
 
 /**
  * @brief ObstacleDetection class destructor
  */
 ObstacleDetection::~ObstacleDetection() {
-
 }
   
 /**
@@ -60,7 +59,18 @@ ObstacleDetection::~ObstacleDetection() {
  */
 bool ObstacleDetection::detectObstacle(
   const sensor_msgs::LaserScan::ConstPtr& msg) {
-
+  /**
+   * Check if any scan data from the laser is less than range_min + 0.2 m from
+   * the front of the robot. If so, a collision is about to occur, return true
+   */
+  for (auto i : msg->ranges) {
+    if (i < msg->range_min + 0.2) {
+      ROS_WARN_STREAM("About to hit... Obstacle ahead!!!");
+      return true;
+    }
+  }
+  // return false, as collision is not about to occur
+  return false;
 }
  
 /**
@@ -69,7 +79,7 @@ bool ObstacleDetection::detectObstacle(
  * @return none
  */
 void ObstacleDetection::setDistThreshold(double speed) {
-  
+  distThreshold_ = speed;
 }
 
 /**
@@ -78,5 +88,5 @@ void ObstacleDetection::setDistThreshold(double speed) {
  * @return distThreshold of type double
  */
 double ObstacleDetection::getDistThreshold() {
-
+  return distThreshold_;
 }

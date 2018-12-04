@@ -41,73 +41,104 @@
 
 /**
  * @brief MotionController class overloaded constructor
- *        It sets the speed data of turtlebot
+ *        It sets the speed data of naivik robot
  * @param lSpeed of type double
  * @param aSpeed of type double
  */
-MotionController::MotionController(double lSpeed, double aSpeed) {
-
+MotionController::MotionController(double lSpeed, double aSpeed):
+  linearSpeed_(lSpeed), angularSpeed_(aSpeed),
+  obstacleDetection_(std::make_shared<ObstacleDetection>(1.0)) {
+  // Intialize naivik action to stay still
+  naivikAction_.linear.x = 0.0;
+  naivikAction_.linear.y = 0.0;
+  naivikAction_.linear.z = 0.0;
+  naivikAction_.angular.x = 0.0;
+  naivikAction_.angular.y = 0.0;
+  naivikAction_.angular.z = 0.0;
 }
   
 /**
  * @brief MotionController class destructor
  */
 MotionController::~MotionController() {
-
 }
   
 /**
- * @brief Determine a turtlebot action based on results from the obstacle
+ * @brief Determine a naivik action based on results from the obstacle
  *        detector
  * @param a reference to a variable of type sensor_msgs::LaserScan
  * @return none
  */
 void MotionController::determineAction(
   const sensor_msgs::LaserScan::ConstPtr& msg) {
-
+  // initializing a geometry_msgs variable which will be updated according 
+  // to obstacle detector
+  geometry_msgs::Twist velocity;
+  velocity.linear.x = 0.0;
+  velocity.linear.y = 0.0;
+  velocity.linear.z = 0.0;
+  velocity.angular.x = 0.0;
+  velocity.angular.y = 0.0;
+  velocity.angular.z = 0.0;
+  
+  if (obstacleDetection_->detectObstacle(msg)) { 
+    ROS_INFO_STREAM("Stop and turn the until naivik is free.");
+    // set linear velocity to zero
+    velocity.linear.x = 0.0;
+    // set turn rate about the z-axis
+    velocity.angular.z = angularSpeed_;
+  }
+  else {
+    // set turn rate to zero
+    velocity.angular.z = 0.0;
+    // move forward slowly
+    velocity.linear.x = linearSpeed_;
+  }
+  // set naivik action:
+  naivikAction_ = velocity;
 }
   
 /**
- * @brief Return the current turtlebot action
+ * @brief Return the current naivik action
  * @param none
- * @return turtlebot velocity data of type geometry_msgs::Twist
+ * @return naivik velocity data of type geometry_msgs::Twist
  */
 geometry_msgs::Twist MotionController::getVehicleAction() {
-
+  return naivikAction_;
 }
  
 /**
- * @brief set linear speed data of turtlebot
+ * @brief set linear speed data of naivik
  * @param speed of type double
  * @return none
  */
 void MotionController::setLinearSpeed(double speed) {
-
+  linearSpeed_ = speed;
 }
 
 /**
- * @brief get linear speed data of turtlebot
+ * @brief get linear speed data of naivik
  * @param none
  * @return linear speed of type double
  */
 double MotionController::getLinearSpeed() {
-
+  return linearSpeed_;
 }
 
 /**
- * @brief set angular speed data of turtlebot
+ * @brief set angular speed data of naivik
  * @param speed: double
  * @return none
  */
 void MotionController::setAngularSpeed(double speed) {
-
+  angularSpeed_ = speed;
 }
 
 /**
- * @brief get angular speed data of turtlebot
+ * @brief get angular speed data of naivik
  * @param none
  * @return angular speed of type double
  */
 double MotionController::getAngularSpeed() {
-  
+  return angularSpeed_;
 }

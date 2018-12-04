@@ -47,9 +47,9 @@ int main(int argc, char **argv) {
    * You must call one of the versions of ros::init() before using any other
    * part of the ROS system.
    * 
-   * Initialize ROS and name our node "naivik_robot"
+   * Initialize ROS and name our node "naivik_robot_node"
    */
-  ros::init(argc, argv, "naivik_robot");
+  ros::init(argc, argv, "naivik_robot_node");
   
   /**
    * NodeHandle is the main access point to communications with the ROS system.
@@ -57,6 +57,9 @@ int main(int argc, char **argv) {
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle nh;
+
+  // Creating an instance of Naivik class using parameterized constructor
+  Naivik naivik_robot(nh);
   
   /** 
    * A ros::Rate object allows you to specify a frequency that you would like to loop at. 
@@ -68,6 +71,7 @@ int main(int argc, char **argv) {
   
   /** 
    * By default roscpp will install a SIGINT handler which provides Ctrl-C handling which will 
+
    * cause ros::ok() to return false if that happens.
    * ros::ok() will return false if:
    * 1] a SIGINT is received (Ctrl-C)
@@ -77,6 +81,9 @@ int main(int argc, char **argv) {
    * Once ros::ok() returns false, all ROS calls will fail. 
    */
   while (ros::ok()) {
+   
+    naivik_robot.drive();
+
     // "Spin" a callback to call any callbacks. 
     ros::spinOnce();
     

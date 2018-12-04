@@ -33,6 +33,9 @@
 #ifndef INCLUDE_NAIVIK_HPP_
 #define INCLUDE_NAIVIK_HPP_
 
+// including C++ Header files
+#include <memory>
+
 // including ROS Header file
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
@@ -75,34 +78,34 @@ class Naivik {
   /**
    * @brief container for camera object
    */
-  Camera *camera;
+  std::shared_ptr<Camera> camera_{nullptr};
   
   /**
    * @brief container for motion controller object
    */
-  MotionController *motionController;
+  std::shared_ptr<MotionController> motionController_{nullptr};
   
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the
    * last NodeHandle destructed will close down the node.
    */
-  ros::NodeHandle nh;
+  ros::NodeHandle nh_;
   
   /**
    * @brief container for a ROS publisher to publish vehicle motion commands
    */
-  ros::Publisher velocityPublisher;
+  ros::Publisher velocityPublisher_;
   
   /**
    * @brief container for a ROS subscriber for laser scan topics
    */
-  ros::Subscriber laserSubscriber;
+  ros::Subscriber laserSubscriber_;
   
   /**
    * @brief container for a ROS subscriber for camera topics
    */
-  ros::Subscriber cameraSubcriber;
+  ros::Subscriber cameraSubcriber_;
 };
 
 #endif  // INCLUDE_NAIVIK_HPP_

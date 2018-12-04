@@ -81,7 +81,7 @@ class ObstacleDetection {
    * @brief variable to determine how close the turtlebot should get to an 
    *        object
    */
-  double distThreshold;
+  double distThreshold_;
 };
 
 #endif  // INCLUDE_OBSTACLEDETECTION_HPP_

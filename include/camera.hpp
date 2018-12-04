@@ -34,6 +34,7 @@
 #define INCLUDE_CAMERA_HPP_
 
 // including C++ Header files
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -66,7 +67,7 @@ class Camera {
   /**
    * @brief Define a variable named savedImages to store image data 
    */
-  std::vector<std::string> saveImages;
+  std::vector<std::string> saveImages_;
 };
 
 #endif  // INCLUDE_CAMERA_HPP_
