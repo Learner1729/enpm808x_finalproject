@@ -46,6 +46,7 @@
 #include "naivik_robot/changeThresholdService.h"
 #include "naivik_robot/changeLinearSpeedService.h"
 #include "naivik_robot/changeAngularSpeedService.h"
+#include "naivik_robot/controlMotionService.h"
 
 /**
  * @brief MotionController class determine's Turtlebot control actions. 
@@ -130,7 +131,14 @@ class MotionController {
   bool changeAngularSpeed(
     naivik_robot::changeAngularSpeedService::Request& req,
     naivik_robot::changeAngularSpeedService::Response& res);
- 
+
+  /**
+   * @brief callback back function for controlMotionService
+   */
+  bool controlMotion(
+    naivik_robot::controlMotionService::Request& req,
+    naivik_robot::controlMotionService::Response& res);
+
  private:
   /**
    * @brief container for Obstacle detection object
@@ -151,6 +159,11 @@ class MotionController {
    * @brief container for Twist message to be sent to the turtlebot
    */
   geometry_msgs::Twist naivikAction_;
+
+  /**
+   * @brief container to denote robot status
+   */
+  bool stopRobot_{false};
 };
 
 #endif  // INCLUDE_MOTIONCONTROLLER_HPP_

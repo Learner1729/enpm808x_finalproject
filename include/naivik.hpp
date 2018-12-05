@@ -121,6 +121,11 @@ class Naivik {
    * @brief container for ROS changeAngularSpeedService 
    */
   ros::ServiceServer changeAngularSpeedServer_;
+
+  /**
+   * @brief container for ROS controlMotionService 
+   */
+  ros::ServiceServer controlMotionServer_;
 };
 
 #endif  // INCLUDE_NAIVIK_HPP_

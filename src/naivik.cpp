@@ -65,6 +65,8 @@ Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
     &MotionController::changeLinearSpeed, motionController_.get());
   changeAngularSpeedServer_ = nh_.advertiseService("changeAngularSpeedService",
     &MotionController::changeAngularSpeed, motionController_.get());
+  controlMotionServer_ = nh_.advertiseService("controlMotionService",
+    &MotionController::controlMotion, motionController_.get());
 }
   
 /**

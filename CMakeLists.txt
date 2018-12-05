@@ -61,6 +61,7 @@ add_service_files(
   changeThresholdService.srv
   changeLinearSpeedService.srv
   changeAngularSpeedService.srv
+  controlMotionService.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -136,7 +137,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node 
+add_executable(${PROJECT_NAME}_node
   src/naivik_robot_node.cpp
   src/naivik.cpp
   src/camera.cpp

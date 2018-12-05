@@ -80,19 +80,25 @@ void MotionController::determineAction(
   velocity.angular.x = 0.0;
   velocity.angular.y = 0.0;
   velocity.angular.z = 0.0;
-  
-  if (obstacleDetection_->detectObstacle(msg)) { 
-    ROS_INFO_STREAM("Stop and turn the until naivik is free.");
-    // set linear velocity to zero
-    velocity.linear.x = 0.0;
-    // set turn rate about the z-axis
-    velocity.angular.z = angularSpeed_;
+  if (stopRobot_ == false) {
+    if (obstacleDetection_->detectObstacle(msg)) { 
+      ROS_INFO_STREAM("Stop and turn the until naivik is free.");
+      // set linear velocity to zero
+      velocity.linear.x = 0.0;
+      // set turn rate about the z-axis
+      velocity.angular.z = angularSpeed_;
+    }
+    else {
+      // set turn rate to zero
+      velocity.angular.z = 0.0;
+      // move forward slowly
+      velocity.linear.x = linearSpeed_;
+    }
   }
   else {
-    // set turn rate to zero
+    // stop the Motion
     velocity.angular.z = 0.0;
-    // move forward slowly
-    velocity.linear.x = linearSpeed_;
+    velocity.linear.x = 0.0;
   }
   // set naivik action:
   naivikAction_ = velocity;
@@ -182,3 +188,19 @@ bool MotionController::changeAngularSpeed(
   return res.response;
 }
 
+/**
+ * @brief callback back function for controlMotionService
+ */
+bool MotionController::controlMotion(
+  naivik_robot::controlMotionService::Request& req,
+  naivik_robot::controlMotionService::Response& res) {
+
+  stopRobot_ = req.motion;
+  res.response = true;
+  if (stopRobot_) {
+    ROS_INFO_STREAM("Stop turtlebot");
+  } else {
+    ROS_INFO_STREAM("Continue Motion");
+  }
+  return res.response;
+}
