@@ -39,6 +39,7 @@
 
 // including user-defined header file
 #include "motionController.hpp"
+#include "naivik_robot/changeThresholdService.h"
 
 /**
  * @brief Test the ability to determineAction
@@ -54,14 +55,15 @@ TEST(TestSuite, determine_action) {
 TEST(TestSuite, get_vehicle_action) {
   std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
   // initializing a geometry_msgs variable
-  geometry_msgs::Twist velocity;
-  velocity.linear.x = 0.0;
-  velocity.linear.y = 0.0;
-  velocity.linear.z = 0.0;
-  velocity.angular.x = 0.0;
-  velocity.angular.y = 0.0;
-  velocity.angular.z = 0.0;
-  //EXPECT_EQ(velocity, mc->getVehicleAction()); ... need to figure it out how to test it
+  geometry_msgs::Twist velocity = mc->getVehicleAction();
+  // temporary variable
+  auto flag = false;
+  if(velocity.linear.x == 0.0 && velocity.linear.y == 0.0 && 
+    velocity.linear.z == 0.0 && velocity.angular.x == 0.0 && 
+    velocity.angular.y == 0.0 && velocity.angular.z == 0.0) {
+    flag = true;
+  }
+  EXPECT_EQ(true,flag);
 }
 
 /**
@@ -83,3 +85,5 @@ TEST(TestSuite, get_linear_speed) {
   mc->setAngularSpeed(4.2);
   EXPECT_DOUBLE_EQ(4.2, mc->getAngularSpeed());
 }
+
+ 
