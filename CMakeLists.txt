@@ -55,8 +55,11 @@ find_package(catkin REQUIRED
 
 ## Generate services in the 'srv' folder
 add_service_files(
+  DIRECTORY 
+  srv
   FILES
   changeThresholdService.srv
+  changeLinearSpeedService.srv
 )
 
 ## Generate actions in the 'action' folder

@@ -144,13 +144,27 @@ double MotionController::getAngularSpeed() {
 }
 
 /**
- * @brief Callback back function for changeThreshold function
+ * @brief callback back function for changeThresholdService
  */
 bool MotionController::changeThreshold(
   naivik_robot::changeThresholdService::Request& req,
   naivik_robot::changeThresholdService::Response& res) {
+
   obstacleDetection_->setDistThreshold(req.changeThreshold);
   res.response = true;
   ROS_INFO("Setting Distance Threshold: %f", req.changeThreshold);
+  return res.response;
+}
+
+/**
+ * @brief callback back function for changeLinearSpeedService
+ */
+bool MotionController::changeLinearSpeed(
+  naivik_robot::changeLinearSpeedService::Request& req,
+  naivik_robot::changeLinearSpeedService::Response& res) {
+  
+  setLinearSpeed(req.changeLSpeed);
+  res.response = true;
+  ROS_INFO("Updated linearSpeed to: %f", req.changeLSpeed);
   return res.response;
 }
