@@ -134,7 +134,7 @@ Follow the below steps to generate the code coverage report on your local comput
 **1.** Install lcov using the command `$ sudo apt-get install -y lcov` </br>
 **2.** Open a new terminal and run the below command `$ cd ~/catkin_ws && catkin_make run_tests && catkin_tests_results` </br>
 **3.** Generate the code coverage report `$ lcov --directory . --capture --output-file coverage.info` </br>
-**4.** Filter out the system and test code data `$ lcov --remove coverage.info 'tests/*' '/usr/*' --output-file coverage.info`
+**4.** Filter out the system and test code data `$ lcov --remove coverage.info 'tests/*' '/usr/*' --output-file coverage.info` </br>
 **5.** Generate an HTML report from a captured coverage information and store it in a *output* directory in a same directory `$ genhtml coverage.info --output-directory output`
 
 >**Note:** Once it is done you can go through the *output* folder and open *index.html* to check coverage percentile. It will display both Line coverage and Function coverage shown as in the results directory.
@@ -169,6 +169,15 @@ $ roslaunch naivik_robot WalkerAlgorithm.launch
 To launch Naivik Robot, custom gazebo world and rviz altogether use the below command.
 ```bash
 $ roslaunch naivik_robot WalkerAlgorithm_CustomWorld.launch
+```
+### Run changeThresholdService
+
+There is rosservice which is used to change the distance threshold at which robot will stop moving to avoid an obstacle. As the vehicle moves throughout the environment, it checks its laser scan data for any obstacles closer than this distance threshold. To call this service, open a new terminal and follow the below steps. 
+
+```bash
+$ cd ~/catkin_ws
+$ source devel/setup.bash
+$ rosservice call /changeThresholdService "changeThreshold: 0.5"
 ```
 
 ## <a name="doc"></a> Documentation
