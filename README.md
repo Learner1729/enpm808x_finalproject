@@ -170,6 +170,7 @@ To launch Naivik Robot, custom gazebo world and rviz altogether use the below co
 ```bash
 $ roslaunch naivik_robot WalkerAlgorithm_CustomWorld.launch
 ```
+
 ### Run changeThresholdService
 
 There is rosservice which is used to change the distance threshold at which robot will stop moving to avoid an obstacle. As the vehicle moves throughout the environment, it checks its laser scan data for any obstacles closer than this distance threshold. To call this service, open a new terminal and follow the below steps. 
@@ -179,6 +180,7 @@ $ cd ~/catkin_ws
 $ source devel/setup.bash
 $ rosservice call /changeThresholdService "changeThreshold: 0.5"
 ```
+
 ### Run changeLinearSpeedService
 
 You may want to change the speed at which the robot moves forward. To do so, you can issue another rosservice call to the robot. The robot will see this service and change the linear speed to the value passed in to the service. To make this service call, open a new terminal and follow the below steps. 
@@ -188,6 +190,7 @@ $ cd ~/catkin_ws
 $ source devel/setup.bash
 $ rosservice call /changeLinearSpeedService "changeLSpeed: 1.0"
 ```
+
 ### Run changeAngularSpeedService
 
 You may want to change the speed at which the robot moves. To do so, you can issue another rosservice call to the robot. The robot will see this service and change the angular speed to the value passed in to the service. To make this service call, open a new terminal and follow the below steps.
@@ -197,6 +200,17 @@ $ cd ~/catkin_ws
 $ source devel/setup.bash
 $ rosservice call /changeAngularSpeedService "changeASpeed: 1.0"
 ```
+
+### Run controlMotionService
+
+Using this ROS service, you can stop the robot in place (and then later start its motion). To make this service call, open a new terminal and follow the below steps.
+
+```bash
+$ cd ~/catkin_ws
+$ source devel/setup.bash
+$ rosservice call /controlMotionService "motion: true"
+```
+>**Note:** The value of motion will be *true* if you want to stop the robot, and to resume the motion back call the same service and change the value to *false*.
 
 ## <a name="doc"></a> Documentation
 WorkUnderProgress
