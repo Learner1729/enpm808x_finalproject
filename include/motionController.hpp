@@ -45,6 +45,7 @@
 #include "obstacleDetection.hpp"
 #include "naivik_robot/changeThresholdService.h"
 #include "naivik_robot/changeLinearSpeedService.h"
+#include "naivik_robot/changeAngularSpeedService.h"
 
 /**
  * @brief MotionController class determine's Turtlebot control actions. 
@@ -122,6 +123,13 @@ class MotionController {
   bool changeLinearSpeed(
     naivik_robot::changeLinearSpeedService::Request& req,
     naivik_robot::changeLinearSpeedService::Response& res);
+ 
+  /**
+   * @brief callback back function for changeAngularSpeedService
+   */
+  bool changeAngularSpeed(
+    naivik_robot::changeAngularSpeedService::Request& req,
+    naivik_robot::changeAngularSpeedService::Response& res);
  
  private:
   /**

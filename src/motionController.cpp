@@ -168,3 +168,17 @@ bool MotionController::changeLinearSpeed(
   ROS_INFO("Updated linearSpeed to: %f", req.changeLSpeed);
   return res.response;
 }
+
+/**
+ * @brief callback back function for changeAngularSpeedService
+ */
+bool MotionController::changeAngularSpeed(
+  naivik_robot::changeAngularSpeedService::Request& req,
+  naivik_robot::changeAngularSpeedService::Response& res) {
+  
+  setAngularSpeed(req.changeASpeed);
+  res.response = true;
+  ROS_INFO("Updated angularSpeed to: %f", req.changeASpeed);
+  return res.response;
+}
+

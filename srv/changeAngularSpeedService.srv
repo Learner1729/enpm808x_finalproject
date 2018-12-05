@@ -1,0 +1,4 @@
+#Details of service data types
+float64 changeASpeed
+---
+bool response
