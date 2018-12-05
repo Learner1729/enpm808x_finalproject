@@ -179,6 +179,15 @@ $ cd ~/catkin_ws
 $ source devel/setup.bash
 $ rosservice call /changeThresholdService "changeThreshold: 0.5"
 ```
+### Run changeLinearSpeedService
+
+You may want to change the speed at which the robot moves forward. To do so, you can issue another rosservice call to the robot. The turtlebot will see this service and change the linear speed to the value passed in to the service. To make this service call, open a new terminal, and follow the below steps. 
+
+```bash
+$ cd ~/catkin_ws
+$ source devel/setup.bash
+$ rosservice call /changeLinearSpeedService "changeLSpeed: 1.0"
+```
 
 ## <a name="doc"></a> Documentation
 WorkUnderProgress
