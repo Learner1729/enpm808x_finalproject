@@ -106,6 +106,11 @@ class Naivik {
    * @brief container for a ROS subscriber for camera topics
    */
   ros::Subscriber cameraSubcriber_;
+
+  /**
+   * @brief Implementing changeThresholdServer in Turtlebot class 
+   */
+  ros::ServiceServer changeThresholdServer_;
 };
 
 #endif  // INCLUDE_NAIVIK_HPP_

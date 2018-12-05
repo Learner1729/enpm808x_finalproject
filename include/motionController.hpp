@@ -43,6 +43,7 @@
 
 // including user-defined Header file
 #include "obstacleDetection.hpp"
+#include "naivik_robot/changeThresholdService.h"
 
 /**
  * @brief MotionController class determine's Turtlebot control actions. 
@@ -106,6 +107,13 @@ class MotionController {
    * @return angular speed of type double
    */
   double getAngularSpeed();
+
+  /**
+   * @brief Callback back function for changeThreshold function
+   */
+  bool changeThreshold(
+    naivik_robot::changeThresholdService::Request& req,
+    naivik_robot::changeThresholdService::Response& res);
  
  private:
   /**

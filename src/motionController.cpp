@@ -142,3 +142,15 @@ void MotionController::setAngularSpeed(double speed) {
 double MotionController::getAngularSpeed() {
   return angularSpeed_;
 }
+
+/**
+ * @brief Callback back function for changeThreshold function
+ */
+bool MotionController::changeThreshold(
+  naivik_robot::changeThresholdService::Request& req,
+  naivik_robot::changeThresholdService::Response& res) {
+  obstacleDetection_->setDistThreshold(req.changeThreshold);
+  res.response = true;
+  ROS_INFO("Setting Distance Threshold: %f", req.changeThreshold);
+  return res.response;
+}

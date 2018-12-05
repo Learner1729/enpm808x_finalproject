@@ -58,6 +58,9 @@ Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
     ("/scan", 100, &MotionController::determineAction, motionController_.get());
   velocityPublisher_ = nh_.advertise <geometry_msgs::Twist> 
     ("/mobile_base/commands/velocity", 100);
+
+  changeThresholdServer_ = nh_.advertiseService("changeThresholdService",
+    &MotionController::changeThreshold, motionController_.get());
 }
   
 /**
