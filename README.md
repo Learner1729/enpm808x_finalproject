@@ -134,7 +134,7 @@ Follow the below steps to generate the code coverage report on your local comput
 **1.** Install lcov using the command `$ sudo apt-get install -y lcov` </br>
 **2.** Open a new terminal and run the below command `$ cd ~/catkin_ws && catkin_make run_tests && catkin_tests_results` </br>
 **3.** Generate the code coverage report `$ lcov --directory . --capture --output-file coverage.info` </br>
-**4.** Filter out the system and test code data `$ lcov --remove coverage.info 'tests/*' '/usr/*' --output-file coverage.info` </br>
+**4.** Filter out the system and test code data including user-defined header files `$ lcov --remove coverage.info '/usr/*' '/opt/*' '*/devel/*' 'tests/*' --output-file coverage.info` </br>
 **5.** Generate an HTML report from a captured coverage information and store it in a *output* directory in a same directory `$ genhtml coverage.info --output-directory output`
 
 >**Note:** Once it is done you can go through the *output* folder and open *index.html* to check coverage percentile. It will display both Line coverage and Function coverage shown as in the results directory.
@@ -211,6 +211,16 @@ $ source devel/setup.bash
 $ rosservice call /controlMotionService "motion: true"
 ```
 >**Note:** The value of motion will be *true* if you want to stop the robot, and to resume the motion back call the same service and change the value to *false*.
+
+### Run takeImageService
+
+When the vehicle is moving, and if the user want to take a picture. You can issue a rosservice call to the robot. The robot will see this service and change the *takeImageFlag_* flag so that next time it sees the `/camera/rgb/image_raw topic`, it will take and save an image. To make this service call, open a new terminal and follow the below steps.
+
+```bash
+$ cd ~/catkin_ws
+$ source devel/setup.bash
+$ rosservice call /takeImageService "request: true"
+```
 
 ## <a name="doc"></a> Documentation
 WorkUnderProgress
