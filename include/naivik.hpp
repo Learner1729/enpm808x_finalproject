@@ -40,6 +40,7 @@
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "geometry_msgs/Twist.h"
+#include "sensor_msgs/Image.h"
 
 // including user-defined Header files
 #include "motionController.hpp"
@@ -105,7 +106,7 @@ class Naivik {
   /**
    * @brief container for a ROS subscriber for camera topics
    */
-  ros::Subscriber cameraSubcriber_;
+  ros::Subscriber cameraSubscriber_;
 
   /**
    * @brief container for ROS changeThresholdService 
@@ -126,6 +127,11 @@ class Naivik {
    * @brief container for ROS controlMotionService 
    */
   ros::ServiceServer controlMotionServer_;
+
+  /**
+   * @brief container for ROS takeImageService 
+   */
+  ros::ServiceServer takeImageServer_;
 };
 
 #endif  // INCLUDE_NAIVIK_HPP_

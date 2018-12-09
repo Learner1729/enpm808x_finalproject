@@ -12,10 +12,13 @@ find_package(catkin REQUIRED
   roscpp
   sensor_msgs
   message_generation
+  cv_bridge
+  image_transport
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -62,6 +65,7 @@ add_service_files(
   changeLinearSpeedService.srv
   changeAngularSpeedService.srv
   controlMotionService.srv
+  takeImageService.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -122,6 +126,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -158,6 +163,7 @@ add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
+  ${OpenCV_LIBS}
 )
 
 #############
@@ -217,6 +223,7 @@ catkin_add_gtest(${PROJECT_NAME}-test
 if(TARGET ${PROJECT_NAME}-test)
   target_link_libraries(${PROJECT_NAME}-test 
     ${catkin_LIBRARIES}
+    ${OpenCV_LIBRARIES}
   )
   add_dependencies(
     ${PROJECT_NAME}-test

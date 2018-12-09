@@ -31,7 +31,7 @@
  */
 
 // including C++ Header files
-#include <string>
+#include <sstream>
 #include <vector>
 
 // including ROS Header file
@@ -44,21 +44,93 @@
  * @brief Camera constructor
  */
 Camera::Camera() {
-
 }
+
+/**
+ * @brief Camera class parameterized constructor
+ */
+Camera::Camera(bool imageCapture): takeImageFlag_(imageCapture) {
+  // Define a camera client object for takeImage service. 
+  // This needs to know the data type of the service and its name.
+  cameraClient_ = nh_.serviceClient<naivik_robot::takeImageService>("takeImage");
+
+  // OpenCV HighGUI calls to create a display window
+  cv::namedWindow("OPENCV_IMAGE_WINDOW");
+}
+
   
 /**
  * @brief Camera constructor
  */
 Camera::~Camera() {
-
+  cv::destroyWindow("OPENCV_IMAGE_WINDOW");
 }
   
 /**
  * @brief Take an image of the current camera view and store it for later use
- * @param none
- * @return string
  */
-std::string Camera::takeImage() {
+bool Camera::takeImage(naivik_robot::takeImageService::Request& req,
+  naivik_robot::takeImageService::Response& res) {
+  
+  res.response = true;
+  // ROS_INFO_STREAM("Success...!!");
+  takeImageFlag_ = res.response;
+  return true;
+}
 
+/**
+ * @brief camera callback function
+ */
+void Camera::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
+  // We first convert the ROS image message to a CvImage suitable for
+  // working with OpenCV. Since we need to save going an image, we need a 
+  // mutable copy of it, so we use toCvCopy() instead of toCvShared().
+  // Secondly, sensor_msgs::image_encodings::BGR8 is simply a constant for 
+  // "bgr8", but less susceptible to typos.
+  // There are also other image_encodings scheme which you can use.
+
+  // Also, we should always wrap your calls to toCvCopy() / toCvShared() to 
+  // catch conversion errors as those functions will not check for the 
+  // validity of your data. 
+
+  cv_bridge::CvImagePtr cv_ptr;
+
+  try {
+    cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+  } catch (cv_bridge::Exception& e) {
+    ROS_ERROR("cv_bridge exception: %s", e.what());
+    return;
+  }
+
+  // Update GUI Window
+  cv::imshow("OPENCV_IMAGE_WINDOW",cv_ptr->image);
+  cv::waitKey(3);
+
+  // if takeImageFlag_ is enabled
+  if(takeImageFlag_) {
+
+    ROS_INFO_STREAM("New Image saved...");
+    
+    // a variable to store image count of saved Images
+    static int imageCount = 0; 
+    
+    // A stringstream works essentially the same as an input/output file stream
+    // You can write to it.
+    std::stringstream sstream;
+    
+    // Giving filename and attaching count to it.
+    sstream << "robot_env_" << imageCount << ".jpg";          
+    
+    // Write image data to a file.
+    cv::imwrite(sstream.str(),  cv_ptr->image);
+
+    // Add file to the list.
+    saveImages_.push_back(sstream.str());
+    
+    // Increment the image counter...
+    imageCount++;
+
+    // Reset takeImageFlag_
+    takeImageFlag_ = false;
+  }
 }

@@ -37,9 +37,30 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <sstream>
 
 // including ROS Header file
 #include "ros/ros.h"
+
+// including image_transport header file which is used for publishing and 
+// subscribing to images in ROS
+#include "image_transport/image_transport.h"
+
+// including the header for CvBridge as well as some useful constants and
+// functions related to image encodings. 
+#include "cv_bridge/cv_bridge.h"
+#include "sensor_msgs/image_encodings.h"
+
+// including the headers for OpenCV's image processing and GUI modules
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+// including ROS message header file
+#include "sensor_msgs/Image.h"
+
+// including service header file
+#include "naivik_robot/takeImageService.h"
 
 /**
  * @brief Camera class handles viewing and taking images in front of turtlebot
@@ -50,6 +71,11 @@ class Camera {
    * @brief Camera constructor
    */
   Camera();
+
+  /**
+   * @brief Camera class parameterized constructor
+   */
+  Camera(bool imageCapture);
   
   /**
    * @brief Camera constructor
@@ -58,16 +84,35 @@ class Camera {
   
   /**
    * @brief Take an image of the current camera view and store it for later use
-   * @param none
-   * @return string
    */
-  std::string takeImage();
+  bool takeImage(naivik_robot::takeImageService::Request& req,
+    naivik_robot::takeImageService::Response& res);
+
+  /**
+   * @brief camera callback function
+   */
+  void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
 
  private:
   /**
-   * @brief Define a variable named savedImages to store image data 
+   * @brief Initialize a variable named saveImages_ to store image data 
    */
   std::vector<std::string> saveImages_;
+  
+  /**
+   * @brief Initialize a variable named takeImageFlag_ as a flag to instruct whether to take image or not not
+   */
+  bool takeImageFlag_{false};
+  
+  /**
+   * @brief Initialize a variable to Node handler for subscribing to service and topics
+   */
+  ros::NodeHandle nh_;
+  
+  /**
+   * @brief Initialize a ROS service client object for the takeImageService
+   */
+  ros::ServiceClient cameraClient_;
 };
 
 #endif  // INCLUDE_CAMERA_HPP_
