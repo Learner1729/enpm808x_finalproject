@@ -44,7 +44,7 @@
 /**
  * @brief Test the ability to determineAction
  */
-TEST(TestSuite, determine_action) {
+TEST(motionControllerTest, determine_action) {
   // work under progress...
   EXPECT_EQ(1, 1);
 }
@@ -52,7 +52,7 @@ TEST(TestSuite, determine_action) {
 /**
  * @brief Test the ability to getVehicleAction
  */
-TEST(TestSuite, get_vehicle_action) {
+TEST(motionControllerTest, get_vehicle_action) {
   std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
   // initializing a geometry_msgs variable
   geometry_msgs::Twist velocity = mc->getVehicleAction();
@@ -69,7 +69,7 @@ TEST(TestSuite, get_vehicle_action) {
 /**
  * @brief Test the ability to get & set linearSpeed_
  */
-TEST(TestSuite, set_linear_speed) {
+TEST(motionControllerTest, set_linear_speed) {
   std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
   ASSERT_DOUBLE_EQ(1.0, mc->getLinearSpeed());
   mc->setLinearSpeed(4.2);
@@ -79,7 +79,7 @@ TEST(TestSuite, set_linear_speed) {
 /**
  * @brief Test the ability to get & set AngularSpeed_
  */
-TEST(TestSuite, get_linear_speed) {
+TEST(motionControllerTest, get_linear_speed) {
   std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
   ASSERT_DOUBLE_EQ(1.0, mc->getAngularSpeed());
   mc->setAngularSpeed(4.2);

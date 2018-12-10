@@ -37,26 +37,13 @@
 // including user-defined Header file
 #include "obstacleDetection.hpp"
 
-/**
- * @brief ObstacleDetection class overloaded constructor
- * @param distThreshold of type double
- */
 ObstacleDetection::ObstacleDetection(double distThreshold): 
   distThreshold_(distThreshold) {
 }
 
-/**
- * @brief ObstacleDetection class destructor
- */
 ObstacleDetection::~ObstacleDetection() {
 }
-  
-/**
- * @brief Detects the Obstacle in front of Turtlebot
- * @param a reference to a variable of type sensor_msgs::LaserScan
- * @return true, if obstacle is detected 
- *         false, if obstacle is not detected
- */
+
 bool ObstacleDetection::detectObstacle(
   const sensor_msgs::LaserScan::ConstPtr& msg) {
   /**
@@ -72,21 +59,11 @@ bool ObstacleDetection::detectObstacle(
   // return false, as collision is not about to occur
   return false;
 }
- 
-/**
- * @brief set distThreshold value
- * @param distThreshold of type double
- * @return none
- */
+
 void ObstacleDetection::setDistThreshold(double speed) {
   distThreshold_ = speed;
 }
 
-/**
- * @brief get distThreshold value
- * @param none
- * @return distThreshold of type double
- */
 double ObstacleDetection::getDistThreshold() {
   return distThreshold_;
 }

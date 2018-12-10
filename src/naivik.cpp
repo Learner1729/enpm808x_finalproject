@@ -40,16 +40,9 @@
 #include "motionController.hpp"
 #include "camera.hpp"
 
-/**
- * @brief Default Naivik class contructor
- */
 Naivik::Naivik() {
 }
-  
-/**
- * @brief Overloaded contructor
- * @param nh ROS node handle as reference
- */
+
 Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
   motionController_(std::make_shared<MotionController>(0.1,1.0)),
   camera_(std::make_shared<Camera>(false)) {
@@ -72,18 +65,10 @@ Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
   takeImageServer_ = nh_.advertiseService("takeImageService", 
     &Camera::takeImage, camera_.get());
 }
-  
-/**
- * @brief Naivik class destructor
- */
+
 Naivik::~Naivik() {
 }
-  
-/**
- * @brief Drive the turtlebot using laser scan data
- * @param none
- * @return none
- */
+
 void Naivik::drive() {
   // Grab current naivik robot action
   geometry_msgs::Twist naivikCommand = motionController_->getVehicleAction();

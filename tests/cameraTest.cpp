@@ -23,10 +23,10 @@
  */
 
 /**
- * @file       naivikTest.cpp
+ * @file       cameraTest.cpp
  * @version    1.0
  * @author     Ashish Patel
- * @brief      File to test Naivik class
+ * @brief      File to test Camera class
  * @date       12-02-2018
  */
 
@@ -37,11 +37,11 @@
 #include <gtest/gtest.h>
 
 // including user-defined header file
-#include "naivik.hpp"
+#include "camera.hpp"
 
 /**
- * @brief Test to check drive function
+ * @brief Test that should pass
  */
-TEST(TestSuite, drive) {
+TEST(cameraTest, test2) {
   EXPECT_EQ(1, 1);
 }

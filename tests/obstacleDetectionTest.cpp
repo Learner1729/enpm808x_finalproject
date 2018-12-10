@@ -23,12 +23,14 @@
  */
 
 /**
- * @file       cameraTest.cpp
+ * @file       obstacleDetectionTest.cpp
  * @version    1.0
  * @author     Ashish Patel
- * @brief      File to test Camera class
+ * @brief      File to test ObstacleDetection class
  * @date       12-02-2018
  */
+
+// including C++ header file
 
 // including ros header file
 #include "ros/ros.h"
@@ -37,11 +39,29 @@
 #include <gtest/gtest.h>
 
 // including user-defined header file
-#include "camera.hpp"
+#include "obstacleDetection.hpp"
 
 /**
- * @brief Test that should pass
+ * @brief Test the ability to get distThreshold_ variable
  */
-TEST(TestSuite, test2) {
+TEST(obstacleDetectionTest, get_distance_threshold) {
+  std::shared_ptr<ObstacleDetection> obs(std::make_shared<ObstacleDetection>(10.0));
+  ASSERT_DOUBLE_EQ(10.0, obs->getDistThreshold());
+}
+
+/**
+ * @brief Test the ability to set distThreshold_ variable
+ */
+TEST(obstacleDetectionTest, set_distance_threshold) {
+  std::shared_ptr<ObstacleDetection> obs(std::make_shared<ObstacleDetection>(10.0));
+  obs->setDistThreshold(12.1);
+  EXPECT_DOUBLE_EQ(12.1, obs->getDistThreshold());
+}
+
+/**
+ * @brief Test the ability to detect Obstacle
+ */
+TEST(obstacleDetectionTest, detect_obstacle) {
+  // work under progress...
   EXPECT_EQ(1, 1);
 }

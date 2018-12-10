@@ -28,9 +28,7 @@ An autonomous mobile robot have a capability to move from its current position t
 
 ## <a name="author"></a> Author
 
-*Name:* Ashish Patel </br>
-*UID:* 115730625 </br>
-*Course:* ENPM808X: Software Development in Robotics </br>
+My name is Ashish Patel, a developer and maintainer of this repository. I am a master student majoring in Robotics at University of Maryland - College Park. This repository is a part of the course ENPM808X - Software Development in Robotics. I hold a bachelors degree in Electronics & Communication from G H Patel College of Engineering located at Vallabh Vidyanagar, Gujarat 388120, India.
 
 ## <a name="sip_process"></a> SIP Process with Sprint Planning
 Sprint Planing is provided in the google doc file, click on the link to access it: [Sprint Planning](https://docs.google.com/document/d/1cnqYP7j8j8OXodav0haAKlPngPgLUw-r7h47pi6sqGg/edit?usp=sharing)
@@ -65,13 +63,13 @@ catkin_ws/
 ---CMakeLists.txt
 ---include/
 ---src/
-----tests/    -> Here is where unit testing will be implemented
 ---srv/
----tests/     -> Here is where rostest will be implemented
+---tests/
 ---rviz/
 ---world/
 ---UML/
 ----initial/
+----revised/
 ----final/
 ---results/
 ---launch/
