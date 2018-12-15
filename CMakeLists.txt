@@ -125,6 +125,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
   include
+  tests
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
 )
@@ -209,13 +210,14 @@ target_link_libraries(${PROJECT_NAME}_node
 #############
 
 if (CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
 
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
 
   ## Add gtest based cpp test target and link libraries
   catkin_add_gtest(
-    ${PROJECT_NAME}-test 
+    ${PROJECT_NAME}_test 
     tests/main.cpp
     tests/naivikTest.cpp
     tests/cameraTest.cpp
@@ -227,16 +229,54 @@ if (CATKIN_ENABLE_TESTING)
     src/obstacleDetection.cpp
   )
   target_link_libraries(
-    ${PROJECT_NAME}-test 
+    ${PROJECT_NAME}_test 
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES}
   )
   add_dependencies(
-    ${PROJECT_NAME}-test
+    ${PROJECT_NAME}_test
     ${PROJECT_NAME}_node
     ${catkin_EXPORTED_TARGETS}
   )
   
+  ## Add tests for ROS services
+  add_rostest_gtest(
+    test_services
+    tests/launch/testServices.launch 
+    tests/testService.cpp
+  )
+  target_link_libraries(
+    test_services 
+    ${catkin_LIBRARIES} 
+    ${OpenCV_LIBRARIES}
+  )
+  add_dependencies(
+    test_services
+    ${PROJECT_NAME}_node
+    ${catkin_EXPORTED_TARGETS}
+  )
+
+  ## Add tests for ROS nodes i.e. publisher & subscriber
+  add_rostest_gtest(
+    test_nodes
+    tests/launch/testNodes.launch
+    tests/testNodes.cpp
+    tests/testHelper.cpp
+    #src/naivik.cpp
+    #src/camera.cpp
+    #src/motionController.cpp
+    #src/obstacleDetection.cpp
+  )
+  target_link_libraries(
+    test_nodes
+    ${catkin_LIBRARIES}
+    ${OpenCV_LIBRARIES}
+  )
+  add_dependencies(
+    test_nodes
+    ${PROJECT_NAME}_node
+    ${catkin_EXPORTED_TARGETS}
+  )
 endif()
 
 ## Add folders to be run by python nosetests

@@ -1,0 +1,15 @@
+<launch>
+   <node
+    pkg="naivik_robot"
+    name="naivik_robot_node"
+    type="naivik_robot_node"
+    output="screen"
+    required="true"
+  />
+  <test 
+    test-name="test_nodes" 
+    pkg="naivik_robot" 
+    type="test_nodes"
+    time-limit="60.0"
+  />
+</launch>

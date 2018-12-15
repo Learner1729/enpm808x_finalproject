@@ -64,7 +64,7 @@ TEST_F(MotionControllerTest, get_vehicle_action) {
     velocity.angular.y == 0.0 && velocity.angular.z == 0.0) {
     flag = true;
   }
-  EXPECT_EQ(true,flag);
+  EXPECT_TRUE(flag);
 }
 
 /**

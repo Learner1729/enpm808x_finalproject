@@ -1,0 +1,14 @@
+<launch>
+  <node
+    pkg="naivik_robot"
+    name="naivik_robot_node"
+    type="naivik_robot_node"
+    output="screen"
+    required="true"
+  />
+  <test 
+    test-name="test_services" 
+    pkg="naivik_robot" 
+    type="test_services" 
+  />
+</launch>
