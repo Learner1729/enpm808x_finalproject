@@ -24,7 +24,7 @@
 
 /**
  * @file       naivik.hpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Naivik class header file
  * @date       12-15-2018
@@ -48,23 +48,26 @@
 
 /**
  * @brief Naivik class handles the camera and motion controller interactions
- *        for turtlebot
+ *        of the robot
  */
 class Naivik {
  public:
   /**
    * @brief Overloaded contructor
-   * @param nh ROS node handle as reference
+   * @param nh ROS node handle
+   * @return none
    */
   Naivik(ros::NodeHandle nh);
   
   /**
    * @brief Naivik class destructor
+   * @param none
+   * @return none
    */
   ~Naivik();
   
   /**
-   * @brief Drive the turtlebot using laser scan data
+   * @brief Drive the robot using laser scan data
    * @param none
    * @return none
    */
@@ -72,59 +75,61 @@ class Naivik {
  
  private:
   /**
-   * @brief container for camera object
+   * @brief declare a container for camera class object and initialize it to 
+   *        nullptr
    */
   std::shared_ptr<Camera> camera_{nullptr};
   
   /**
-   * @brief container for motion controller object
+   * @brief declare a container for MotionController class object and 
+   *        initialize it to nullptr
    */
   std::shared_ptr<MotionController> motionController_{nullptr};
   
   /**
-   * NodeHandle is the main access point to communications with the ROS system.
-   * The first NodeHandle constructed will fully initialize this node, and the
-   * last NodeHandle destructed will close down the node.
+   * @brief declare a container to Node handler for subscribing to services 
+   *        and topics
    */
   ros::NodeHandle nh_;
   
   /**
-   * @brief container for a ROS publisher to publish vehicle motion commands
+   * @brief declare a container for a ROS publisher to publish vehicle motion
+   *        commands
    */
   ros::Publisher velocityPublisher_;
   
   /**
-   * @brief container for a ROS subscriber for laser scan topics
+   * @brief declare a container for a ROS subscriber for laser scan topics
    */
   ros::Subscriber laserSubscriber_;
   
   /**
-   * @brief container for a ROS subscriber for camera topics
+   * @brief declare a container for a ROS subscriber for camera topics
    */
   ros::Subscriber cameraSubscriber_;
 
   /**
-   * @brief container for ROS changeThresholdService 
+   * @brief declare a container for ROS changeThresholdService 
    */
   ros::ServiceServer changeThresholdServer_;
 
   /**
-   * @brief container for ROS changeLinearSpeedService 
+   * @brief declare a container for ROS changeLinearSpeedService 
    */
   ros::ServiceServer changeLinearSpeedServer_;
 
   /**
-   * @brief container for ROS changeAngularSpeedService 
+   * @brief declare a container for ROS changeAngularSpeedService 
    */
   ros::ServiceServer changeAngularSpeedServer_;
 
   /**
-   * @brief container for ROS controlMotionService 
+   * @brief declare a container for ROS controlMotionService 
    */
   ros::ServiceServer controlMotionServer_;
 
   /**
-   * @brief container for ROS takeImageService 
+   * @brief declare a container for ROS takeImageService 
    */
   ros::ServiceServer takeImageServer_;
 };

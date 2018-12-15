@@ -24,7 +24,7 @@
 
 /**
  * @file       obstacleDetectionTest.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Test cases for ObstacleDetection class
  * @date       12-15-2018
@@ -33,15 +33,18 @@
 // including C++ header file
 #include <memory>
 
-// including ros header file
-#include "ros/ros.h"
-
 // including gtest header file
 #include <gtest/gtest.h>
+
+// including ros header file
+#include "ros/ros.h"
 
 // including user-defined header file
 #include "obstacleDetection.hpp"
 
+/**
+ * @brief ObstacleDetection fixture class
+ */
 class ObstacleDetectionTest: public ::testing::Test {
 public:
   std::shared_ptr<ObstacleDetection> obs;

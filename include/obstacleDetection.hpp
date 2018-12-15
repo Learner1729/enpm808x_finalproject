@@ -24,7 +24,7 @@
 
 /**
  * @file       obstacleDetection.hpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      ObstacleDetection class header file
  * @date       12-15-2018
@@ -38,24 +38,27 @@
 #include "sensor_msgs/LaserScan.h"
 
 /**
- * @brief  ObstacleDetection class handles determining if the vehicle is going
- *         to collide using laser scans data
+ * @brief ObstacleDetection class handles determining if the vehicle is going
+ *        to collide using laser scans data
  */
 class ObstacleDetection {
  public:
   /**
    * @brief ObstacleDetection class overloaded constructor
    * @param distThreshold of type double
+   * @return none
    */
   ObstacleDetection(double distThreshold);
   
   /**
    * @brief ObstacleDetection class destructor
+   * @param none
+   * @return none
    */
   ~ObstacleDetection();
   
   /**
-   * @brief Detects the Obstacle in front of Turtlebot
+   * @brief Detects the Obstacle in front of the robot
    * @param a reference to a variable of type sensor_msgs::LaserScan
    * @return true, if obstacle is detected 
    *         false, if obstacle is not detected
@@ -64,10 +67,10 @@ class ObstacleDetection {
  
   /**
    * @brief set distThreshold value
-   * @param distThreshold of type double
+   * @param threshold of type double
    * @return none
    */
-  void setDistThreshold(double speed);
+  void setDistThreshold(double threshold);
 
   /**
    * @brief get distThreshold value
@@ -78,8 +81,8 @@ class ObstacleDetection {
 
  private:
   /**
-   * @brief variable to determine how close the turtlebot should get to an 
-   *        object
+   * @brief declare a container to determine how close the robot should get to
+   *        an object
    */
   double distThreshold_;
 };

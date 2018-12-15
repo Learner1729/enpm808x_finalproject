@@ -23,8 +23,8 @@
  */
 
 /**
- * @file       camera.hpp
- * @version    1.0
+ * @files      camera.hpp
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Camera class header file
  * @date       12-15-2018
@@ -50,62 +50,75 @@
 // functions related to image encodings. 
 #include "cv_bridge/cv_bridge.h"
 #include "sensor_msgs/image_encodings.h"
+#include "sensor_msgs/Image.h"
 
 // including the headers for OpenCV's image processing and GUI modules
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
-// including ROS message header file
-#include "sensor_msgs/Image.h"
-
 // including service header file
 #include "naivik_robot/takeImageService.h"
 
 /**
- * @brief Camera class handles viewing and taking images in front of turtlebot
+ * @brief Camera class handles viewing and taking images in front of the robot
  */
 class Camera {
  public:
   /**
    * @brief Camera class parameterized constructor
+   * @param imageCapture of type bool, it's default value is false
+   * @return none
    */
   Camera(bool imageCapture);
   
   /**
-   * @brief Camera constructor
+   * @brief Camera class destructor
+   * @param none
+   * @return none
    */
   ~Camera();
-  
+
   /**
-   * @brief Take an image of the current camera view and store it for later use
+   * @brief A callback function to trigger a flag to capture an image of the
+   *        current camera view and store it for later use
+   * @param a reference to a request variable of type defined in 
+   *        takeImageService.srv file
+   * @param a reference to a response variable of type defined in 
+   *        takeImageService.srv file
+   * @return a boolean on success or failure
    */
   bool takeImage(naivik_robot::takeImageService::Request& req,
     naivik_robot::takeImageService::Response& res);
 
   /**
-   * @brief camera callback function
+   * @brief A cameraCallback function to convert images from ROS image messages
+   *        to the useable format and store it based on the takeImageFlag_
+   * @param a reference to a variable of type sensor_msgs::Image
+   * @return none
    */
   void cameraCallback(const sensor_msgs::ImageConstPtr& msg);
 
  private:
   /**
-   * @brief Initialize a variable named saveImages_ to store image data 
+   * @brief declare a container named saveImages_ to store image data 
    */
   std::vector<std::string> saveImages_;
   
   /**
-   * @brief Initialize a variable named takeImageFlag_ as a flag to instruct whether to take image or not not
+   * @brief declare and initialize a container named takeImageFlag_ as a flag to
+   *        instruct whether to capture and store image or not
    */
   bool takeImageFlag_{false};
   
   /**
-   * @brief Initialize a variable to Node handler for subscribing to service and topics
+   * @brief declare a container to Node handler for subscribing to service 
+   *        and topics
    */
   ros::NodeHandle nh_;
   
   /**
-   * @brief Initialize a ROS service client object for the takeImageService
+   * @brief declare a ROS service client object for the takeImageService
    */
   ros::ServiceClient cameraClient_;
 };

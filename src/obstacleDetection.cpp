@@ -24,7 +24,7 @@
 
 /**
  * @file       obstacleDetection.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      ObstacleDetection class header file
  * @date       12-15-2018
@@ -46,10 +46,8 @@ ObstacleDetection::~ObstacleDetection() {
 
 bool ObstacleDetection::detectObstacle(
   const sensor_msgs::LaserScan::ConstPtr& msg) {
-  /**
-   * Check if any scan data from the laser is less than range_min + 0.2 m from
-   * the front of the robot. If so, a collision is about to occur, return true
-   */
+  // Check if any scan data from the laser is less than range_min + 0.2 m from
+  // the front of the robot. If so, a collision is about to occur, return true
   for (auto i : msg->ranges) {
     if (i < msg->range_min + 0.2) {
       ROS_WARN_STREAM("About to hit... Obstacle ahead!!!");
@@ -60,8 +58,8 @@ bool ObstacleDetection::detectObstacle(
   return false;
 }
 
-void ObstacleDetection::setDistThreshold(double speed) {
-  distThreshold_ = speed;
+void ObstacleDetection::setDistThreshold(double threshold) {
+  distThreshold_ = threshold;
 }
 
 double ObstacleDetection::getDistThreshold() {

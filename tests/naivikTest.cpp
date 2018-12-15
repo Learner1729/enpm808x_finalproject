@@ -24,21 +24,24 @@
 
 /**
  * @file       naivikTest.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Test cases for Naivik class
  * @date       12-15-2018
  */
 
-// including ros header file
-#include "ros/ros.h"
-
 // including gtest header file
 #include <gtest/gtest.h>
+
+// including ros header file
+#include "ros/ros.h"
 
 // including user-defined header file
 #include "naivik.hpp"
 
+/**
+ * @brief Naivik fixture class
+ */
 class NaivikTest: public ::testing::Test {
 public:
   Naivik robot;

@@ -24,7 +24,7 @@
 
 /**
  * @file       motionControllerTest.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Test cases for MotionController class
  * @date       12-15-2018
@@ -33,16 +33,19 @@
 // including C++ header file 
 #include <memory>
 
+// including gtest header file
+#include <gtest/gtest.h>
+
 // including ros header file
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 
-// including gtest header file
-#include <gtest/gtest.h>
-
 // including user-defined header file
 #include "motionController.hpp"
 
+/**
+ * @brief MotionController fixture class
+ */
 class MotionControllerTest: public ::testing::Test {
 public:
   std::shared_ptr<MotionController> mc;
@@ -83,12 +86,4 @@ TEST_F(MotionControllerTest, get_linear_speed) {
   ASSERT_DOUBLE_EQ(1.0, mc->getAngularSpeed());
   mc->setAngularSpeed(4.2);
   EXPECT_DOUBLE_EQ(4.2, mc->getAngularSpeed());
-}
-
-/**
- * @brief Test the ability to determineAction
- */
-TEST_F(MotionControllerTest, determine_action) {
-  // work under progress...
-  EXPECT_EQ(1, 1);
 }

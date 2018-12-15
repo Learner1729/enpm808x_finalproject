@@ -24,16 +24,16 @@
 
 /**
  * @file       testService.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      This file is used to test ROS Services created
  * @date       12-15-2018
  */
 
-// Including gtest header file
+// including gtest header file
 #include <gtest/gtest.h>
 
-// Including ros header file
+// including ros header file
 #include "ros/ros.h"
 #include "ros/service_client.h"
 #include "sensor_msgs/LaserScan.h"
@@ -44,10 +44,8 @@
 #include "motionController.hpp"
 #include "camera.hpp"
 
-/**
- * Including C++ header file associated with the service which defines datatype
- * of request and response
- */
+// including C++ header file associated with the service which defines datatype
+// of request and response
 #include "naivik_robot/changeThresholdService.h"
 #include "naivik_robot/changeLinearSpeedService.h"
 #include "naivik_robot/changeAngularSpeedService.h"
@@ -109,11 +107,12 @@ TEST(test_Services, control_motion_service) {
   bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   naivik_robot::controlMotionService srv;
-  srv.request.motion = false; // Continue Motion
+  // Continue Motion
+  srv.request.motion = false;
   client.call(srv);
   EXPECT_TRUE(srv.response.response);
-
-  srv.request.motion = true; // Stop Motion
+  // Stop Motion
+  srv.request.motion = true;
   client.call(srv);
   EXPECT_TRUE(srv.response.response); 
 }

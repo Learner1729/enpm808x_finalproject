@@ -24,7 +24,7 @@
 
 /**
  * @file       testHelper.hpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Header file for TestHelper class
  * @date       12-15-2018
@@ -33,27 +33,40 @@
 #ifndef TESTS_TESTHELPER_HPP_
 #define TESTS_TESTHELPER_HPP_
 
+// including ros header file
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 
+/**
+ * @brief TestHelper class handles in testing the nodes publisher and
+ *        subscriber
+ */
 class TestHelper {
 public:
   /**
    * @brief TestHelper class constructor
+   * @param none
+   * @return none
    */
   TestHelper();
   
   /**
    * @brief TestHelper class destructor
+   * @param none
+   * @return none
    */
   ~TestHelper();
 
   /**
    * @brief Callback function for velocity messages
+   * @param a reference to a variable of type geometry_msgs::Twist
+   * @return none
    */
   void velocityCallback(const geometry_msgs::Twist::ConstPtr& msg);
 
-  // command velocity
+  /**
+   * @brief declare a container for storing robot velocity messages
+   */  
   geometry_msgs::Twist twist;
 };
 

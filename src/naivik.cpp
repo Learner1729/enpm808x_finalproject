@@ -24,7 +24,7 @@
 
 /**
  * @file       naivik.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Naivik class implementation file
  * @date       12-15-2018
@@ -71,7 +71,7 @@ Naivik::~Naivik() {
 }
 
 void Naivik::drive() {
-  // Grab current naivik robot action
+  // grab current robot action
   geometry_msgs::Twist naivikCommand = motionController_->getVehicleAction();
   // Publish command
   velocityPublisher_.publish(naivikCommand);

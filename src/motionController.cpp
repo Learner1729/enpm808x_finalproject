@@ -24,7 +24,7 @@
 
 /**
  * @file       motionController.hpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      MotionController class header file
  * @date       12-15-2018
@@ -49,7 +49,7 @@
 MotionController::MotionController(double lSpeed, double aSpeed):
   linearSpeed_(lSpeed), angularSpeed_(aSpeed),
   obstacleDetection_(std::make_shared<ObstacleDetection>(1.0)) {
-  // Intialize naivik action to stay still
+  // intialize robot action to stay still
   naivikAction_.linear.x = 0.0;
   naivikAction_.linear.y = 0.0;
   naivikAction_.linear.z = 0.0;

@@ -24,19 +24,20 @@
 
 /**
  * @file       cameraTest.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Test cases for Camera class
  * @date       12-15-2018
  */
 
+// including C++ header class
 #include <memory>
-
-// including ros header file
-#include "ros/ros.h"
 
 // including gtest header file
 #include <gtest/gtest.h>
+
+// including ros header file
+#include "ros/ros.h"
 
 // including user-defined header file
 #include "camera.hpp"

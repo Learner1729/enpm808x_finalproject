@@ -24,7 +24,7 @@
 
 /**
  * @file       camera.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      Camera class implementation file
  * @date       12-15-2018
@@ -46,15 +46,13 @@
 // including the header for CvBridge as well as some useful constants and
 // functions related to image encodings. 
 #include "cv_bridge/cv_bridge.h"
+#include "sensor_msgs/Image.h"
 #include "sensor_msgs/image_encodings.h"
 
 // including the headers for OpenCV's image processing and GUI modules
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
-
-// including ROS message header file
-#include "sensor_msgs/Image.h"
 
 // including service header file
 #include "naivik_robot/takeImageService.h"
@@ -63,10 +61,8 @@
 #include "camera.hpp"
 
 Camera::Camera(bool imageCapture): takeImageFlag_(imageCapture) {
-  /**
-   * Define a camera client object for takeImage service. 
-   * This needs to know the data type of the service and its name.
-   */
+  // Define a camera client object for takeImage service. 
+  // It needs to know the data type of the service and its name.
   cameraClient_ = nh_.serviceClient<naivik_robot::takeImageService>("takeImage");
 
   // OpenCV HighGUI calls to create a display window
@@ -89,20 +85,17 @@ bool Camera::takeImage(naivik_robot::takeImageService::Request& req,
 }
 
 void Camera::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
-  /**
-   * We first convert the ROS image message to a CvImage suitable for
-   * working with OpenCV. Since we need to save going an image, we need a 
-   * mutable copy of it, so we use toCvCopy() instead of toCvShared().
-   * Secondly, sensor_msgs::image_encodings::BGR8 is simply a constant for 
-   * "bgr8", but less susceptible to typos.
-   * There are also other image_encodings scheme which you can use.
-   *
-   * Also, we should always wrap your calls to toCvCopy() / toCvShared() to 
-   * catch conversion errors as those functions will not check for the 
-   * validity of your data. 
-   */
+  // We first convert the ROS image message to a CvImage suitable for
+  // working with OpenCV. Since we need to save going an image, we need a 
+  // mutable copy of it, so we use toCvCopy() instead of toCvShared().
+  // Secondly, sensor_msgs::image_encodings::BGR8 is simply a constant for 
+  // "bgr8", but less susceptible to typos.
+  // There are also other image_encodings scheme which you can use.
+  // 
+  // Also, we should always wrap your calls to toCvCopy() / toCvShared() to 
+  // catch conversion errors as those functions will not check for the 
+  // validity of your data.
   cv_bridge::CvImagePtr cv_ptr;
-
   try {
     cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
   } catch (cv_bridge::Exception& e) {

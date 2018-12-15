@@ -24,15 +24,18 @@
 
 /**
  * @file       testHelper.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      TestHelper implementation file
  * @date       12-15-2018
  */
 
-#include "testHelper.hpp"
+// including ros header file
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
+
+// including user-defined header file
+#include "testHelper.hpp"
 
 TestHelper::TestHelper() {
   ROS_INFO_STREAM("Test helper default constructor called...");

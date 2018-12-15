@@ -24,7 +24,7 @@
 
 /**
  * @file       motionController.hpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      MotionController class header file
  * @date       12-15-2018
@@ -49,7 +49,7 @@
 #include "naivik_robot/controlMotionService.h"
 
 /**
- * @brief MotionController class determine's Turtlebot control actions. 
+ * @brief MotionController class determine's robot control actions. 
  *        ROS doesn't provide any controller, thus we need to design our own 
  *        based on the requirement that we have
  */
@@ -57,7 +57,7 @@ class MotionController {
  public:
   /**
    * @brief MotionController class overloaded constructor
-   *        It sets the speed data of turtlebot
+   *        It sets the speed data of robot
    * @param lSpeed of type double
    * @param aSpeed of type double
    */
@@ -65,11 +65,13 @@ class MotionController {
   
   /**
    * @brief MotionController class destructor
+   * @param none
+   * @return none
    */
   ~MotionController();
   
   /**
-   * @brief Determine a turtlebot action based on results from the obstacle
+   * @brief Determine robot's actions based on results from the obstacle 
    *        detector
    * @param a reference to a variable of type sensor_msgs::LaserScan
    * @return none
@@ -79,40 +81,45 @@ class MotionController {
   /**
    * @brief Return the current turtlebot action
    * @param none
-   * @return turtlebot velocity data of type geometry_msgs::Twist
+   * @return robot's velocity data of type geometry_msgs::Twist
    */
   geometry_msgs::Twist getVehicleAction();
  
   /**
-   * @brief set linear speed data of turtlebot
+   * @brief Set linear speed of the robot
    * @param speed of type double
    * @return none
    */
   void setLinearSpeed(double speed);
 
   /**
-   * @brief get linear speed data of turtlebot
+   * @brief Get linear speed of the robot
    * @param none
-   * @return linear speed of type double
+   * @return robot's linear speed data of type double
    */
   double getLinearSpeed();
 
   /**
-   * @brief set angular speed data of turtlebot
-   * @param speed: double
+   * @brief Set angular speed of the robot
+   * @param speed of type double
    * @return none
    */
   void setAngularSpeed(double speed);
 
   /**
-   * @brief get angular speed data of turtlebot
+   * @brief get angular speed of the robot
    * @param none
-   * @return angular speed of type double
+   * @return robot's angular speed data of type double
    */
   double getAngularSpeed();
 
   /**
    * @brief callback back function for changeThresholdService
+   * @param a reference to a request variable of type defined in 
+   *        changeThresholdService.srv file
+   * @param a reference to a response variable of type defined in 
+   *        changeThresholdService.srv file
+   * @return a boolean on success or failure
    */
   bool changeThreshold(
     naivik_robot::changeThresholdService::Request& req,
@@ -120,6 +127,11 @@ class MotionController {
 
   /**
    * @brief callback back function for changeLinearSpeedService
+   * @param a reference to a request variable of type defined in 
+   *        changeLinearSpeedService.srv file
+   * @param a reference to a response variable of type defined in 
+   *        changeLinearSpeedService.srv file
+   * @return a boolean on success or failure
    */
   bool changeLinearSpeed(
     naivik_robot::changeLinearSpeedService::Request& req,
@@ -127,6 +139,11 @@ class MotionController {
  
   /**
    * @brief callback back function for changeAngularSpeedService
+   * @param a reference to a request variable of type defined in 
+   *        changeAngularSpeedService.srv file
+   * @param a reference to a response variable of type defined in 
+   *        changeAngularSpeedService.srv file
+   * @return a boolean on success or failure
    */
   bool changeAngularSpeed(
     naivik_robot::changeAngularSpeedService::Request& req,
@@ -134,6 +151,11 @@ class MotionController {
 
   /**
    * @brief callback back function for controlMotionService
+   * @param a reference to a request variable of type defined in 
+   *        controlMotionService.srv file
+   * @param a reference to a response variable of type defined in 
+   *        controlMotionService.srv file
+   * @return a boolean on success or failure
    */
   bool controlMotion(
     naivik_robot::controlMotionService::Request& req,
@@ -141,27 +163,29 @@ class MotionController {
 
  private:
   /**
-   * @brief container for Obstacle detection object
+   * @brief declare a container for ObstacleDetection class object and 
+   *        initialize it to nullptr
    */
   std::shared_ptr<ObstacleDetection> obstacleDetection_{nullptr};
   
   /**
-   * @brief container for linearSpeed data
+   * @brief declare a container for linearSpeed data
    */
   double linearSpeed_;
   
   /**
-   * @brief container for angularSpeed data
+   * @brief declare a container for angularSpeed data
    */
   double angularSpeed_;
 
   /**
-   * @brief container for Twist message to be sent to the turtlebot
+   * @brief declare a container for Twist message to be sent to the robot
    */
   geometry_msgs::Twist naivikAction_;
 
   /**
-   * @brief container to denote robot status
+   * @brief declare a container to denote robot status and initialize it to
+   *        false
    */
   bool stopRobot_{false};
 };

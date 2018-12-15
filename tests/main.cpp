@@ -24,7 +24,7 @@
 
 /**
  * @file       main.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      This file is used to run all the unit tests for the developed 
  *             package

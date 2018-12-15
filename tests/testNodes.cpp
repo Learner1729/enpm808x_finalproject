@@ -24,13 +24,13 @@
 
 /**
  * @file       testNode.cpp
- * @version    1.0
+ * @version    0.1
  * @author     Ashish Patel
  * @brief      This file is used to test nodes created in source code
  * @date       12-15-2018
  */
 
-// Including gtest header file
+// including gtest header file
 #include <gtest/gtest.h>
 
 // including ROS Header file
@@ -47,8 +47,6 @@
 
 /**
  * @brief To test whether the camera subscriber is initialize properly or not
- * @param none
- * @return none
  */
 TEST(TestingCallbacks, camera_callback_init) {
   ros::NodeHandle nh;
@@ -61,8 +59,6 @@ TEST(TestingCallbacks, camera_callback_init) {
 
 /**
  * @brief To test whether the laser subscriber is initialize properly or not
- * @param none
- * @return none
  */
 TEST(TestingCallbacks, laser_callback_init) {
   ros::NodeHandle nh;
@@ -75,8 +71,6 @@ TEST(TestingCallbacks, laser_callback_init) {
 
 /**
  * @brief To test whether the velocity publisher is initialize properly or not
- * @param none
- * @return none
  */
 TEST(TestingCallbacks, velocity_callback_init) {
   ros::NodeHandle nh;
@@ -90,9 +84,8 @@ TEST(TestingCallbacks, velocity_callback_init) {
 }
 
 /**
- * @brief To test determine action function of MotionController class in a situation when there is no obstacle
- * @param none
- * @return none
+ * @brief To test determine action function of MotionController class in a 
+ *        situation when there is no obstacle
  */
 TEST(TestingCallbacks, non_obstacle_collision) {
   ros::NodeHandle nh;
@@ -139,9 +132,8 @@ TEST(TestingCallbacks, non_obstacle_collision) {
 }
 
 /**
- * @brief To test determine action function of MotionController class in a situation when there is an obstacle
- * @param none
- * @return none
+ * @brief To test determine action function of MotionController class in a
+ *        situation when there is an obstacle
  */
 TEST(TestingCallbacks, obstacle_collision) {
   ros::NodeHandle nh;
@@ -184,26 +176,29 @@ TEST(TestingCallbacks, obstacle_collision) {
   loop_rate.sleep();
   ros::spinOnce();
   // confirm velocity is expected
-  EXPECT_EQ(0, std::memcmp(&msg, &help.twist, sizeof(msg))) << help.twist.angular.z;
+  EXPECT_EQ(0, std::memcmp(&msg, &help.twist, sizeof(msg))) 
+    << help.twist.angular.z;
 }
 
 /**
  * @brief To test whether the camera callback function
- * @param none
- * @return none
  */
 TEST(TestingCallbacks, camera_callback) {
   ros::NodeHandle nh;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /camera/rgb/image_raw
-  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>("/camera/rgb/image_raw",100);
+  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>
+    ("/camera/rgb/image_raw",100);
   loop_rate.sleep();
   EXPECT_EQ(1, cameraPub.getNumSubscribers());
 
-  // The below code is only to increase coverage, as such I havn't doing any thing by capturing image as of now
-  // It can be extended further based on passing the image and doing some image processing on it. 
-  // Prepare the data
-  // Also it shows an error of image encoding, while running the test but I am not checking any TEST based on it so for now we can ignore it.
+  // The below code is only to increase coverage, as such I havn't done any 
+  // thing with the captured image as of now. It can be extended further based
+  // on passing the image and doing some image processing on it. 
+  // Also it cv throws an exception of an error of image encoding, while 
+  // running the test but I am not checking any TEST based on it so for now we
+  // can ignore it.
+  
   // create a dummy image data
   sensor_msgs::Image img;
   cameraPub.publish(img);
