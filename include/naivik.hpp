@@ -27,7 +27,7 @@
  * @version    1.0
  * @author     Ashish Patel
  * @brief      Naivik class header file
- * @date       12-02-2018
+ * @date       12-15-2018
  */
 
 #ifndef INCLUDE_NAIVIK_HPP_
@@ -52,11 +52,6 @@
  */
 class Naivik {
  public:
-  /**
-   * @brief Default Naivik class contructor
-   */
-  Naivik();
-  
   /**
    * @brief Overloaded contructor
    * @param nh ROS node handle as reference

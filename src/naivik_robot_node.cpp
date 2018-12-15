@@ -27,14 +27,23 @@
  * @version    1.0
  * @author     Ashish Patel
  * @brief      ROS package entry point
- * @date       12-02-2018
+ * @date       12-15-2018
  */
+
+
+// including C++ Header files
+#include <memory>
 
 // including ROS Header file
 #include "ros/ros.h"
+#include "sensor_msgs/LaserScan.h"
+#include "geometry_msgs/Twist.h"
+#include "sensor_msgs/Image.h"
 
-// including user-defined header file
+// including user-defined header files
 #include "naivik.hpp"
+#include "motionController.hpp"
+#include "camera.hpp"
 
 int main(int argc, char **argv) {
   /**

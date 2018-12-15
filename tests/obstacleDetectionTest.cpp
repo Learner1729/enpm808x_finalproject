@@ -26,11 +26,12 @@
  * @file       obstacleDetectionTest.cpp
  * @version    1.0
  * @author     Ashish Patel
- * @brief      File to test ObstacleDetection class
- * @date       12-02-2018
+ * @brief      Test cases for ObstacleDetection class
+ * @date       12-15-2018
  */
 
 // including C++ header file
+#include <memory>
 
 // including ros header file
 #include "ros/ros.h"
@@ -41,27 +42,25 @@
 // including user-defined header file
 #include "obstacleDetection.hpp"
 
+class ObstacleDetectionTest: public ::testing::Test {
+public:
+  std::shared_ptr<ObstacleDetection> obs;
+  void SetUp() {
+    obs = std::make_shared<ObstacleDetection>(10.0);
+  }
+};
+
 /**
  * @brief Test the ability to get distThreshold_ variable
  */
-TEST(obstacleDetectionTest, get_distance_threshold) {
-  std::shared_ptr<ObstacleDetection> obs(std::make_shared<ObstacleDetection>(10.0));
+TEST_F(ObstacleDetectionTest, get_distance_threshold) {
   ASSERT_DOUBLE_EQ(10.0, obs->getDistThreshold());
 }
 
 /**
  * @brief Test the ability to set distThreshold_ variable
  */
-TEST(obstacleDetectionTest, set_distance_threshold) {
-  std::shared_ptr<ObstacleDetection> obs(std::make_shared<ObstacleDetection>(10.0));
+TEST_F(ObstacleDetectionTest, set_distance_threshold) {
   obs->setDistThreshold(12.1);
   EXPECT_DOUBLE_EQ(12.1, obs->getDistThreshold());
-}
-
-/**
- * @brief Test the ability to detect Obstacle
- */
-TEST(obstacleDetectionTest, detect_obstacle) {
-  // work under progress...
-  EXPECT_EQ(1, 1);
 }

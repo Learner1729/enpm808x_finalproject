@@ -208,30 +208,35 @@ target_link_libraries(${PROJECT_NAME}_node
 ## Testing ##
 #############
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
+if (CATKIN_ENABLE_TESTING)
 
-## Add gtest based cpp test target and link libraries
-catkin_add_gtest(${PROJECT_NAME}-test 
-  tests/main.cpp
-  tests/naivikTest.cpp
-  tests/cameraTest.cpp
-  tests/motionControllerTest.cpp
-  tests/obstacleDetectionTest.cpp
-  src/naivik.cpp
-  src/camera.cpp
-  src/motionController.cpp
-  src/obstacleDetection.cpp
-)
-if(TARGET ${PROJECT_NAME}-test)
-  target_link_libraries(${PROJECT_NAME}-test 
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0") # debug, no optimisation
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage") # enabling coverage
+
+  ## Add gtest based cpp test target and link libraries
+  catkin_add_gtest(
+    ${PROJECT_NAME}-test 
+    tests/main.cpp
+    tests/naivikTest.cpp
+    tests/cameraTest.cpp
+    tests/motionControllerTest.cpp
+    tests/obstacleDetectionTest.cpp
+    src/naivik.cpp
+    src/camera.cpp
+    src/motionController.cpp
+    src/obstacleDetection.cpp
+  )
+  target_link_libraries(
+    ${PROJECT_NAME}-test 
     ${catkin_LIBRARIES}
     ${OpenCV_LIBRARIES}
   )
-  add_dependencies(${PROJECT_NAME}-test
+  add_dependencies(
+    ${PROJECT_NAME}-test
     ${PROJECT_NAME}_node
     ${catkin_EXPORTED_TARGETS}
   )
+  
 endif()
 
 ## Add folders to be run by python nosetests

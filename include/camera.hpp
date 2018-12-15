@@ -27,7 +27,7 @@
  * @version    1.0
  * @author     Ashish Patel
  * @brief      Camera class header file
- * @date       12-02-2018
+ * @date       12-15-2018
  */
 
 #ifndef INCLUDE_CAMERA_HPP_
@@ -67,11 +67,6 @@
  */
 class Camera {
  public:
-  /**
-   * @brief Camera constructor
-   */
-  Camera();
-
   /**
    * @brief Camera class parameterized constructor
    */

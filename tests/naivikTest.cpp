@@ -26,8 +26,8 @@
  * @file       naivikTest.cpp
  * @version    1.0
  * @author     Ashish Patel
- * @brief      File to test Naivik class
- * @date       12-02-2018
+ * @brief      Test cases for Naivik class
+ * @date       12-15-2018
  */
 
 // including ros header file
@@ -39,9 +39,9 @@
 // including user-defined header file
 #include "naivik.hpp"
 
-/**
- * @brief Test to check drive function
- */
-TEST(naivikTest, drive) {
-  EXPECT_EQ(1, 1);
-}
+class NaivikTest: public ::testing::Test {
+public:
+  Naivik robot;
+  void SetUp() {
+  }
+};

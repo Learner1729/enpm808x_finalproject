@@ -27,8 +27,11 @@
  * @version    1.0
  * @author     Ashish Patel
  * @brief      MotionController class header file
- * @date       12-02-2018
+ * @date       12-15-2018
  */
+
+// including C++ Header files
+#include <memory>
 
 // including ROS Header files
 #include "ros/ros.h"
@@ -38,6 +41,10 @@
 // including user-defined Header file
 #include "motionController.hpp"
 #include "obstacleDetection.hpp"
+#include "naivik_robot/changeThresholdService.h"
+#include "naivik_robot/changeLinearSpeedService.h"
+#include "naivik_robot/changeAngularSpeedService.h"
+#include "naivik_robot/controlMotionService.h"
 
 MotionController::MotionController(double lSpeed, double aSpeed):
   linearSpeed_(lSpeed), angularSpeed_(aSpeed),
@@ -67,7 +74,7 @@ void MotionController::determineAction(
   velocity.angular.z = 0.0;
   if (stopRobot_ == false) {
     if (obstacleDetection_->detectObstacle(msg)) { 
-      ROS_INFO_STREAM("Stop and turn the until naivik is free.");
+      ROS_INFO_STREAM("Stop and turn the until robot is free.");
       // set linear velocity to zero
       velocity.linear.x = 0.0;
       // set turn rate about the z-axis
@@ -146,9 +153,9 @@ bool MotionController::controlMotion(
   stopRobot_ = req.motion;
   res.response = true;
   if (stopRobot_) {
-    ROS_INFO_STREAM("Stop turtlebot");
+    ROS_INFO_STREAM("Robot Stopped...");
   } else {
-    ROS_INFO_STREAM("Continue Motion");
+    ROS_INFO_STREAM("Robot motion restarted...");
   }
   return res.response;
 }

@@ -27,21 +27,40 @@
  * @version    1.0
  * @author     Ashish Patel
  * @brief      Camera class implementation file
- * @date       12-02-2018
+ * @date       12-15-2018
  */
 
 // including C++ Header files
-#include <sstream>
+#include <memory>
+#include <string>
 #include <vector>
+#include <sstream>
 
 // including ROS Header file
 #include "ros/ros.h"
 
+// including image_transport header file which is used for publishing and 
+// subscribing to images in ROS
+#include "image_transport/image_transport.h"
+
+// including the header for CvBridge as well as some useful constants and
+// functions related to image encodings. 
+#include "cv_bridge/cv_bridge.h"
+#include "sensor_msgs/image_encodings.h"
+
+// including the headers for OpenCV's image processing and GUI modules
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
+// including ROS message header file
+#include "sensor_msgs/Image.h"
+
+// including service header file
+#include "naivik_robot/takeImageService.h"
+
 // including user-defined header file
 #include "camera.hpp"
-
-Camera::Camera() {
-}
 
 Camera::Camera(bool imageCapture): takeImageFlag_(imageCapture) {
   /**
@@ -51,11 +70,13 @@ Camera::Camera(bool imageCapture): takeImageFlag_(imageCapture) {
   cameraClient_ = nh_.serviceClient<naivik_robot::takeImageService>("takeImage");
 
   // OpenCV HighGUI calls to create a display window
-  cv::namedWindow("OPENCV_IMAGE_WINDOW");
+  // (uncomment below line if you want to see image_view in a separate window)
+  // cv::namedWindow("OPENCV_IMAGE_WINDOW");
 }
 
 Camera::~Camera() {
-  cv::destroyWindow("OPENCV_IMAGE_WINDOW");
+  // (uncomment below line if you want to see image_view in a separate window)
+  // cv::destroyWindow("OPENCV_IMAGE_WINDOW");
 }
 
 bool Camera::takeImage(naivik_robot::takeImageService::Request& req,
@@ -90,8 +111,9 @@ void Camera::cameraCallback(const sensor_msgs::ImageConstPtr& msg) {
   }
 
   // Update GUI Window
-  cv::imshow("OPENCV_IMAGE_WINDOW",cv_ptr->image);
-  cv::waitKey(3);
+  // (uncomment below lines if you want to see image_view in a separate window)
+  // cv::imshow("OPENCV_IMAGE_WINDOW",cv_ptr->image);
+  // cv::waitKey(3);
 
   // if takeImageFlag_ is enabled
   if(takeImageFlag_) {

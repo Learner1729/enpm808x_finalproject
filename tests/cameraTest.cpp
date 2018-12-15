@@ -26,9 +26,11 @@
  * @file       cameraTest.cpp
  * @version    1.0
  * @author     Ashish Patel
- * @brief      File to test Camera class
- * @date       12-02-2018
+ * @brief      Test cases for Camera class
+ * @date       12-15-2018
  */
+
+#include <memory>
 
 // including ros header file
 #include "ros/ros.h"
@@ -42,6 +44,6 @@
 /**
  * @brief Test that should pass
  */
-TEST(cameraTest, test2) {
-  EXPECT_EQ(1, 1);
+TEST(CameraTest, initialization_test) {
+  EXPECT_TRUE(true);
 }

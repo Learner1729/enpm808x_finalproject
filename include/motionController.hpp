@@ -27,7 +27,7 @@
  * @version    1.0
  * @author     Ashish Patel
  * @brief      MotionController class header file
- * @date       12-02-2018
+ * @date       12-15-2018
  */
 
 #ifndef INCLUDE_MOTIONCONTROLLER_HPP_

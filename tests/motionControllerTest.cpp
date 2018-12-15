@@ -26,9 +26,12 @@
  * @file       motionControllerTest.cpp
  * @version    1.0
  * @author     Ashish Patel
- * @brief      File to test MotionController class
- * @date       12-02-2018
+ * @brief      Test cases for MotionController class
+ * @date       12-15-2018
  */
+
+// including C++ header file 
+#include <memory>
 
 // including ros header file
 #include "ros/ros.h"
@@ -39,21 +42,19 @@
 
 // including user-defined header file
 #include "motionController.hpp"
-#include "naivik_robot/changeThresholdService.h"
 
-/**
- * @brief Test the ability to determineAction
- */
-TEST(motionControllerTest, determine_action) {
-  // work under progress...
-  EXPECT_EQ(1, 1);
-}
+class MotionControllerTest: public ::testing::Test {
+public:
+  std::shared_ptr<MotionController> mc;
+  void SetUp() {
+    mc = std::make_shared<MotionController>(1.0,1.0);
+  }
+};
 
 /**
  * @brief Test the ability to getVehicleAction
  */
-TEST(motionControllerTest, get_vehicle_action) {
-  std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
+TEST_F(MotionControllerTest, get_vehicle_action) {
   // initializing a geometry_msgs variable
   geometry_msgs::Twist velocity = mc->getVehicleAction();
   // temporary variable
@@ -69,8 +70,7 @@ TEST(motionControllerTest, get_vehicle_action) {
 /**
  * @brief Test the ability to get & set linearSpeed_
  */
-TEST(motionControllerTest, set_linear_speed) {
-  std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
+TEST_F(MotionControllerTest, set_linear_speed) {
   ASSERT_DOUBLE_EQ(1.0, mc->getLinearSpeed());
   mc->setLinearSpeed(4.2);
   EXPECT_DOUBLE_EQ(4.2, mc->getLinearSpeed());
@@ -79,11 +79,16 @@ TEST(motionControllerTest, set_linear_speed) {
 /**
  * @brief Test the ability to get & set AngularSpeed_
  */
-TEST(motionControllerTest, get_linear_speed) {
-  std::shared_ptr<MotionController> mc(std::make_shared<MotionController>(1.0,1.0));
+TEST_F(MotionControllerTest, get_linear_speed) {
   ASSERT_DOUBLE_EQ(1.0, mc->getAngularSpeed());
   mc->setAngularSpeed(4.2);
   EXPECT_DOUBLE_EQ(4.2, mc->getAngularSpeed());
 }
 
- 
+/**
+ * @brief Test the ability to determineAction
+ */
+TEST_F(MotionControllerTest, determine_action) {
+  // work under progress...
+  EXPECT_EQ(1, 1);
+}
