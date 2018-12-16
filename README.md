@@ -248,6 +248,10 @@ $ firefox index.html
 ```
 >**Note:** If the above steps doesn't work for you, you can refer the documentation in /docs folder of the repository. I have also provided the config file for your reference
 
+Click the link to see the generated document for version 0.1: [DOXYGEN Document](http://htmlpreview.github.io/?https://github.com/Learner1729/naivik_robot/blob/master/docs/html/index.html)
+
+>**Note:** The main page doesn't print any information, it's because I havn't included README.md file while generating docs files.
+
 ## <a name="futurework"></a> TODO
 
 This is v0.1 which implements a random motion of robot in an environment. It also includes ROS API to change parameters like linear velocity, angular velocity, capture image, stop/resume motion and change distance threshold value. Now, the next version will build a map which can be used in ROS navigation stack to make the robot travel from one location to another based on USER commands.
