@@ -31,11 +31,11 @@
  * @date       12-15-2018
  */
 
-// including ros header file
-#include "ros/ros.h"
-
 // including gtest header file
 #include <gtest/gtest.h>
+
+// including ros header file
+#include "ros/ros.h"
 
 /**
  * @brief Main function for testing, runs all the tests that were declared

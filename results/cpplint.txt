@@ -1,0 +1,33 @@
+./include/camera.hpp:91:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::takeImageService::Request& req  [runtime/references] [2]
+./include/camera.hpp:92:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::takeImageService::Response& res  [runtime/references] [2]
+Done processing ./include/camera.hpp
+Done processing ./include/obstacleDetection.hpp
+Done processing ./include/naivik.hpp
+./include/motionController.hpp:125:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::changeThresholdService::Request& req  [runtime/references] [2]
+./include/motionController.hpp:126:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::changeThresholdService::Response& res  [runtime/references] [2]
+./include/motionController.hpp:137:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::changeLinearSpeedService::Request& req  [runtime/references] [2]
+./include/motionController.hpp:138:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::changeLinearSpeedService::Response& res  [runtime/references] [2]
+./include/motionController.hpp:149:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::changeAngularSpeedService::Request& req  [runtime/references] [2]
+./include/motionController.hpp:150:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::changeAngularSpeedService::Response& res  [runtime/references] [2]
+./include/motionController.hpp:161:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::controlMotionService::Request& req  [runtime/references] [2]
+./include/motionController.hpp:162:  Is this a non-const reference? If so, make const or use a pointer: naivik_robot::controlMotionService::Response& res  [runtime/references] [2]
+Done processing ./include/motionController.hpp
+Done processing ./src/motionController.cpp
+Done processing ./src/naivik.cpp
+Done processing ./src/naivik_robot_node.cpp
+Done processing ./src/camera.cpp
+Done processing ./src/obstacleDetection.cpp
+Done processing ./tests/main.cpp
+Done processing ./tests/motionControllerTest.cpp
+Done processing ./tests/naivikTest.cpp
+Done processing ./tests/testService.cpp
+Done processing ./tests/testNodes.cpp
+Done processing ./tests/cameraTest.cpp
+Done processing ./tests/obstacleDetectionTest.cpp
+Done processing ./tests/testHelper.hpp
+Done processing ./tests/testHelper.cpp
+Total errors found: 10
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Command used to obtained above result:
+cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" ) 2> results/cpplint.txt

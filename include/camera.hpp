@@ -42,12 +42,12 @@
 // including ROS Header file
 #include "ros/ros.h"
 
-// including image_transport header file which is used for publishing and 
+// including image_transport header file which is used for publishing and
 // subscribing to images in ROS
 #include "image_transport/image_transport.h"
 
 // including the header for CvBridge as well as some useful constants and
-// functions related to image encodings. 
+// functions related to image encodings.
 #include "cv_bridge/cv_bridge.h"
 #include "sensor_msgs/image_encodings.h"
 #include "sensor_msgs/Image.h"
@@ -70,8 +70,8 @@ class Camera {
    * @param imageCapture of type bool, it's default value is false
    * @return none
    */
-  Camera(bool imageCapture);
-  
+  explicit Camera(bool imageCapture);
+
   /**
    * @brief Camera class destructor
    * @param none
@@ -104,19 +104,19 @@ class Camera {
    * @brief declare a container named saveImages_ to store image data 
    */
   std::vector<std::string> saveImages_;
-  
+
   /**
    * @brief declare and initialize a container named takeImageFlag_ as a flag to
    *        instruct whether to capture and store image or not
    */
   bool takeImageFlag_{false};
-  
+
   /**
    * @brief declare a container to Node handler for subscribing to service 
    *        and topics
    */
   ros::NodeHandle nh_;
-  
+
   /**
    * @brief declare a ROS service client object for the takeImageService
    */

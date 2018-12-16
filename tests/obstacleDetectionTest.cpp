@@ -30,23 +30,23 @@
  * @date       12-15-2018
  */
 
-// including C++ header file
-#include <memory>
-
 // including gtest header file
 #include <gtest/gtest.h>
 
-// including ros header file
-#include "ros/ros.h"
+// including C++ header file
+#include <memory>
 
 // including user-defined header file
 #include "obstacleDetection.hpp"
+
+// including ros header file
+#include "ros/ros.h"
 
 /**
  * @brief ObstacleDetection fixture class
  */
 class ObstacleDetectionTest: public ::testing::Test {
-public:
+ public:
   std::shared_ptr<ObstacleDetection> obs;
   void SetUp() {
     obs = std::make_shared<ObstacleDetection>(10.0);

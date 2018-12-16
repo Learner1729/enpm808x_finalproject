@@ -61,15 +61,15 @@ class MotionController {
    * @param lSpeed of type double
    * @param aSpeed of type double
    */
-  MotionController(double lSpeed, double aSpeed);
-  
+  explicit MotionController(double lSpeed, double aSpeed);
+
   /**
    * @brief MotionController class destructor
    * @param none
    * @return none
    */
   ~MotionController();
-  
+
   /**
    * @brief Determine robot's actions based on results from the obstacle 
    *        detector
@@ -77,14 +77,14 @@ class MotionController {
    * @return none
    */
   void determineAction(const sensor_msgs::LaserScan::ConstPtr& msg);
-  
+
   /**
    * @brief Return the current turtlebot action
    * @param none
    * @return robot's velocity data of type geometry_msgs::Twist
    */
   geometry_msgs::Twist getVehicleAction();
- 
+
   /**
    * @brief Set linear speed of the robot
    * @param speed of type double
@@ -136,7 +136,7 @@ class MotionController {
   bool changeLinearSpeed(
     naivik_robot::changeLinearSpeedService::Request& req,
     naivik_robot::changeLinearSpeedService::Response& res);
- 
+
   /**
    * @brief callback back function for changeAngularSpeedService
    * @param a reference to a request variable of type defined in 
@@ -167,12 +167,12 @@ class MotionController {
    *        initialize it to nullptr
    */
   std::shared_ptr<ObstacleDetection> obstacleDetection_{nullptr};
-  
+
   /**
    * @brief declare a container for linearSpeed data
    */
   double linearSpeed_;
-  
+
   /**
    * @brief declare a container for angularSpeed data
    */

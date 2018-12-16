@@ -30,27 +30,27 @@
  * @date       12-15-2018
  */
 
-// including C++ header file 
-#include <memory>
-
 // including gtest header file
 #include <gtest/gtest.h>
+
+// including C++ header file
+#include <memory>
+
+// including user-defined header file
+#include "motionController.hpp"
 
 // including ros header file
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 
-// including user-defined header file
-#include "motionController.hpp"
-
 /**
  * @brief MotionController fixture class
  */
 class MotionControllerTest: public ::testing::Test {
-public:
+ public:
   std::shared_ptr<MotionController> mc;
   void SetUp() {
-    mc = std::make_shared<MotionController>(1.0,1.0);
+    mc = std::make_shared<MotionController>(1.0, 1.0);
   }
 };
 
@@ -62,8 +62,8 @@ TEST_F(MotionControllerTest, get_vehicle_action) {
   geometry_msgs::Twist velocity = mc->getVehicleAction();
   // temporary variable
   auto flag = false;
-  if(velocity.linear.x == 0.0 && velocity.linear.y == 0.0 && 
-    velocity.linear.z == 0.0 && velocity.angular.x == 0.0 && 
+  if (velocity.linear.x == 0.0 && velocity.linear.y == 0.0 &&
+    velocity.linear.z == 0.0 && velocity.angular.x == 0.0 &&
     velocity.angular.y == 0.0 && velocity.angular.z == 0.0) {
     flag = true;
   }

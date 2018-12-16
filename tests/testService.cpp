@@ -55,11 +55,12 @@
 /**
  * @brief Testing the changeThresholdService
  */
-TEST(test_Services, change_threshold_service) {  
+TEST(test_Services, change_threshold_service) {
   ros::NodeHandle nh;
   ros::ServiceClient client =
-    nh.serviceClient<naivik_robot::changeThresholdService>("changeThresholdService");
-  bool exists(client.waitForExistence(ros::Duration(2))); 
+    nh.serviceClient<naivik_robot::changeThresholdService>
+    ("changeThresholdService");
+  bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   naivik_robot::changeThresholdService srv;
   srv.request.changeThreshold = 1.5;
@@ -73,7 +74,8 @@ TEST(test_Services, change_threshold_service) {
 TEST(test_Services, change_linear_speed_service) {
   ros::NodeHandle nh;
   ros::ServiceClient client =
-    nh.serviceClient<naivik_robot::changeLinearSpeedService>("changeLinearSpeedService");
+    nh.serviceClient<naivik_robot::changeLinearSpeedService>
+    ("changeLinearSpeedService");
   bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   naivik_robot::changeLinearSpeedService srv;
@@ -88,7 +90,8 @@ TEST(test_Services, change_linear_speed_service) {
 TEST(test_Services, change_angular_speed_service) {
   ros::NodeHandle nh;
   ros::ServiceClient client =
-    nh.serviceClient<naivik_robot::changeAngularSpeedService>("changeAngularSpeedService");
+    nh.serviceClient<naivik_robot::changeAngularSpeedService>
+    ("changeAngularSpeedService");
   bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   naivik_robot::changeAngularSpeedService srv;
@@ -103,7 +106,8 @@ TEST(test_Services, change_angular_speed_service) {
 TEST(test_Services, control_motion_service) {
   ros::NodeHandle nh;
   ros::ServiceClient client =
-    nh.serviceClient<naivik_robot::controlMotionService>("controlMotionService");
+    nh.serviceClient<naivik_robot::controlMotionService>
+    ("controlMotionService");
   bool exists(client.waitForExistence(ros::Duration(2)));
   ASSERT_TRUE(exists);
   naivik_robot::controlMotionService srv;
@@ -114,7 +118,7 @@ TEST(test_Services, control_motion_service) {
   // Stop Motion
   srv.request.motion = true;
   client.call(srv);
-  EXPECT_TRUE(srv.response.response); 
+  EXPECT_TRUE(srv.response.response);
 }
 
 /**
@@ -139,7 +143,7 @@ TEST(test_Services, take_image_service) {
  * @param argv  The argv as char array
  * @return 0, if everything is successful
  */
-int main(int argc, char** argv){
+int main(int argc, char** argv) {
   ros::init(argc, argv, "test_services");
   ::testing::InitGoogleTest(&argc, argv);
   auto res = RUN_ALL_TESTS();

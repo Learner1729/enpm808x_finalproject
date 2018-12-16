@@ -52,7 +52,8 @@ TEST(TestingCallbacks, camera_callback_init) {
   ros::NodeHandle nh;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /camera/rgb/image_raw
-  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>("/camera/rgb/image_raw",100);
+  ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>
+    ("/camera/rgb/image_raw", 100);
   loop_rate.sleep();
   EXPECT_EQ(1, cameraPub.getNumSubscribers());
 }
@@ -64,8 +65,8 @@ TEST(TestingCallbacks, laser_callback_init) {
   ros::NodeHandle nh;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /scan
-  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan",100);
-  loop_rate.sleep();  
+  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 100);
+  loop_rate.sleep();
   EXPECT_EQ(1, laserPub.getNumSubscribers());
 }
 
@@ -77,9 +78,9 @@ TEST(TestingCallbacks, velocity_callback_init) {
   TestHelper help;
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /scan
-  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity", 1000,
-    &TestHelper::velocityCallback, &help);
-  loop_rate.sleep();  
+  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity",
+    1000, &TestHelper::velocityCallback, &help);
+  loop_rate.sleep();
   EXPECT_EQ(1, velocity.getNumPublishers());
 }
 
@@ -92,9 +93,10 @@ TEST(TestingCallbacks, non_obstacle_collision) {
   TestHelper help;
   ros::Rate loop_rate(2);
   // register to check number of publishers to /mobile_base/commands/velocity
-  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity", 1000, &TestHelper::velocityCallback, &help);
+  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity",
+    1000, &TestHelper::velocityCallback, &help);
   // register to check number of Subscribers to /scan
-  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan",100);
+  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 100);
   loop_rate.sleep();
   EXPECT_EQ(1, velocity.getNumPublishers());
   EXPECT_EQ(1, laserPub.getNumSubscribers());
@@ -123,12 +125,13 @@ TEST(TestingCallbacks, non_obstacle_collision) {
   for (auto& i : scan.ranges) {
     i = scan.range_max;
   }
-  
+
   laserPub.publish(scan);
   loop_rate.sleep();
   ros::spinOnce();
   // confirm velocity is expected
-  EXPECT_EQ(0, std::memcmp(&msg, &help.twist, sizeof(msg))) << help.twist.linear.x;
+  EXPECT_EQ(0, std::memcmp(&msg, &help.twist, sizeof(msg)))
+    << help.twist.linear.x;
 }
 
 /**
@@ -140,9 +143,10 @@ TEST(TestingCallbacks, obstacle_collision) {
   TestHelper help;
   ros::Rate loop_rate(2);
   // register to check number of publishers to /mobile_base/commands/velocity
-  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity", 1000, &TestHelper::velocityCallback, &help);
+  ros::Subscriber velocity = nh.subscribe("/mobile_base/commands/velocity",
+    1000, &TestHelper::velocityCallback, &help);
   // register to check number of Subscribers to /scan
-  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan",100);
+  ros::Publisher laserPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 100);
   loop_rate.sleep();
   EXPECT_EQ(1, velocity.getNumPublishers());
   EXPECT_EQ(1, laserPub.getNumSubscribers());
@@ -171,12 +175,12 @@ TEST(TestingCallbacks, obstacle_collision) {
   for (auto& i : scan.ranges) {
     i = scan.range_max;
   }
-  
+
   laserPub.publish(scan);
   loop_rate.sleep();
   ros::spinOnce();
   // confirm velocity is expected
-  EXPECT_EQ(0, std::memcmp(&msg, &help.twist, sizeof(msg))) 
+  EXPECT_EQ(0, std::memcmp(&msg, &help.twist, sizeof(msg)))
     << help.twist.angular.z;
 }
 
@@ -188,17 +192,17 @@ TEST(TestingCallbacks, camera_callback) {
   ros::Rate loop_rate(2);
   // register to check number of Subscribers to /camera/rgb/image_raw
   ros::Publisher cameraPub = nh.advertise<sensor_msgs::Image>
-    ("/camera/rgb/image_raw",100);
+    ("/camera/rgb/image_raw", 100);
   loop_rate.sleep();
   EXPECT_EQ(1, cameraPub.getNumSubscribers());
 
-  // The below code is only to increase coverage, as such I havn't done any 
+  // The below code is only to increase coverage, as such I havn't done any
   // thing with the captured image as of now. It can be extended further based
-  // on passing the image and doing some image processing on it. 
-  // Also it cv throws an exception of an error of image encoding, while 
+  // on passing the image and doing some image processing on it.
+  // Also it cv throws an exception of an error of image encoding, while
   // running the test but I am not checking any TEST based on it so for now we
   // can ignore it.
-  
+
   // create a dummy image data
   sensor_msgs::Image img;
   cameraPub.publish(img);

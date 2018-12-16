@@ -63,7 +63,7 @@ MotionController::~MotionController() {
 
 void MotionController::determineAction(
   const sensor_msgs::LaserScan::ConstPtr& msg) {
-  // initializing a geometry_msgs variable which will be updated according 
+  // initializing a geometry_msgs variable which will be updated according
   // to obstacle detector
   geometry_msgs::Twist velocity;
   velocity.linear.x = 0.0;
@@ -73,21 +73,19 @@ void MotionController::determineAction(
   velocity.angular.y = 0.0;
   velocity.angular.z = 0.0;
   if (stopRobot_ == false) {
-    if (obstacleDetection_->detectObstacle(msg)) { 
+    if (obstacleDetection_->detectObstacle(msg)) {
       ROS_INFO_STREAM("Stop and turn the until robot is free.");
       // set linear velocity to zero
       velocity.linear.x = 0.0;
       // set turn rate about the z-axis
       velocity.angular.z = angularSpeed_;
-    }
-    else {
+    } else {
       // set turn rate to zero
       velocity.angular.z = 0.0;
       // move forward slowly
       velocity.linear.x = linearSpeed_;
     }
-  }
-  else {
+  } else {
     // stop the Motion
     velocity.angular.z = 0.0;
     velocity.linear.x = 0.0;
@@ -119,7 +117,6 @@ double MotionController::getAngularSpeed() {
 bool MotionController::changeThreshold(
   naivik_robot::changeThresholdService::Request& req,
   naivik_robot::changeThresholdService::Response& res) {
-
   obstacleDetection_->setDistThreshold(req.changeThreshold);
   res.response = true;
   ROS_INFO("Setting Distance Threshold: %f", req.changeThreshold);
@@ -129,7 +126,6 @@ bool MotionController::changeThreshold(
 bool MotionController::changeLinearSpeed(
   naivik_robot::changeLinearSpeedService::Request& req,
   naivik_robot::changeLinearSpeedService::Response& res) {
-  
   setLinearSpeed(req.changeLSpeed);
   res.response = true;
   ROS_INFO("Updated linearSpeed to: %f", req.changeLSpeed);
@@ -139,7 +135,6 @@ bool MotionController::changeLinearSpeed(
 bool MotionController::changeAngularSpeed(
   naivik_robot::changeAngularSpeedService::Request& req,
   naivik_robot::changeAngularSpeedService::Response& res) {
-  
   setAngularSpeed(req.changeASpeed);
   res.response = true;
   ROS_INFO("Updated angularSpeed to: %f", req.changeASpeed);
@@ -149,7 +144,6 @@ bool MotionController::changeAngularSpeed(
 bool MotionController::controlMotion(
   naivik_robot::controlMotionService::Request& req,
   naivik_robot::controlMotionService::Response& res) {
-
   stopRobot_ = req.motion;
   res.response = true;
   if (stopRobot_) {

@@ -57,52 +57,52 @@ class Naivik {
    * @param nh ROS node handle
    * @return none
    */
-  Naivik(ros::NodeHandle nh);
-  
+  explicit Naivik(ros::NodeHandle nh);
+
   /**
    * @brief Naivik class destructor
    * @param none
    * @return none
    */
   ~Naivik();
-  
+
   /**
    * @brief Drive the robot using laser scan data
    * @param none
    * @return none
    */
   void drive();
- 
+
  private:
   /**
    * @brief declare a container for camera class object and initialize it to 
    *        nullptr
    */
   std::shared_ptr<Camera> camera_{nullptr};
-  
+
   /**
    * @brief declare a container for MotionController class object and 
    *        initialize it to nullptr
    */
   std::shared_ptr<MotionController> motionController_{nullptr};
-  
+
   /**
    * @brief declare a container to Node handler for subscribing to services 
    *        and topics
    */
   ros::NodeHandle nh_;
-  
+
   /**
    * @brief declare a container for a ROS publisher to publish vehicle motion
    *        commands
    */
   ros::Publisher velocityPublisher_;
-  
+
   /**
    * @brief declare a container for a ROS subscriber for laser scan topics
    */
   ros::Subscriber laserSubscriber_;
-  
+
   /**
    * @brief declare a container for a ROS subscriber for camera topics
    */

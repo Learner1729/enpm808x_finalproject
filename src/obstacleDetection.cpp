@@ -37,7 +37,7 @@
 // including user-defined Header file
 #include "obstacleDetection.hpp"
 
-ObstacleDetection::ObstacleDetection(double distThreshold): 
+ObstacleDetection::ObstacleDetection(double distThreshold):
   distThreshold_(distThreshold) {
 }
 

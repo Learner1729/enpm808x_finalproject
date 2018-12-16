@@ -43,7 +43,7 @@
  * @brief Naivik fixture class
  */
 class NaivikTest: public ::testing::Test {
-public:
+ public:
   Naivik robot;
   void SetUp() {
   }

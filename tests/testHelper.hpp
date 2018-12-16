@@ -42,14 +42,14 @@
  *        subscriber
  */
 class TestHelper {
-public:
+ public:
   /**
    * @brief TestHelper class constructor
    * @param none
    * @return none
    */
   TestHelper();
-  
+
   /**
    * @brief TestHelper class destructor
    * @param none

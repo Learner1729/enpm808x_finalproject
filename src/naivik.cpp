@@ -45,15 +45,14 @@
 #include "camera.hpp"
 
 Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
-  motionController_(std::make_shared<MotionController>(0.1,1.0)),
+  motionController_(std::make_shared<MotionController>(0.1, 1.0)),
   camera_(std::make_shared<Camera>(false)) {
-  
-  laserSubscriber_ = nh_.subscribe <sensor_msgs::LaserScan> 
+  laserSubscriber_ = nh_.subscribe <sensor_msgs::LaserScan>
     ("/scan", 100, &MotionController::determineAction, motionController_.get());
-  velocityPublisher_ = nh_.advertise <geometry_msgs::Twist> 
+  velocityPublisher_ = nh_.advertise <geometry_msgs::Twist>
     ("/mobile_base/commands/velocity", 100);
-  cameraSubscriber_ = nh_.subscribe <sensor_msgs::Image> 
-    ("/camera/rgb/image_raw",100, &Camera::cameraCallback, camera_.get());
+  cameraSubscriber_ = nh_.subscribe <sensor_msgs::Image>
+    ("/camera/rgb/image_raw", 100, &Camera::cameraCallback, camera_.get());
 
   changeThresholdServer_ = nh_.advertiseService("changeThresholdService",
     &MotionController::changeThreshold, motionController_.get());
@@ -63,7 +62,7 @@ Naivik::Naivik(ros::NodeHandle nh):nh_(nh),
     &MotionController::changeAngularSpeed, motionController_.get());
   controlMotionServer_ = nh_.advertiseService("controlMotionService",
     &MotionController::controlMotion, motionController_.get());
-  takeImageServer_ = nh_.advertiseService("takeImageService", 
+  takeImageServer_ = nh_.advertiseService("takeImageService",
     &Camera::takeImage, camera_.get());
 }
 

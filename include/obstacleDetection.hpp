@@ -48,15 +48,15 @@ class ObstacleDetection {
    * @param distThreshold of type double
    * @return none
    */
-  ObstacleDetection(double distThreshold);
-  
+  explicit ObstacleDetection(double distThreshold);
+
   /**
    * @brief ObstacleDetection class destructor
    * @param none
    * @return none
    */
   ~ObstacleDetection();
-  
+
   /**
    * @brief Detects the Obstacle in front of the robot
    * @param a reference to a variable of type sensor_msgs::LaserScan
@@ -64,7 +64,7 @@ class ObstacleDetection {
    *         false, if obstacle is not detected
    */
   bool detectObstacle(const sensor_msgs::LaserScan::ConstPtr& msg);
- 
+
   /**
    * @brief set distThreshold value
    * @param threshold of type double

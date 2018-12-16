@@ -30,17 +30,17 @@
  * @date       12-15-2018
  */
 
-// including C++ header class
-#include <memory>
-
 // including gtest header file
 #include <gtest/gtest.h>
 
-// including ros header file
-#include "ros/ros.h"
+// including C++ header class
+#include <memory>
 
 // including user-defined header file
 #include "camera.hpp"
+
+// including ros header file
+#include "ros/ros.h"
 
 /**
  * @brief Test that should pass

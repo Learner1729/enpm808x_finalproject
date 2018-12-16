@@ -46,7 +46,7 @@ TestHelper::TestHelper() {
   twist.angular.y = 0.0;
   twist.angular.z = 0.0;
 }
-  
+
 TestHelper::~TestHelper() {
   ROS_INFO_STREAM("Test helper destructor called...");
 }
