@@ -1,0 +1,133 @@
+\hypertarget{testNodes_8cpp}{}\section{/home/ashishpatel/project/src/naivik\+\_\+robot/tests/test\+Nodes.cpp File Reference}
+\label{testNodes_8cpp}\index{/home/ashishpatel/project/src/naivik\+\_\+robot/tests/test\+Nodes.\+cpp@{/home/ashishpatel/project/src/naivik\+\_\+robot/tests/test\+Nodes.\+cpp}}
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sensor\+\_\+msgs/\+Laser\+Scan.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sensor\+\_\+msgs/\+Image.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}naivik.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}motion\+Controller.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}camera.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}test\+Helper.\+hpp\char`\"{}}\\*
+Include dependency graph for test\+Nodes.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{testNodes_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{testNodes_8cpp_a058607d33b6d2afc869f4a8e1568e7bd}{T\+E\+ST} (Testing\+Callbacks, camera\+\_\+callback\+\_\+init)
+\begin{DoxyCompactList}\small\item\em To test whether the camera subscriber is initialize properly or not. \end{DoxyCompactList}\item 
+\hyperlink{testNodes_8cpp_a53725141d36b27b51d904965799f6812}{T\+E\+ST} (Testing\+Callbacks, laser\+\_\+callback\+\_\+init)
+\begin{DoxyCompactList}\small\item\em To test whether the laser subscriber is initialize properly or not. \end{DoxyCompactList}\item 
+\hyperlink{testNodes_8cpp_a0bc1c9432e3f9621baeffbb8f5c4f523}{T\+E\+ST} (Testing\+Callbacks, velocity\+\_\+callback\+\_\+init)
+\begin{DoxyCompactList}\small\item\em To test whether the velocity publisher is initialize properly or not. \end{DoxyCompactList}\item 
+\hyperlink{testNodes_8cpp_a4b037584d549e7466798247eaf491ef2}{T\+E\+ST} (Testing\+Callbacks, non\+\_\+obstacle\+\_\+collision)
+\begin{DoxyCompactList}\small\item\em To test determine action function of \hyperlink{classMotionController}{Motion\+Controller} class in a situation when there is no obstacle. \end{DoxyCompactList}\item 
+\hyperlink{testNodes_8cpp_a207ec5fad15186507ec9ac47a930b596}{T\+E\+ST} (Testing\+Callbacks, obstacle\+\_\+collision)
+\begin{DoxyCompactList}\small\item\em To test determine action function of \hyperlink{classMotionController}{Motion\+Controller} class in a situation when there is an obstacle. \end{DoxyCompactList}\item 
+\hyperlink{testNodes_8cpp_a618b5c5bf252cec611bfa07fbcab41cb}{T\+E\+ST} (Testing\+Callbacks, camera\+\_\+callback)
+\begin{DoxyCompactList}\small\item\em To test whether the camera callback function. \end{DoxyCompactList}\item 
+int \hyperlink{testNodes_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function for testing, runs all the tests that were declared with \hyperlink{testNodes_8cpp_a058607d33b6d2afc869f4a8e1568e7bd}{T\+E\+S\+T()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!main@{main}}
+\index{main@{main}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{testNodes_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Main function for testing, runs all the tests that were declared with \hyperlink{testNodes_8cpp_a058607d33b6d2afc869f4a8e1568e7bd}{T\+E\+S\+T()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argc as int \\
+\hline
+{\em argv} & The argv as char array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0, if everything is successful 
+\end{DoxyReturn}
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(\+Testing\+Callbacks, camera\+\_\+callback\+\_\+init)}{TEST(TestingCallbacks, camera_callback_init)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{Testing\+Callbacks}]{, }
+\item[{camera\+\_\+callback\+\_\+init}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a058607d33b6d2afc869f4a8e1568e7bd}{}\label{testNodes_8cpp_a058607d33b6d2afc869f4a8e1568e7bd}
+
+
+To test whether the camera subscriber is initialize properly or not. 
+
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(\+Testing\+Callbacks, laser\+\_\+callback\+\_\+init)}{TEST(TestingCallbacks, laser_callback_init)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{Testing\+Callbacks}]{, }
+\item[{laser\+\_\+callback\+\_\+init}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a53725141d36b27b51d904965799f6812}{}\label{testNodes_8cpp_a53725141d36b27b51d904965799f6812}
+
+
+To test whether the laser subscriber is initialize properly or not. 
+
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(\+Testing\+Callbacks, velocity\+\_\+callback\+\_\+init)}{TEST(TestingCallbacks, velocity_callback_init)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{Testing\+Callbacks}]{, }
+\item[{velocity\+\_\+callback\+\_\+init}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a0bc1c9432e3f9621baeffbb8f5c4f523}{}\label{testNodes_8cpp_a0bc1c9432e3f9621baeffbb8f5c4f523}
+
+
+To test whether the velocity publisher is initialize properly or not. 
+
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(\+Testing\+Callbacks, non\+\_\+obstacle\+\_\+collision)}{TEST(TestingCallbacks, non_obstacle_collision)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{Testing\+Callbacks}]{, }
+\item[{non\+\_\+obstacle\+\_\+collision}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a4b037584d549e7466798247eaf491ef2}{}\label{testNodes_8cpp_a4b037584d549e7466798247eaf491ef2}
+
+
+To test determine action function of \hyperlink{classMotionController}{Motion\+Controller} class in a situation when there is no obstacle. 
+
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(\+Testing\+Callbacks, obstacle\+\_\+collision)}{TEST(TestingCallbacks, obstacle_collision)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{Testing\+Callbacks}]{, }
+\item[{obstacle\+\_\+collision}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a207ec5fad15186507ec9ac47a930b596}{}\label{testNodes_8cpp_a207ec5fad15186507ec9ac47a930b596}
+
+
+To test determine action function of \hyperlink{classMotionController}{Motion\+Controller} class in a situation when there is an obstacle. 
+
+\index{test\+Nodes.\+cpp@{test\+Nodes.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!test\+Nodes.\+cpp@{test\+Nodes.\+cpp}}
+\subsubsection[{\texorpdfstring{T\+E\+S\+T(\+Testing\+Callbacks, camera\+\_\+callback)}{TEST(TestingCallbacks, camera_callback)}}]{\setlength{\rightskip}{0pt plus 5cm}T\+E\+ST (
+\begin{DoxyParamCaption}
+\item[{Testing\+Callbacks}]{, }
+\item[{camera\+\_\+callback}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{testNodes_8cpp_a618b5c5bf252cec611bfa07fbcab41cb}{}\label{testNodes_8cpp_a618b5c5bf252cec611bfa07fbcab41cb}
+
+
+To test whether the camera callback function. 
+

@@ -1,0 +1,158 @@
+\hypertarget{classCamera}{}\section{Camera Class Reference}
+\label{classCamera}\index{Camera@{Camera}}
+
+
+\hyperlink{classCamera}{Camera} class handles viewing and taking images in front of the robot.  
+
+
+
+
+{\ttfamily \#include $<$camera.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCamera_aa77cf66f19d66b36df13aac88f1a8aa3}{Camera} (bool image\+Capture)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCamera}{Camera} class parameterized constructor. \end{DoxyCompactList}\item 
+\hyperlink{classCamera_ad1897942d0ccf91052386388a497349f}{$\sim$\+Camera} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCamera}{Camera} class destructor. \end{DoxyCompactList}\item 
+bool \hyperlink{classCamera_a41a379dab8dd9b7946754bcc7d792c3e}{take\+Image} (naivik\+\_\+robot\+::take\+Image\+Service\+::\+Request \&req, naivik\+\_\+robot\+::take\+Image\+Service\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em A callback function to trigger a flag to capture an image of the current camera view and store it for later use. \end{DoxyCompactList}\item 
+void \hyperlink{classCamera_aff57f8419ee9de1262592171a84ddf8d}{camera\+Callback} (const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em A camera\+Callback function to convert images from R\+OS image messages to the useable format and store it based on the take\+Image\+Flag\+\_\+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classCamera_a9ffeac410066cafa8538041f66830067}{save\+Images\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container named save\+Images\+\_\+ to store image data \end{DoxyCompactList}\item 
+bool \hyperlink{classCamera_af0d737a2c07092eafccd2e8c6c124e0b}{take\+Image\+Flag\+\_\+} \{false\}
+\begin{DoxyCompactList}\small\item\em declare and initialize a container named take\+Image\+Flag\+\_\+ as a flag to instruct whether to capture and store image or not \end{DoxyCompactList}\item 
+ros\+::\+Node\+Handle \hyperlink{classCamera_a888df900bc4c72a61dbb9b0b609c3cf8}{nh\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container to Node handler for subscribing to service and topics \end{DoxyCompactList}\item 
+ros\+::\+Service\+Client \hyperlink{classCamera_a93ed3666fbe5146aa32cc028b27db4bd}{camera\+Client\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a R\+OS service client object for the take\+Image\+Service \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classCamera}{Camera} class handles viewing and taking images in front of the robot. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Camera@{Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{Camera(bool image\+Capture)}{Camera(bool imageCapture)}}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::\+Camera (
+\begin{DoxyParamCaption}
+\item[{bool}]{image\+Capture}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classCamera_aa77cf66f19d66b36df13aac88f1a8aa3}{}\label{classCamera_aa77cf66f19d66b36df13aac88f1a8aa3}
+
+
+\hyperlink{classCamera}{Camera} class parameterized constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Capture} & of type bool, it\textquotesingle{}s default value is false \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Camera@{Camera}!````~Camera@{$\sim$\+Camera}}
+\index{````~Camera@{$\sim$\+Camera}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{$\sim$\+Camera()}{~Camera()}}]{\setlength{\rightskip}{0pt plus 5cm}Camera\+::$\sim$\+Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCamera_ad1897942d0ccf91052386388a497349f}{}\label{classCamera_ad1897942d0ccf91052386388a497349f}
+
+
+\hyperlink{classCamera}{Camera} class destructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Camera@{Camera}!camera\+Callback@{camera\+Callback}}
+\index{camera\+Callback@{camera\+Callback}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{camera\+Callback(const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)}{cameraCallback(const sensor_msgs::ImageConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Camera\+::camera\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classCamera_aff57f8419ee9de1262592171a84ddf8d}{}\label{classCamera_aff57f8419ee9de1262592171a84ddf8d}
+
+
+A camera\+Callback function to convert images from R\+OS image messages to the useable format and store it based on the take\+Image\+Flag\+\_\+. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a variable of type sensor\+\_\+msgs\+::\+Image \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Camera@{Camera}!take\+Image@{take\+Image}}
+\index{take\+Image@{take\+Image}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{take\+Image(naivik\+\_\+robot\+::take\+Image\+Service\+::\+Request \&req, naivik\+\_\+robot\+::take\+Image\+Service\+::\+Response \&res)}{takeImage(naivik_robot::takeImageService::Request &req, naivik_robot::takeImageService::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::take\+Image (
+\begin{DoxyParamCaption}
+\item[{naivik\+\_\+robot\+::take\+Image\+Service\+::\+Request \&}]{req, }
+\item[{naivik\+\_\+robot\+::take\+Image\+Service\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classCamera_a41a379dab8dd9b7946754bcc7d792c3e}{}\label{classCamera_a41a379dab8dd9b7946754bcc7d792c3e}
+
+
+A callback function to trigger a flag to capture an image of the current camera view and store it for later use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a request variable of type defined in take\+Image\+Service.\+srv file \\
+\hline
+{\em a} & reference to a response variable of type defined in take\+Image\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean on success or failure 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Camera@{Camera}!camera\+Client\+\_\+@{camera\+Client\+\_\+}}
+\index{camera\+Client\+\_\+@{camera\+Client\+\_\+}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{camera\+Client\+\_\+}{cameraClient_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Client Camera\+::camera\+Client\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCamera_a93ed3666fbe5146aa32cc028b27db4bd}{}\label{classCamera_a93ed3666fbe5146aa32cc028b27db4bd}
+
+
+declare a R\+OS service client object for the take\+Image\+Service 
+
+\index{Camera@{Camera}!nh\+\_\+@{nh\+\_\+}}
+\index{nh\+\_\+@{nh\+\_\+}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{nh\+\_\+}{nh_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Node\+Handle Camera\+::nh\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCamera_a888df900bc4c72a61dbb9b0b609c3cf8}{}\label{classCamera_a888df900bc4c72a61dbb9b0b609c3cf8}
+
+
+declare a container to Node handler for subscribing to service and topics 
+
+\index{Camera@{Camera}!save\+Images\+\_\+@{save\+Images\+\_\+}}
+\index{save\+Images\+\_\+@{save\+Images\+\_\+}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{save\+Images\+\_\+}{saveImages_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::string$>$ Camera\+::save\+Images\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCamera_a9ffeac410066cafa8538041f66830067}{}\label{classCamera_a9ffeac410066cafa8538041f66830067}
+
+
+declare a container named save\+Images\+\_\+ to store image data 
+
+\index{Camera@{Camera}!take\+Image\+Flag\+\_\+@{take\+Image\+Flag\+\_\+}}
+\index{take\+Image\+Flag\+\_\+@{take\+Image\+Flag\+\_\+}!Camera@{Camera}}
+\subsubsection[{\texorpdfstring{take\+Image\+Flag\+\_\+}{takeImageFlag_}}]{\setlength{\rightskip}{0pt plus 5cm}bool Camera\+::take\+Image\+Flag\+\_\+ \{false\}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCamera_af0d737a2c07092eafccd2e8c6c124e0b}{}\label{classCamera_af0d737a2c07092eafccd2e8c6c124e0b}
+
+
+declare and initialize a container named take\+Image\+Flag\+\_\+ as a flag to instruct whether to capture and store image or not 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/include/\hyperlink{camera_8hpp}{camera.\+hpp}\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/src/\hyperlink{camera_8cpp}{camera.\+cpp}\end{DoxyCompactItemize}

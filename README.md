@@ -147,7 +147,7 @@ Follow the below steps to generate the code coverage report on your local comput
 **2.** Open a new terminal and run the below command `cd ~/catkin_ws && catkin_make run_tests && catkin_tests_results` <br/>
 **3.** Generate the code coverage report `$ lcov --directory . --capture --output-file coverage.info` <br/>
 **4.** Filter out the system and test code data including user-defined header files `$ lcov --remove coverage.info '/usr/*' '/opt/*' '*/devel/*' 'tests/*' --output-file coverage.info` <br/>
-**5.** Generate an HTML report from a captured coverage information and store it in a *output* directory in a same directory `$ genhtml coverage.info --output-directory output`
+**5.** Generate an HTML report from a captured coverage information and store it in a *output* directory in a same directory `$ genhtml coverage.info --output-directory output` <br/>
 
 >**Note:** Once it is done you can go through the *output* folder and open *index.html* to check coverage percentile. It will display both Line and Function coverage as shown in *coverage_report* image in */results* directory.
 
@@ -235,7 +235,19 @@ $ rosservice call /takeImageService "request: true"
 ```
 
 ## <a name="doc"></a> Documentation
-WorkUnderProgress
+Generating documentation using doxygen <br/>
+**1.** To install *doxygen* run the following command: `$ sudo apt-get install doxygen` <br/>
+**2.** Generate doxygen config file into your cloned github repository. `$ doxygen -g <config_file>` <br/>
+**3.** The generated config_file includes the parameter through which doxygen generates your documentation. You need to modify this by referring to this [link.](https://www.ibm.com/developerworks/aix/library/au-learningdoxygen/index.html) <br/>
+**4.** Run the following command: `$ doxygen <config_file>` <br/>
+**5.** Doxygen files will be generated to *html* and *latex* folder to your output location specified in config_file <br/>
+**6.** To view them in a browser go to the output folder and run the commands below:
+```bash 
+$ cd html
+$ firefox index.html
+```
+>**Note:** If the above steps doesn't work for you, you can refer the documentation in /docs folder of the repository. I have also provided the config file for your reference
 
 ## <a name="futurework"></a> TODO
-WorkUnderProgress
+
+This is v0.1 which implements a random motion of robot in an environment. It also includes ROS API to change parameters like linear velocity, angular velocity, capture image, stop/resume motion and change distance threshold value. Now, the next version will build a map which can be used in ROS navigation stack to make the robot travel from one location to another based on USER commands.

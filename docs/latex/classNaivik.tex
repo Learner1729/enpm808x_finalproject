@@ -1,0 +1,197 @@
+\hypertarget{classNaivik}{}\section{Naivik Class Reference}
+\label{classNaivik}\index{Naivik@{Naivik}}
+
+
+\hyperlink{classNaivik}{Naivik} class handles the camera and motion controller interactions of the robot.  
+
+
+
+
+{\ttfamily \#include $<$naivik.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNaivik_a9bc6f959fa714784c3141b08bcbe94c6}{Naivik} (ros\+::\+Node\+Handle nh)
+\begin{DoxyCompactList}\small\item\em Overloaded contructor. \end{DoxyCompactList}\item 
+\hyperlink{classNaivik_a65ff8b4183c0d11b8ddf041f4be2a933}{$\sim$\+Naivik} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classNaivik}{Naivik} class destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classNaivik_ad4f77bbbbc92e263ac00156d774f7c39}{drive} ()
+\begin{DoxyCompactList}\small\item\em Drive the robot using laser scan data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classCamera}{Camera} $>$ \hyperlink{classNaivik_a59456579fab04d7c934dc8826d36821b}{camera\+\_\+} \{nullptr\}
+\begin{DoxyCompactList}\small\item\em declare a container for camera class object and initialize it to nullptr \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classMotionController}{Motion\+Controller} $>$ \hyperlink{classNaivik_a96923f306061a14093c74c5700c1bb8a}{motion\+Controller\+\_\+} \{nullptr\}
+\begin{DoxyCompactList}\small\item\em declare a container for \hyperlink{classMotionController}{Motion\+Controller} class object and initialize it to nullptr \end{DoxyCompactList}\item 
+ros\+::\+Node\+Handle \hyperlink{classNaivik_af964150f253e4cbaa15bcd1537511af9}{nh\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container to Node handler for subscribing to services and topics \end{DoxyCompactList}\item 
+ros\+::\+Publisher \hyperlink{classNaivik_aaaea1b99cc7f9c6d317e57516564aac9}{velocity\+Publisher\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for a R\+OS publisher to publish vehicle motion commands \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \hyperlink{classNaivik_a0f001e2ba2dcd1ca7c2fa92eff2c1562}{laser\+Subscriber\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for a R\+OS subscriber for laser scan topics \end{DoxyCompactList}\item 
+ros\+::\+Subscriber \hyperlink{classNaivik_ab37285b13d04a193f38b2d05a3303694}{camera\+Subscriber\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for a R\+OS subscriber for camera topics \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \hyperlink{classNaivik_a7792b0bfe36fe70c679971470b4cc649}{change\+Threshold\+Server\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for R\+OS change\+Threshold\+Service \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \hyperlink{classNaivik_a350e4f31ff9ef9e62b2d4b6c9df6fb23}{change\+Linear\+Speed\+Server\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for R\+OS change\+Linear\+Speed\+Service \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \hyperlink{classNaivik_a6ead6207d0ce5ef49caa1ad8d1d1fcaa}{change\+Angular\+Speed\+Server\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for R\+OS change\+Angular\+Speed\+Service \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \hyperlink{classNaivik_a89a480a5925204ab179dfe0717e26436}{control\+Motion\+Server\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for R\+OS control\+Motion\+Service \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \hyperlink{classNaivik_a158e6056518bf811c8aab30f2341e0c6}{take\+Image\+Server\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for R\+OS take\+Image\+Service \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classNaivik}{Naivik} class handles the camera and motion controller interactions of the robot. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Naivik@{Naivik}!Naivik@{Naivik}}
+\index{Naivik@{Naivik}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{Naivik(ros\+::\+Node\+Handle nh)}{Naivik(ros::NodeHandle nh)}}]{\setlength{\rightskip}{0pt plus 5cm}Naivik\+::\+Naivik (
+\begin{DoxyParamCaption}
+\item[{ros\+::\+Node\+Handle}]{nh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classNaivik_a9bc6f959fa714784c3141b08bcbe94c6}{}\label{classNaivik_a9bc6f959fa714784c3141b08bcbe94c6}
+
+
+Overloaded contructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nh} & R\+OS node handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Naivik@{Naivik}!````~Naivik@{$\sim$\+Naivik}}
+\index{````~Naivik@{$\sim$\+Naivik}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{$\sim$\+Naivik()}{~Naivik()}}]{\setlength{\rightskip}{0pt plus 5cm}Naivik\+::$\sim$\+Naivik (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classNaivik_a65ff8b4183c0d11b8ddf041f4be2a933}{}\label{classNaivik_a65ff8b4183c0d11b8ddf041f4be2a933}
+
+
+\hyperlink{classNaivik}{Naivik} class destructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Naivik@{Naivik}!drive@{drive}}
+\index{drive@{drive}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{drive()}{drive()}}]{\setlength{\rightskip}{0pt plus 5cm}void Naivik\+::drive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classNaivik_ad4f77bbbbc92e263ac00156d774f7c39}{}\label{classNaivik_ad4f77bbbbc92e263ac00156d774f7c39}
+
+
+Drive the robot using laser scan data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Naivik@{Naivik}!camera\+\_\+@{camera\+\_\+}}
+\index{camera\+\_\+@{camera\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{camera\+\_\+}{camera_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<${\bf Camera}$>$ Naivik\+::camera\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a59456579fab04d7c934dc8826d36821b}{}\label{classNaivik_a59456579fab04d7c934dc8826d36821b}
+
+
+declare a container for camera class object and initialize it to nullptr 
+
+\index{Naivik@{Naivik}!camera\+Subscriber\+\_\+@{camera\+Subscriber\+\_\+}}
+\index{camera\+Subscriber\+\_\+@{camera\+Subscriber\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{camera\+Subscriber\+\_\+}{cameraSubscriber_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Subscriber Naivik\+::camera\+Subscriber\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_ab37285b13d04a193f38b2d05a3303694}{}\label{classNaivik_ab37285b13d04a193f38b2d05a3303694}
+
+
+declare a container for a R\+OS subscriber for camera topics 
+
+\index{Naivik@{Naivik}!change\+Angular\+Speed\+Server\+\_\+@{change\+Angular\+Speed\+Server\+\_\+}}
+\index{change\+Angular\+Speed\+Server\+\_\+@{change\+Angular\+Speed\+Server\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{change\+Angular\+Speed\+Server\+\_\+}{changeAngularSpeedServer_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Server Naivik\+::change\+Angular\+Speed\+Server\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a6ead6207d0ce5ef49caa1ad8d1d1fcaa}{}\label{classNaivik_a6ead6207d0ce5ef49caa1ad8d1d1fcaa}
+
+
+declare a container for R\+OS change\+Angular\+Speed\+Service 
+
+\index{Naivik@{Naivik}!change\+Linear\+Speed\+Server\+\_\+@{change\+Linear\+Speed\+Server\+\_\+}}
+\index{change\+Linear\+Speed\+Server\+\_\+@{change\+Linear\+Speed\+Server\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{change\+Linear\+Speed\+Server\+\_\+}{changeLinearSpeedServer_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Server Naivik\+::change\+Linear\+Speed\+Server\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a350e4f31ff9ef9e62b2d4b6c9df6fb23}{}\label{classNaivik_a350e4f31ff9ef9e62b2d4b6c9df6fb23}
+
+
+declare a container for R\+OS change\+Linear\+Speed\+Service 
+
+\index{Naivik@{Naivik}!change\+Threshold\+Server\+\_\+@{change\+Threshold\+Server\+\_\+}}
+\index{change\+Threshold\+Server\+\_\+@{change\+Threshold\+Server\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{change\+Threshold\+Server\+\_\+}{changeThresholdServer_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Server Naivik\+::change\+Threshold\+Server\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a7792b0bfe36fe70c679971470b4cc649}{}\label{classNaivik_a7792b0bfe36fe70c679971470b4cc649}
+
+
+declare a container for R\+OS change\+Threshold\+Service 
+
+\index{Naivik@{Naivik}!control\+Motion\+Server\+\_\+@{control\+Motion\+Server\+\_\+}}
+\index{control\+Motion\+Server\+\_\+@{control\+Motion\+Server\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{control\+Motion\+Server\+\_\+}{controlMotionServer_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Server Naivik\+::control\+Motion\+Server\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a89a480a5925204ab179dfe0717e26436}{}\label{classNaivik_a89a480a5925204ab179dfe0717e26436}
+
+
+declare a container for R\+OS control\+Motion\+Service 
+
+\index{Naivik@{Naivik}!laser\+Subscriber\+\_\+@{laser\+Subscriber\+\_\+}}
+\index{laser\+Subscriber\+\_\+@{laser\+Subscriber\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{laser\+Subscriber\+\_\+}{laserSubscriber_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Subscriber Naivik\+::laser\+Subscriber\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a0f001e2ba2dcd1ca7c2fa92eff2c1562}{}\label{classNaivik_a0f001e2ba2dcd1ca7c2fa92eff2c1562}
+
+
+declare a container for a R\+OS subscriber for laser scan topics 
+
+\index{Naivik@{Naivik}!motion\+Controller\+\_\+@{motion\+Controller\+\_\+}}
+\index{motion\+Controller\+\_\+@{motion\+Controller\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{motion\+Controller\+\_\+}{motionController_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<${\bf Motion\+Controller}$>$ Naivik\+::motion\+Controller\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a96923f306061a14093c74c5700c1bb8a}{}\label{classNaivik_a96923f306061a14093c74c5700c1bb8a}
+
+
+declare a container for \hyperlink{classMotionController}{Motion\+Controller} class object and initialize it to nullptr 
+
+\index{Naivik@{Naivik}!nh\+\_\+@{nh\+\_\+}}
+\index{nh\+\_\+@{nh\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{nh\+\_\+}{nh_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Node\+Handle Naivik\+::nh\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_af964150f253e4cbaa15bcd1537511af9}{}\label{classNaivik_af964150f253e4cbaa15bcd1537511af9}
+
+
+declare a container to Node handler for subscribing to services and topics 
+
+\index{Naivik@{Naivik}!take\+Image\+Server\+\_\+@{take\+Image\+Server\+\_\+}}
+\index{take\+Image\+Server\+\_\+@{take\+Image\+Server\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{take\+Image\+Server\+\_\+}{takeImageServer_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Server Naivik\+::take\+Image\+Server\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_a158e6056518bf811c8aab30f2341e0c6}{}\label{classNaivik_a158e6056518bf811c8aab30f2341e0c6}
+
+
+declare a container for R\+OS take\+Image\+Service 
+
+\index{Naivik@{Naivik}!velocity\+Publisher\+\_\+@{velocity\+Publisher\+\_\+}}
+\index{velocity\+Publisher\+\_\+@{velocity\+Publisher\+\_\+}!Naivik@{Naivik}}
+\subsubsection[{\texorpdfstring{velocity\+Publisher\+\_\+}{velocityPublisher_}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Publisher Naivik\+::velocity\+Publisher\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classNaivik_aaaea1b99cc7f9c6d317e57516564aac9}{}\label{classNaivik_aaaea1b99cc7f9c6d317e57516564aac9}
+
+
+declare a container for a R\+OS publisher to publish vehicle motion commands 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/include/\hyperlink{naivik_8hpp}{naivik.\+hpp}\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/src/\hyperlink{naivik_8cpp}{naivik.\+cpp}\end{DoxyCompactItemize}

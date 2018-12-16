@@ -1,0 +1,344 @@
+\hypertarget{classMotionController}{}\section{Motion\+Controller Class Reference}
+\label{classMotionController}\index{Motion\+Controller@{Motion\+Controller}}
+
+
+\hyperlink{classMotionController}{Motion\+Controller} class determine\textquotesingle{}s robot control actions. R\+OS doesn\textquotesingle{}t provide any controller, thus we need to design our own based on the requirement that we have.  
+
+
+
+
+{\ttfamily \#include $<$motion\+Controller.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMotionController_ad6e44ad9817ff4f75cc7995092b52ec4}{Motion\+Controller} (double l\+Speed, double a\+Speed)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMotionController}{Motion\+Controller} class overloaded constructor It sets the speed data of robot. \end{DoxyCompactList}\item 
+\hyperlink{classMotionController_aa8036ec12abe080dbcf8ecabc68ac223}{$\sim$\+Motion\+Controller} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMotionController}{Motion\+Controller} class destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classMotionController_a3e0b57a37ce66bead9eee6638765638b}{determine\+Action} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Determine robot\textquotesingle{}s actions based on results from the obstacle detector. \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{classMotionController_ae7a9bb384866b1da42e42c648490123f}{get\+Vehicle\+Action} ()
+\begin{DoxyCompactList}\small\item\em Return the current turtlebot action. \end{DoxyCompactList}\item 
+void \hyperlink{classMotionController_a896af6f5af8e2adad21bae5e09565042}{set\+Linear\+Speed} (double speed)
+\begin{DoxyCompactList}\small\item\em Set linear speed of the robot. \end{DoxyCompactList}\item 
+double \hyperlink{classMotionController_ab5fc3180f5eb4b91ada6d2f56c6ac83d}{get\+Linear\+Speed} ()
+\begin{DoxyCompactList}\small\item\em Get linear speed of the robot. \end{DoxyCompactList}\item 
+void \hyperlink{classMotionController_aad091d37bb3e99de8981c74f671b16c3}{set\+Angular\+Speed} (double speed)
+\begin{DoxyCompactList}\small\item\em Set angular speed of the robot. \end{DoxyCompactList}\item 
+double \hyperlink{classMotionController_a814dbc703d2dd1bc125f1eeec77ee397}{get\+Angular\+Speed} ()
+\begin{DoxyCompactList}\small\item\em get angular speed of the robot \end{DoxyCompactList}\item 
+bool \hyperlink{classMotionController_aa30d05fe1ac02a747b21ef8b111d57b6}{change\+Threshold} (naivik\+\_\+robot\+::change\+Threshold\+Service\+::\+Request \&req, naivik\+\_\+robot\+::change\+Threshold\+Service\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em callback back function for change\+Threshold\+Service \end{DoxyCompactList}\item 
+bool \hyperlink{classMotionController_a9904a43514341564366deaecb477e876}{change\+Linear\+Speed} (naivik\+\_\+robot\+::change\+Linear\+Speed\+Service\+::\+Request \&req, naivik\+\_\+robot\+::change\+Linear\+Speed\+Service\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em callback back function for change\+Linear\+Speed\+Service \end{DoxyCompactList}\item 
+bool \hyperlink{classMotionController_ac516d9c9888ec43dc5f631361e795098}{change\+Angular\+Speed} (naivik\+\_\+robot\+::change\+Angular\+Speed\+Service\+::\+Request \&req, naivik\+\_\+robot\+::change\+Angular\+Speed\+Service\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em callback back function for change\+Angular\+Speed\+Service \end{DoxyCompactList}\item 
+bool \hyperlink{classMotionController_a723c2b7d67caf7f44b0f26d319f991b5}{control\+Motion} (naivik\+\_\+robot\+::control\+Motion\+Service\+::\+Request \&req, naivik\+\_\+robot\+::control\+Motion\+Service\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em callback back function for control\+Motion\+Service \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classObstacleDetection}{Obstacle\+Detection} $>$ \hyperlink{classMotionController_a6c025f207fc59e04928b95404f49e396}{obstacle\+Detection\+\_\+} \{nullptr\}
+\begin{DoxyCompactList}\small\item\em declare a container for \hyperlink{classObstacleDetection}{Obstacle\+Detection} class object and initialize it to nullptr \end{DoxyCompactList}\item 
+double \hyperlink{classMotionController_a58fde3691cec5842a4406da860390b80}{linear\+Speed\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for linear\+Speed data \end{DoxyCompactList}\item 
+double \hyperlink{classMotionController_a04ae9f505c346ba5431ffb9ee5ba6795}{angular\+Speed\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for angular\+Speed data \end{DoxyCompactList}\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{classMotionController_a466cdca708caaab029acad5947b3b79c}{naivik\+Action\+\_\+}
+\begin{DoxyCompactList}\small\item\em declare a container for Twist message to be sent to the robot \end{DoxyCompactList}\item 
+bool \hyperlink{classMotionController_a586e795cc2377ddc399f32f18da871e0}{stop\+Robot\+\_\+} \{false\}
+\begin{DoxyCompactList}\small\item\em declare a container to denote robot status and initialize it to false \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classMotionController}{Motion\+Controller} class determine\textquotesingle{}s robot control actions. R\+OS doesn\textquotesingle{}t provide any controller, thus we need to design our own based on the requirement that we have. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Motion\+Controller@{Motion\+Controller}!Motion\+Controller@{Motion\+Controller}}
+\index{Motion\+Controller@{Motion\+Controller}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{Motion\+Controller(double l\+Speed, double a\+Speed)}{MotionController(double lSpeed, double aSpeed)}}]{\setlength{\rightskip}{0pt plus 5cm}Motion\+Controller\+::\+Motion\+Controller (
+\begin{DoxyParamCaption}
+\item[{double}]{l\+Speed, }
+\item[{double}]{a\+Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classMotionController_ad6e44ad9817ff4f75cc7995092b52ec4}{}\label{classMotionController_ad6e44ad9817ff4f75cc7995092b52ec4}
+
+
+\hyperlink{classMotionController}{Motion\+Controller} class overloaded constructor It sets the speed data of robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l\+Speed} & of type double \\
+\hline
+{\em a\+Speed} & of type double \\
+\hline
+\end{DoxyParams}
+\index{Motion\+Controller@{Motion\+Controller}!````~Motion\+Controller@{$\sim$\+Motion\+Controller}}
+\index{````~Motion\+Controller@{$\sim$\+Motion\+Controller}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{$\sim$\+Motion\+Controller()}{~MotionController()}}]{\setlength{\rightskip}{0pt plus 5cm}Motion\+Controller\+::$\sim$\+Motion\+Controller (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_aa8036ec12abe080dbcf8ecabc68ac223}{}\label{classMotionController_aa8036ec12abe080dbcf8ecabc68ac223}
+
+
+\hyperlink{classMotionController}{Motion\+Controller} class destructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Motion\+Controller@{Motion\+Controller}!change\+Angular\+Speed@{change\+Angular\+Speed}}
+\index{change\+Angular\+Speed@{change\+Angular\+Speed}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{change\+Angular\+Speed(naivik\+\_\+robot\+::change\+Angular\+Speed\+Service\+::\+Request \&req, naivik\+\_\+robot\+::change\+Angular\+Speed\+Service\+::\+Response \&res)}{changeAngularSpeed(naivik_robot::changeAngularSpeedService::Request &req, naivik_robot::changeAngularSpeedService::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Motion\+Controller\+::change\+Angular\+Speed (
+\begin{DoxyParamCaption}
+\item[{naivik\+\_\+robot\+::change\+Angular\+Speed\+Service\+::\+Request \&}]{req, }
+\item[{naivik\+\_\+robot\+::change\+Angular\+Speed\+Service\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_ac516d9c9888ec43dc5f631361e795098}{}\label{classMotionController_ac516d9c9888ec43dc5f631361e795098}
+
+
+callback back function for change\+Angular\+Speed\+Service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a request variable of type defined in change\+Angular\+Speed\+Service.\+srv file \\
+\hline
+{\em a} & reference to a response variable of type defined in change\+Angular\+Speed\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean on success or failure 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!change\+Linear\+Speed@{change\+Linear\+Speed}}
+\index{change\+Linear\+Speed@{change\+Linear\+Speed}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{change\+Linear\+Speed(naivik\+\_\+robot\+::change\+Linear\+Speed\+Service\+::\+Request \&req, naivik\+\_\+robot\+::change\+Linear\+Speed\+Service\+::\+Response \&res)}{changeLinearSpeed(naivik_robot::changeLinearSpeedService::Request &req, naivik_robot::changeLinearSpeedService::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Motion\+Controller\+::change\+Linear\+Speed (
+\begin{DoxyParamCaption}
+\item[{naivik\+\_\+robot\+::change\+Linear\+Speed\+Service\+::\+Request \&}]{req, }
+\item[{naivik\+\_\+robot\+::change\+Linear\+Speed\+Service\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_a9904a43514341564366deaecb477e876}{}\label{classMotionController_a9904a43514341564366deaecb477e876}
+
+
+callback back function for change\+Linear\+Speed\+Service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a request variable of type defined in change\+Linear\+Speed\+Service.\+srv file \\
+\hline
+{\em a} & reference to a response variable of type defined in change\+Linear\+Speed\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean on success or failure 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!change\+Threshold@{change\+Threshold}}
+\index{change\+Threshold@{change\+Threshold}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{change\+Threshold(naivik\+\_\+robot\+::change\+Threshold\+Service\+::\+Request \&req, naivik\+\_\+robot\+::change\+Threshold\+Service\+::\+Response \&res)}{changeThreshold(naivik_robot::changeThresholdService::Request &req, naivik_robot::changeThresholdService::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Motion\+Controller\+::change\+Threshold (
+\begin{DoxyParamCaption}
+\item[{naivik\+\_\+robot\+::change\+Threshold\+Service\+::\+Request \&}]{req, }
+\item[{naivik\+\_\+robot\+::change\+Threshold\+Service\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_aa30d05fe1ac02a747b21ef8b111d57b6}{}\label{classMotionController_aa30d05fe1ac02a747b21ef8b111d57b6}
+
+
+callback back function for change\+Threshold\+Service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a request variable of type defined in change\+Threshold\+Service.\+srv file \\
+\hline
+{\em a} & reference to a response variable of type defined in change\+Threshold\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean on success or failure 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!control\+Motion@{control\+Motion}}
+\index{control\+Motion@{control\+Motion}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{control\+Motion(naivik\+\_\+robot\+::control\+Motion\+Service\+::\+Request \&req, naivik\+\_\+robot\+::control\+Motion\+Service\+::\+Response \&res)}{controlMotion(naivik_robot::controlMotionService::Request &req, naivik_robot::controlMotionService::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Motion\+Controller\+::control\+Motion (
+\begin{DoxyParamCaption}
+\item[{naivik\+\_\+robot\+::control\+Motion\+Service\+::\+Request \&}]{req, }
+\item[{naivik\+\_\+robot\+::control\+Motion\+Service\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_a723c2b7d67caf7f44b0f26d319f991b5}{}\label{classMotionController_a723c2b7d67caf7f44b0f26d319f991b5}
+
+
+callback back function for control\+Motion\+Service 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a request variable of type defined in control\+Motion\+Service.\+srv file \\
+\hline
+{\em a} & reference to a response variable of type defined in control\+Motion\+Service.\+srv file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a boolean on success or failure 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!determine\+Action@{determine\+Action}}
+\index{determine\+Action@{determine\+Action}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{determine\+Action(const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)}{determineAction(const sensor_msgs::LaserScan::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Motion\+Controller\+::determine\+Action (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_a3e0b57a37ce66bead9eee6638765638b}{}\label{classMotionController_a3e0b57a37ce66bead9eee6638765638b}
+
+
+Determine robot\textquotesingle{}s actions based on results from the obstacle detector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a variable of type sensor\+\_\+msgs\+::\+Laser\+Scan \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!get\+Angular\+Speed@{get\+Angular\+Speed}}
+\index{get\+Angular\+Speed@{get\+Angular\+Speed}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{get\+Angular\+Speed()}{getAngularSpeed()}}]{\setlength{\rightskip}{0pt plus 5cm}double Motion\+Controller\+::get\+Angular\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_a814dbc703d2dd1bc125f1eeec77ee397}{}\label{classMotionController_a814dbc703d2dd1bc125f1eeec77ee397}
+
+
+get angular speed of the robot 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+robot\textquotesingle{}s angular speed data of type double 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!get\+Linear\+Speed@{get\+Linear\+Speed}}
+\index{get\+Linear\+Speed@{get\+Linear\+Speed}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{get\+Linear\+Speed()}{getLinearSpeed()}}]{\setlength{\rightskip}{0pt plus 5cm}double Motion\+Controller\+::get\+Linear\+Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_ab5fc3180f5eb4b91ada6d2f56c6ac83d}{}\label{classMotionController_ab5fc3180f5eb4b91ada6d2f56c6ac83d}
+
+
+Get linear speed of the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+robot\textquotesingle{}s linear speed data of type double 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!get\+Vehicle\+Action@{get\+Vehicle\+Action}}
+\index{get\+Vehicle\+Action@{get\+Vehicle\+Action}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{get\+Vehicle\+Action()}{getVehicleAction()}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist Motion\+Controller\+::get\+Vehicle\+Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_ae7a9bb384866b1da42e42c648490123f}{}\label{classMotionController_ae7a9bb384866b1da42e42c648490123f}
+
+
+Return the current turtlebot action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+robot\textquotesingle{}s velocity data of type geometry\+\_\+msgs\+::\+Twist 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!set\+Angular\+Speed@{set\+Angular\+Speed}}
+\index{set\+Angular\+Speed@{set\+Angular\+Speed}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{set\+Angular\+Speed(double speed)}{setAngularSpeed(double speed)}}]{\setlength{\rightskip}{0pt plus 5cm}void Motion\+Controller\+::set\+Angular\+Speed (
+\begin{DoxyParamCaption}
+\item[{double}]{speed}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_aad091d37bb3e99de8981c74f671b16c3}{}\label{classMotionController_aad091d37bb3e99de8981c74f671b16c3}
+
+
+Set angular speed of the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Motion\+Controller@{Motion\+Controller}!set\+Linear\+Speed@{set\+Linear\+Speed}}
+\index{set\+Linear\+Speed@{set\+Linear\+Speed}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{set\+Linear\+Speed(double speed)}{setLinearSpeed(double speed)}}]{\setlength{\rightskip}{0pt plus 5cm}void Motion\+Controller\+::set\+Linear\+Speed (
+\begin{DoxyParamCaption}
+\item[{double}]{speed}
+\end{DoxyParamCaption}
+)}\hypertarget{classMotionController_a896af6f5af8e2adad21bae5e09565042}{}\label{classMotionController_a896af6f5af8e2adad21bae5e09565042}
+
+
+Set linear speed of the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Motion\+Controller@{Motion\+Controller}!angular\+Speed\+\_\+@{angular\+Speed\+\_\+}}
+\index{angular\+Speed\+\_\+@{angular\+Speed\+\_\+}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{angular\+Speed\+\_\+}{angularSpeed_}}]{\setlength{\rightskip}{0pt plus 5cm}double Motion\+Controller\+::angular\+Speed\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classMotionController_a04ae9f505c346ba5431ffb9ee5ba6795}{}\label{classMotionController_a04ae9f505c346ba5431ffb9ee5ba6795}
+
+
+declare a container for angular\+Speed data 
+
+\index{Motion\+Controller@{Motion\+Controller}!linear\+Speed\+\_\+@{linear\+Speed\+\_\+}}
+\index{linear\+Speed\+\_\+@{linear\+Speed\+\_\+}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{linear\+Speed\+\_\+}{linearSpeed_}}]{\setlength{\rightskip}{0pt plus 5cm}double Motion\+Controller\+::linear\+Speed\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classMotionController_a58fde3691cec5842a4406da860390b80}{}\label{classMotionController_a58fde3691cec5842a4406da860390b80}
+
+
+declare a container for linear\+Speed data 
+
+\index{Motion\+Controller@{Motion\+Controller}!naivik\+Action\+\_\+@{naivik\+Action\+\_\+}}
+\index{naivik\+Action\+\_\+@{naivik\+Action\+\_\+}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{naivik\+Action\+\_\+}{naivikAction_}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist Motion\+Controller\+::naivik\+Action\+\_\+\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classMotionController_a466cdca708caaab029acad5947b3b79c}{}\label{classMotionController_a466cdca708caaab029acad5947b3b79c}
+
+
+declare a container for Twist message to be sent to the robot 
+
+\index{Motion\+Controller@{Motion\+Controller}!obstacle\+Detection\+\_\+@{obstacle\+Detection\+\_\+}}
+\index{obstacle\+Detection\+\_\+@{obstacle\+Detection\+\_\+}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{obstacle\+Detection\+\_\+}{obstacleDetection_}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<${\bf Obstacle\+Detection}$>$ Motion\+Controller\+::obstacle\+Detection\+\_\+ \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classMotionController_a6c025f207fc59e04928b95404f49e396}{}\label{classMotionController_a6c025f207fc59e04928b95404f49e396}
+
+
+declare a container for \hyperlink{classObstacleDetection}{Obstacle\+Detection} class object and initialize it to nullptr 
+
+\index{Motion\+Controller@{Motion\+Controller}!stop\+Robot\+\_\+@{stop\+Robot\+\_\+}}
+\index{stop\+Robot\+\_\+@{stop\+Robot\+\_\+}!Motion\+Controller@{Motion\+Controller}}
+\subsubsection[{\texorpdfstring{stop\+Robot\+\_\+}{stopRobot_}}]{\setlength{\rightskip}{0pt plus 5cm}bool Motion\+Controller\+::stop\+Robot\+\_\+ \{false\}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classMotionController_a586e795cc2377ddc399f32f18da871e0}{}\label{classMotionController_a586e795cc2377ddc399f32f18da871e0}
+
+
+declare a container to denote robot status and initialize it to false 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/include/\hyperlink{motionController_8hpp}{motion\+Controller.\+hpp}\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/src/\hyperlink{motionController_8cpp}{motion\+Controller.\+cpp}\end{DoxyCompactItemize}

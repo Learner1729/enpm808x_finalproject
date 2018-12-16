@@ -1,0 +1,149 @@
+\hypertarget{classObstacleDetection}{}\section{Obstacle\+Detection Class Reference}
+\label{classObstacleDetection}\index{Obstacle\+Detection@{Obstacle\+Detection}}
+
+
+\hyperlink{classObstacleDetection}{Obstacle\+Detection} class handles determining if the vehicle is going to collide using laser scans data.  
+
+
+
+
+{\ttfamily \#include $<$obstacle\+Detection.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classObstacleDetection_afb1806d3b8806f9d269bc29b8e8c6ac9}{Obstacle\+Detection} (double dist\+Threshold)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classObstacleDetection}{Obstacle\+Detection} class overloaded constructor. \end{DoxyCompactList}\item 
+\hyperlink{classObstacleDetection_a72cb5fb0b56c1c3b6e4ab42da46e28e9}{$\sim$\+Obstacle\+Detection} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classObstacleDetection}{Obstacle\+Detection} class destructor. \end{DoxyCompactList}\item 
+bool \hyperlink{classObstacleDetection_a99de70aa28dfaa9f1c2770e3d744a4cc}{detect\+Obstacle} (const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Detects the Obstacle in front of the robot. \end{DoxyCompactList}\item 
+void \hyperlink{classObstacleDetection_a7168393889737f1798acafa452a6a69a}{set\+Dist\+Threshold} (double threshold)
+\begin{DoxyCompactList}\small\item\em set dist\+Threshold value \end{DoxyCompactList}\item 
+double \hyperlink{classObstacleDetection_aae290781954d75c8e90517e6ac39c7d1}{get\+Dist\+Threshold} ()
+\begin{DoxyCompactList}\small\item\em get dist\+Threshold value \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classObstacleDetection_a594c4476745d0404a07135465f9e04e7}{dist\+Threshold\+\_\+} \{0.\+0\}
+\begin{DoxyCompactList}\small\item\em declare a container to determine how close the robot should get to an object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classObstacleDetection}{Obstacle\+Detection} class handles determining if the vehicle is going to collide using laser scans data. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!Obstacle\+Detection@{Obstacle\+Detection}}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!Obstacle\+Detection@{Obstacle\+Detection}}
+\subsubsection[{\texorpdfstring{Obstacle\+Detection(double dist\+Threshold)}{ObstacleDetection(double distThreshold)}}]{\setlength{\rightskip}{0pt plus 5cm}Obstacle\+Detection\+::\+Obstacle\+Detection (
+\begin{DoxyParamCaption}
+\item[{double}]{dist\+Threshold}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classObstacleDetection_afb1806d3b8806f9d269bc29b8e8c6ac9}{}\label{classObstacleDetection_afb1806d3b8806f9d269bc29b8e8c6ac9}
+
+
+\hyperlink{classObstacleDetection}{Obstacle\+Detection} class overloaded constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dist\+Threshold} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!````~Obstacle\+Detection@{$\sim$\+Obstacle\+Detection}}
+\index{````~Obstacle\+Detection@{$\sim$\+Obstacle\+Detection}!Obstacle\+Detection@{Obstacle\+Detection}}
+\subsubsection[{\texorpdfstring{$\sim$\+Obstacle\+Detection()}{~ObstacleDetection()}}]{\setlength{\rightskip}{0pt plus 5cm}Obstacle\+Detection\+::$\sim$\+Obstacle\+Detection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classObstacleDetection_a72cb5fb0b56c1c3b6e4ab42da46e28e9}{}\label{classObstacleDetection_a72cb5fb0b56c1c3b6e4ab42da46e28e9}
+
+
+\hyperlink{classObstacleDetection}{Obstacle\+Detection} class destructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!detect\+Obstacle@{detect\+Obstacle}}
+\index{detect\+Obstacle@{detect\+Obstacle}!Obstacle\+Detection@{Obstacle\+Detection}}
+\subsubsection[{\texorpdfstring{detect\+Obstacle(const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&msg)}{detectObstacle(const sensor_msgs::LaserScan::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Obstacle\+Detection\+::detect\+Obstacle (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classObstacleDetection_a99de70aa28dfaa9f1c2770e3d744a4cc}{}\label{classObstacleDetection_a99de70aa28dfaa9f1c2770e3d744a4cc}
+
+
+Detects the Obstacle in front of the robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & reference to a variable of type sensor\+\_\+msgs\+::\+Laser\+Scan \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true, if obstacle is detected false, if obstacle is not detected 
+\end{DoxyReturn}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!get\+Dist\+Threshold@{get\+Dist\+Threshold}}
+\index{get\+Dist\+Threshold@{get\+Dist\+Threshold}!Obstacle\+Detection@{Obstacle\+Detection}}
+\subsubsection[{\texorpdfstring{get\+Dist\+Threshold()}{getDistThreshold()}}]{\setlength{\rightskip}{0pt plus 5cm}double Obstacle\+Detection\+::get\+Dist\+Threshold (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classObstacleDetection_aae290781954d75c8e90517e6ac39c7d1}{}\label{classObstacleDetection_aae290781954d75c8e90517e6ac39c7d1}
+
+
+get dist\+Threshold value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+dist\+Threshold of type double 
+\end{DoxyReturn}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!set\+Dist\+Threshold@{set\+Dist\+Threshold}}
+\index{set\+Dist\+Threshold@{set\+Dist\+Threshold}!Obstacle\+Detection@{Obstacle\+Detection}}
+\subsubsection[{\texorpdfstring{set\+Dist\+Threshold(double threshold)}{setDistThreshold(double threshold)}}]{\setlength{\rightskip}{0pt plus 5cm}void Obstacle\+Detection\+::set\+Dist\+Threshold (
+\begin{DoxyParamCaption}
+\item[{double}]{threshold}
+\end{DoxyParamCaption}
+)}\hypertarget{classObstacleDetection_a7168393889737f1798acafa452a6a69a}{}\label{classObstacleDetection_a7168393889737f1798acafa452a6a69a}
+
+
+set dist\+Threshold value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Obstacle\+Detection@{Obstacle\+Detection}!dist\+Threshold\+\_\+@{dist\+Threshold\+\_\+}}
+\index{dist\+Threshold\+\_\+@{dist\+Threshold\+\_\+}!Obstacle\+Detection@{Obstacle\+Detection}}
+\subsubsection[{\texorpdfstring{dist\+Threshold\+\_\+}{distThreshold_}}]{\setlength{\rightskip}{0pt plus 5cm}double Obstacle\+Detection\+::dist\+Threshold\+\_\+ \{0.\+0\}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classObstacleDetection_a594c4476745d0404a07135465f9e04e7}{}\label{classObstacleDetection_a594c4476745d0404a07135465f9e04e7}
+
+
+declare a container to determine how close the robot should get to an object 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/include/\hyperlink{obstacleDetection_8hpp}{obstacle\+Detection.\+hpp}\item 
+/home/ashishpatel/project/src/naivik\+\_\+robot/src/\hyperlink{obstacleDetection_8cpp}{obstacle\+Detection.\+cpp}\end{DoxyCompactItemize}
