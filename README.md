@@ -18,17 +18,20 @@
 - [Prerequisites](#pre) 
 - [Implementation](#implementation)
 - [Documentation](#doc)
-- [Reference Materials](#references)
 - [TODO](#futurework)
 
 ## <a name="overview"></a> Overview 
 This repository is created as the part of my project on building an autonomous mobile robot using simulated turtlebot platform for ACME Robotics (ENPM808x Final Project). The software implements autonomous navigation and mapping capability using ROS nodes and services and the simulated turtlebot platform.
 
+<p align="center">
+  <img src="demo/v01D.gif" alt="v0.1D"/>
+</p>
+
 An autonomous mobile robot have a capability to move from its current position to the goal position autonomously with the help of mapping and localizing algorithms. Such a robot performs tasks with a high degree of autonomy, which is particularly describe in fields such as spaceflight, household maintenance (such as cleaning), waste water treatment, indoor navigation and delivery goods and services. Example of such robots ranges from autonomous helicopters to Roomba, the robot vacuum cleaner.
 
 ## <a name="author"></a> Author
 
-My name is Ashish Patel, a developer and maintainer of this repository. I am a master student majoring in Robotics at University of Maryland - College Park. This repository is a part of the course ENPM808X - Software Development in Robotics. I hold a bachelors degree in Electronics & Communication from G H Patel College of Engineering located at Vallabh Vidyanagar, Gujarat 388120, India.
+My name is *Ashish Patel*, a developer and maintainer of this repository. I am a master student majoring in *Robotics at University of Maryland - College Park*. This repository is a part of the course ENPM808X - Software Development in Robotics. I hold a bachelors degree in Electronics & Communication from G H Patel College of Engineering located at Vallabh Vidyanagar, Gujarat, India.
 
 ## <a name="sip_process"></a> SIP Process with Sprint Planning
 Sprint Planing is provided in the google doc file, click on the link to access it: [Sprint Planning](https://docs.google.com/document/d/1cnqYP7j8j8OXodav0haAKlPngPgLUw-r7h47pi6sqGg/edit?usp=sharing)
@@ -40,15 +43,15 @@ The project presentation is made using google presentation slides, click on the 
 
 ## <a name="class"></a> Class Diagram
 <p align="center">
-<a target="_blank"><img src=""
-alt="WorkUnderProgress" width="80" height="10" border="10" />
+<a target="_blank"><img src="UML/final/v0.1_class_diagram.png"
+alt="WorkUnderProgress" width="1920" height="600" border="5" />
 </a>
 </p>
 
 ## <a name="activity"></a> Activity Diagram
 <p align="center">
-<a target="_blank"><img src=""
-alt="WorkUnderProgress" width="80" height="10" border="10" />
+<a target="_blank"><img src="UML/final/v0.1_activity_diagram.png"
+alt="WorkUnderProgress" width="1600" height="800" border="5" />
 </a>
 </p>
 
@@ -65,6 +68,7 @@ catkin_ws/
 ---src/
 ---srv/
 ---tests/
+----launch/
 ---rviz/
 ---world/
 ---UML/
@@ -72,14 +76,14 @@ catkin_ws/
 ----revised/
 ----final/
 ---results/
+---docs/
 ---launch/
 ---.gitignore
 ---.travis.yml
 ```
 >**Note:** "-" indicates levels
 
-## <a name="pre"></a> Prerequisites 
-
+## <a name="pre"></a> Prerequisites
 * [ROS Kinetic](https://wiki.ros.org/ROS/Installation) on Ubuntu 16.04. 
   >**Note:** Follow the installation steps given on ROS Kinetic installation page.
 
@@ -101,7 +105,7 @@ catkin_ws/
   ```bash
   $ sudo apt-get install ros-kinetic-turtlebot-gazebo ros-kinetic-turtlebot-apps ros-kinetic-turtlebot-rviz-launchers
   ```
-  The developed package also depends on: *roscpp*, *geometry_msgs*, *sensor_msgs* *move_base_msgs*, *message_generation*, *image_transport*, *map-server*, *AMCL*, *gmapping*, *OpenCV* & *cv_bridge*
+  The developed package also depends on: *roscpp*, *geometry_msgs*, *sensor_msgs* *move_base_msgs*, *message_generation*, *image_transport*, *OpenCV* & *cv_bridge*
 
 ### <a name="workspace"></a> Creating a package workspace
 
@@ -126,16 +130,26 @@ $ echo $ROS_PACKAGE_PATH
 ```
 >**Note:** The last command checks whether the environment variable includes the directory you are in or not. If it doesn't include please follow the above steps properly. This is the most important step to check that everything is installed and linked properly. 
 
+### Commands to run tests for generated package
+
+Follow the below steps to compile and launching the tests:
+```bash
+$ cd ~/catkin_ws
+$ catkin_make run_tests && catkin_test_results
+```
+>**Note:** In the above command, firstly the test binary will get compiled and then first unit test will be run and then rostest will run to test ROS interface. ROSTEST uses launch file to run the code. Test launch file are in tests/launch/ directory
+
+
 ### Building for code coverage
 
-Follow the below steps to generate the code coverage report on your local computer </br>
-**1.** Install lcov using the command `$ sudo apt-get install -y lcov` </br>
-**2.** Open a new terminal and run the below command `$ cd ~/catkin_ws && catkin_make run_tests && catkin_tests_results` </br>
-**3.** Generate the code coverage report `$ lcov --directory . --capture --output-file coverage.info` </br>
-**4.** Filter out the system and test code data including user-defined header files `$ lcov --remove coverage.info '/usr/*' '/opt/*' '*/devel/*' 'tests/*' --output-file coverage.info` </br>
+Follow the below steps to generate the code coverage report on your local computer <br/>
+**1.** Install lcov using the command `$ sudo apt-get install -y lcov` <br/>
+**2.** Open a new terminal and run the below command `cd ~/catkin_ws && catkin_make run_tests && catkin_tests_results` <br/>
+**3.** Generate the code coverage report `$ lcov --directory . --capture --output-file coverage.info` <br/>
+**4.** Filter out the system and test code data including user-defined header files `$ lcov --remove coverage.info '/usr/*' '/opt/*' '*/devel/*' 'tests/*' --output-file coverage.info` <br/>
 **5.** Generate an HTML report from a captured coverage information and store it in a *output* directory in a same directory `$ genhtml coverage.info --output-directory output`
 
->**Note:** Once it is done you can go through the *output* folder and open *index.html* to check coverage percentile. It will display both Line coverage and Function coverage shown as in the results directory.
+>**Note:** Once it is done you can go through the *output* folder and open *index.html* to check coverage percentile. It will display both Line and Function coverage as shown in *coverage_report* image in */results* directory.
 
 ### Run Naivik Robot using rosrun
 
@@ -221,9 +235,6 @@ $ rosservice call /takeImageService "request: true"
 ```
 
 ## <a name="doc"></a> Documentation
-WorkUnderProgress
-
-## <a name="references"></a> Reference Materials
 WorkUnderProgress
 
 ## <a name="futurework"></a> TODO

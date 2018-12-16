@@ -23,7 +23,7 @@
  */
 
 /**
- * @files      camera.hpp
+ * @file       camera.hpp
  * @version    0.1
  * @author     Ashish Patel
  * @brief      Camera class header file
