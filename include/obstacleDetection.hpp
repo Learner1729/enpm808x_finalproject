@@ -84,7 +84,7 @@ class ObstacleDetection {
    * @brief declare a container to determine how close the robot should get to
    *        an object
    */
-  double distThreshold_;
+  double distThreshold_{0.0};
 };
 
 #endif  // INCLUDE_OBSTACLEDETECTION_HPP_

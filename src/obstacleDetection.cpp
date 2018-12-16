@@ -46,10 +46,11 @@ ObstacleDetection::~ObstacleDetection() {
 
 bool ObstacleDetection::detectObstacle(
   const sensor_msgs::LaserScan::ConstPtr& msg) {
-  // Check if any scan data from the laser is less than range_min + 0.2 m from
-  // the front of the robot. If so, a collision is about to occur, return true
+  // Check if any scan data from the laser is less than range_min +
+  // distThreshold from the front of the robot. If so, a collision is about
+  // to occur, return true
   for (auto i : msg->ranges) {
-    if (i < msg->range_min + 0.2) {
+    if (i < msg->range_min + distThreshold_) {
       ROS_WARN_STREAM("About to hit... Obstacle ahead!!!");
       return true;
     }
