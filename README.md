@@ -31,6 +31,9 @@ The SIP Process followed is detailed in a spreadsheet, click on the link to acce
 ## <a name="present"></a> Video Presentation & Demo
 The project presentation is made using google presentation slides, click on the link to access it: [Presentation](https://docs.google.com/presentation/d/1P-7ZiaSU_TAKtFjx63iGmTSdBFGq3v5k5EBiq1V8JrM/edit?usp=sharing) 
 
+Demo of v0.1: [Demo](https://youtu.be/QotacUSmaqE) <br/>
+Video presentation:[Video Presentation](https://youtu.be/QotacUSmaqE) <br/>
+
 ## <a name="implementation"></a> Implementation
 
 ### Creating a Map
@@ -123,7 +126,7 @@ $ rosbag info src/naivik_robot/demo/v0.1.bag
 
 
 ## <a name="futurework"></a> TODO
-The above approaches that where used to generate map and navigate on it, can be developed through our own source code.
+
 - Mapping using teleoperation be can be replaced with more advanced way of map exploration like using frontier exploration methods and many more.
 - For autonomous navigation, instead of using RVIZ we have develop a source code through which user can give the location of the region where they want to visit. For example, consider a scenario where there is an indoor environment like a house where there are let say five rooms, location of those places can be obtained from the map generated through exploration techniques. Those locations can be fed to the source code and based on what user chooses the Robot should move and navigate to that location.
 - ROS has a navigation stack called move_base which can be used for path planning and autonomous navigation. For path planning it has two path planners local and global, those path planners can be replaced my our own path planning algorithm depending on the required scenario through plugins. It also takes into account the costmaps which helps to know the obstacles in front of robot. Along with it, it also contains localization algorithms build in it, to know robot's position in a map.
