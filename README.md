@@ -31,6 +31,8 @@ The SIP Process followed is detailed in a spreadsheet, click on the link to acce
 ## <a name="present"></a> Video Presentation & Demo
 The project presentation is made using google presentation slides, click on the link to access it: [Presentation](https://docs.google.com/presentation/d/1P-7ZiaSU_TAKtFjx63iGmTSdBFGq3v5k5EBiq1V8JrM/edit?usp=sharing) 
 
+Build step demo: [Build](https://youtu.be/2GtA5nY3PZw) <br/>
+Run test demo: [Test](https://youtu.be/FTqG_pJk8KU) <br/>
 Demo of v0.1: [Demo](https://youtu.be/QotacUSmaqE) <br/>
 Video presentation:[Video Presentation](https://youtu.be/QotacUSmaqE) <br/>
 
