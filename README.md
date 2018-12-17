@@ -29,20 +29,7 @@ Sprint Planing is provided in the google doc file, click on the link to access i
 The SIP Process followed is detailed in a spreadsheet, click on the link to access it: [SIP](https://docs.google.com/spreadsheets/d/1nMbX9Id-yYUnSFjK3-XCJu1AtMnWx-2TkpUoiuIMqgM/edit?usp=sharing)
 
 ## <a name="present"></a> Video Presentation & Demo
-The project presentation is made using google presentation slides, click on the link to access it: [Presentation](https://docs.google.com/presentation/d/1P-7ZiaSU_TAKtFjx63iGmTSdBFGq3v5k5EBiq1V8JrM/edit?usp=sharing)
-
-## <a name="pre"></a> Prerequisites
-
-Apart from v0.1 prerequisites specified in master branch below are the additional dependency needed for implementing autonomous navigation.
-
-### <a name="workspace"></a> Creating a package workspace
-
-```bash
-$ mkdir -p ~/catkin_ws/src
-$ cd ~/catkin_ws/
-$ catkin_make
-```
-Before any update run the command `$ source devel/setup.bash` 
+The project presentation is made using google presentation slides, click on the link to access it: [Presentation](https://docs.google.com/presentation/d/1P-7ZiaSU_TAKtFjx63iGmTSdBFGq3v5k5EBiq1V8JrM/edit?usp=sharing) 
 
 ## <a name="implementation"></a> Implementation
 
@@ -97,8 +84,8 @@ alt="NMPC" width="640" height="480" border="10" />
 ##### Generated Map
 
 <p align="center">
-<a target="_blank"><img src="map/custom_world_map.pgm"
-alt="NMPC" width="640" height="480" border="10" />
+<a target="_blank"><img src="demo/custom_world_map.png"
+alt="NMPC" width="480" height="480" border="10" />
 </a>
 </p>
 
