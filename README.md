@@ -7,22 +7,17 @@
 ---
 
 ## Table of Contents
-- [Overview](#overview)
+- [v0.2 Overview](#overview)
 - [Author](#author)
 - [SIP Process with Sprint Planning](#sip_process)
-- [Presentation](#present)
-- [Class Diagram](#class)
-- [Activity Diagram](#activity)
-- [Prerequisites](#pre) 
+- [Video Presentation & Demo](#present)
 - [Implementation](#implementation)
-- [Documentation](#doc)
-- [Demo](#demo)
 - [TODO](#futurework)
+- [References](#refer)
 
-## <a name="overview"></a> Overview 
-This repository is created as the part of my project on building an autonomous mobile robot using simulated turtlebot platform for ACME Robotics (ENPM808x Final Project). The software implements autonomous navigation and mapping capability using ROS nodes and services and the simulated turtlebot platform.
+## <a name="overview"></a> v0.2 Overview
 
-An autonomous mobile robot have a capability to move from its current position to the goal position autonomously with the help of mapping and localizing algorithms. Such a robot performs tasks with a high degree of autonomy, which is particularly describe in fields such as spaceflight, household maintenance (such as cleaning), waste water treatment, indoor navigation and delivery goods and services. Example of such robots ranges from autonomous helicopters to Roomba, the robot vacuum cleaner.
+For any autonomous mobile robot, to be able to navigate autonomously in indoor environment, it needs to know the map of it. Now, map can be generated using SLAM. SLAM (simultaneous localization and mapping) is a technique for creating a map of environment and determining robot position at the same time. It is widely used in robotics. While moving, current measurements and localization are changing, in order to create map it is necessary to merge measurements from previous positions.
 
 ## <a name="author"></a> Author
 
@@ -33,7 +28,7 @@ Sprint Planing is provided in the google doc file, click on the link to access i
 
 The SIP Process followed is detailed in a spreadsheet, click on the link to access it: [SIP](https://docs.google.com/spreadsheets/d/1nMbX9Id-yYUnSFjK3-XCJu1AtMnWx-2TkpUoiuIMqgM/edit?usp=sharing)
 
-## <a name="present"></a> Presentation
+## <a name="present"></a> Video Presentation & Demo
 The project presentation is made using google presentation slides, click on the link to access it: [Presentation](https://docs.google.com/presentation/d/1P-7ZiaSU_TAKtFjx63iGmTSdBFGq3v5k5EBiq1V8JrM/edit?usp=sharing)
 
 ## <a name="pre"></a> Prerequisites
@@ -51,38 +46,93 @@ Before any update run the command `$ source devel/setup.bash`
 
 ## <a name="implementation"></a> Implementation
 
-### Standard install via command-line
+### Creating a Map
 
-```bash
-$ cd ~/catkin_ws/src
-$ git clone --recursive https://github.com/Learner1729/naivik_robot.git
-$ cd naivilk_robot
-$ git branch -a
-$ git checkout v0.2
-$ cd ~/catkin_ws
-$ catkin_make
-$ source devel/setup.bash
-$ echo $ROS_PACKAGE_PATH
-```
->**Note:** The last command checks whether the environment variable includes the directory you are in or not. If it doesn't include please follow the above steps properly. This is the most important step to check that everything is installed and linked properly. 
+The below steps shows how to build a map which lets the robot remembers the environment. Robot can autonomously navigate around using the map. <br/>
+**1.** Create a folder for maps from your catkin_ws directory. `$ mkdir ~/catkin_ws/src/naivik_robot/map` <br/>
+**2.** Launch Gazebo world. `$ roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=<full path to the world file>` <br/>
+**3.** Start map building. `$ roslaunch turtlebot_gazebo gmapping_demo.launch` <br/>
+**4.** Use Rviz to visualize the map building process. `$ roslaunch turtlebot_rviz_launchers view_navigation.launch` <br/>
+**5.** Change the option in Rviz. <br/>
+`Local map->Costmap->Topic` (choose /map from drop-down list) <br/>
+`Global map->Costmap->Topic` (choose /map from drop-down list). <br/>
+**6.** Launch teleop. `$ roslaunch turtlebot_teleop keyboard_teleop.launch` <br/>
+**7.** Drive the TurtleBot around.
+> **NOTE:** The terminal with teleop launching has to be active all the time otherwise you won’t be able to operate the TurtleBot.
 
-## <a name="doc"></a> Documentation
-Generating documentation using doxygen <br/>
-**1.** To install *doxygen* run the following command: `$ sudo apt-get install doxygen` <br/>
-**2.** Generate doxygen config file into your cloned github repository. `$ doxygen -g <config_file>` <br/>
-**3.** The generated config_file includes the parameter through which doxygen generates your documentation. You need to modify this by referring to this [link.](https://www.ibm.com/developerworks/aix/library/au-learningdoxygen/index.html) <br/>
-**4.** Run the following command: `$ doxygen <config_file>` <br/>
-**5.** Doxygen files will be generated to *html* and *latex* folder to your output location specified in config_file <br/>
-**6.** To view them in a browser go to the output folder and run the commands below:
-```bash 
-$ cd html
-$ firefox index.html
-```
->**Note:** If the above steps doesn't work for you, you can refer the documentation in /docs folder of the repository. I have also provided the config file for your reference
+**8.** Save a map when your picture is good enough using the below command.
+`$ rosrun map_server map_saver -f /home/<user_name>/catkin_ws/src/naivik_robot/map/maps` <br/>
+> **Note**: Steps from 2 to 7 can be launched simultaneously using generate_map launch file you just need to modify world file location in it.
 
-Click the link to see the generated document for version 0.2: [DOXYGEN Document]()
+**9.** Interrupt processes and close the terminals.
 
-## <a name="demo"></a> Demo
+### Testing the generated Map
+
+We can test the result of generated map using the below command. <br/>
+**1.** Launch Gazebo. `$ roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=<full path to the world file> ` <br/>
+**2.** Launch navigation demo.`$ roslaunch turtlebot_gazebo amcl_demo.launch map_file:=/home/<user_name>/catkin_ws/src/naivik_robot/map/maps.yaml` <br/>
+**3.** Launch Rviz. `$ roslaunch turtlebot_rviz_launchers view_navigation.launch` <br/>
+**4.** If you see a picture like the one stored in results directory by the name *test_map* then creating the map has been realized successfully. Close all the terminals and start autonomous navigation steps below. <br/>
+> **Note:** The above commands can be run by a single launch named test_map, you just need to change your world and map file location.
+
+### Autonomous Navigation
+
+The below steps shows how to use the TurtleBot in a known map. <br/>
+**1.** Launch Gazebo. `$ roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=<full path to the world file>` <br/>
+**2.** Run the navigation demo. `$ roslaunch turtlebot_gazebo amcl_demo.launch:=<full path to map yaml file>` <br/>
+**3.** Launch Rviz. `$ roslaunch turtlebot_rviz_launchers view_navigation.launch` <br/>
+**4.** Send a navigation goal. Click the 2D Nav Goal button. <br/>
+**5.** Click on the map where you want the TurtleBot to drive and drag in the direction the Turtlebot should be pointing at the end. <br/>
+
+### Output of the above implementation
+
+##### Gazebo World
+
+<p align="center">
+<a target="_blank"><img src="demo/customWorld.png"
+alt="NMPC" width="640" height="480" border="10" />
+</a>
+</p>
+
+##### Generated Map
+
+<p align="center">
+<a target="_blank"><img src="map/custom_world_map.pgm"
+alt="NMPC" width="640" height="480" border="10" />
+</a>
+</p>
+
 
 ## <a name="futurework"></a> TODO
+The above approaches that where used to generate map and navigate on it, can be developed through our own source code.
+- Teleoperation i.e. mapping can be replaced with more advanced way of map exploration like using frontier exploration methods and many more.
+- For autonomous navigation, instead of using RVIZ we have develop a source code through which user can give the location of the region where they want to visit. For example, consider a scenerio where there is an indoor environment like a house where there are let say five rooms, location of those places can be obtained from the map generated through exploration techniques. Those locations can be fed to the source code and based on what user chooses the Robot should move and navigate to that location.
+- ROS has a navigation stack called move_base which can be used for path planning and autonomous navigation. For path planning it has two path planners local and global, those path planners can be replaced my our own path planning algorithm depending on the required scenerio through plugins. It also takes into account the costmaps which helps to know the obstacles in front of robot. Along with it, it also contains localization algorithms build in it, to know robot's position in a map.
+
+## <a name="refer"></a> References
+
+Apart from ROS Wiki below are few useful references that I used to complete uptill this point: <br/>
+**1.** SLAM navigation [Link_1](https://husarion.com/tutorials/ros-tutorials/6-slam-navigation/), [Link_2](http://learn.turtlebot.com/2015/02/03/8/) <br/>
+**2.** Path Planning [Link_2](https://husarion.com/tutorials/ros-tutorials/7-path-planning/#7-path-planning-graph-methods) <br/>
+**3.** Autonomous Navigation [Link_1](http://learn.turtlebot.com/2015/02/03/9/) <br/>
+**4.** For travis-ci and coveralls setup. [Link_1](https://github.com/felixduvallet/ros-travis-integration)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
