@@ -89,12 +89,44 @@ alt="NMPC" width="480" height="480" border="10" />
 </a>
 </p>
 
+### ROS bag
+
+Bags are created by rosbag, which subscribe to one or more ROS topics and stores the serialized message data in a file as it is received. These files can then be played back in ROS to the same topics they were recorded from, or even remapped to new topics. ROS bag can be run on simulation environment as well as on real robots. ROS provides executables named record and play that are members of the rosbag package. These executables make it easy to include bags as a part of our launch file.
+
+```bash
+$ roslaunch naivik_robot WalkerAlgorithm_CustomWorld.launch record:=true
+```
+
+>Note: 90 sec is the maximum duration of data recorded in bagfile. The generated bag file is stored in the demo directory.
+
+Recorded bag file can be examine and played back using the command rosbag play and rosbag info.
+
+**Playing the bag file:** The rosbag play command can be used to do it. First we will launch the Gazebo world and play the bag file, thus instead of running the walker node we will us the information recorded in results directory.
+
+**1.** Launch the custom world in gazebo using the command below
+  ```bash
+  $ roslaunch naivik_robot customworld_gazebo.launch
+  ```
+ 
+**2.** Open a new shell and play back the generated bag file
+  ```bash
+  $ cd ~/catkin_ws
+  $ rosbag play src/naivik_robot/demo/v0.1.bag
+  ```
+
+**Inspecting the recorded bag file:** The rosbag info command used below can provide a number of interesting snippets of information about a bag like path where rosbag file is stored, version, duration of the record time, start and end time of the recording, size of the recorded rosbag file, messages stored on a record rosbag file, compression method if applied, along with the types and topics from where messages recorded.
+
+```bash
+$ rosbag info src/naivik_robot/demo/v0.1.bag
+```
+>Note: /camera/* topics are not being recorded as it quickly increases the bag file size. Screen shot of the output is stored in the result folder.
+
 
 ## <a name="futurework"></a> TODO
 The above approaches that where used to generate map and navigate on it, can be developed through our own source code.
-- Teleoperation i.e. mapping can be replaced with more advanced way of map exploration like using frontier exploration methods and many more.
-- For autonomous navigation, instead of using RVIZ we have develop a source code through which user can give the location of the region where they want to visit. For example, consider a scenerio where there is an indoor environment like a house where there are let say five rooms, location of those places can be obtained from the map generated through exploration techniques. Those locations can be fed to the source code and based on what user chooses the Robot should move and navigate to that location.
-- ROS has a navigation stack called move_base which can be used for path planning and autonomous navigation. For path planning it has two path planners local and global, those path planners can be replaced my our own path planning algorithm depending on the required scenerio through plugins. It also takes into account the costmaps which helps to know the obstacles in front of robot. Along with it, it also contains localization algorithms build in it, to know robot's position in a map.
+- Mapping using teleoperation be can be replaced with more advanced way of map exploration like using frontier exploration methods and many more.
+- For autonomous navigation, instead of using RVIZ we have develop a source code through which user can give the location of the region where they want to visit. For example, consider a scenario where there is an indoor environment like a house where there are let say five rooms, location of those places can be obtained from the map generated through exploration techniques. Those locations can be fed to the source code and based on what user chooses the Robot should move and navigate to that location.
+- ROS has a navigation stack called move_base which can be used for path planning and autonomous navigation. For path planning it has two path planners local and global, those path planners can be replaced my our own path planning algorithm depending on the required scenario through plugins. It also takes into account the costmaps which helps to know the obstacles in front of robot. Along with it, it also contains localization algorithms build in it, to know robot's position in a map.
 
 ## <a name="refer"></a> References
 

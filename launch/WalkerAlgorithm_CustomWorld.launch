@@ -1,4 +1,6 @@
 <launch> 
+  <arg name="record" default="false"/>
+
   <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
     <arg name="world_file" value="$(find naivik_robot)/world/customWorld"/>
   </include>
@@ -15,5 +17,13 @@
     name="naivik_robot_node"
     type="naivik_robot_node"
     output="screen"
+  />
+  
+  <node
+    pkg="rosbag"
+    name="record"
+    type="record"
+    args="--duration=90.0 -a -x /camera/(.*) -O $(find naivik_robot)/demo/v0.1.bag"
+    if="$(arg record)"
   />
 </launch>
